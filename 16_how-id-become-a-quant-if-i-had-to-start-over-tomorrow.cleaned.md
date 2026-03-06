@@ -28,7 +28,7 @@ That's probability. If you don't understand probability at a deep level, nothing
 
 Most people think in absolutes. Something is true or it isn't. Quants think in conditionals. Given what I know, how likely is this?
 
-[![Image 1: Image](https://pbs.twimg.com/media/HCei_w7XcAAjMwU?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769373503057920)
+[![Image 1: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-01.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769373503057920)
 
 The probability of A given B equals the probability of both happening divided by the probability of B. Profound implications.
 
@@ -38,7 +38,7 @@ That conditional probability is a NOT BS. The raw 60% is NOISY BS.
 
 ## Bayes' theorem
 
-[![Image 2: Image](https://pbs.twimg.com/media/HCejMkSbgAAeuXv?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769593448431616)
+[![Image 2: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-02.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769593448431616)
 
 Your updated belief equals
 
@@ -54,9 +54,9 @@ A model says a stock should be worth $50. Earnings come out, revenue is 3% above
 
 ## Expected value and variance your two best friends
 
-[![Image 3: Image](https://pbs.twimg.com/media/HCejtL7XsAA5vQ7?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770153844944896)
+[![Image 3: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-03.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770153844944896)
 
-[![Image 4: Image](https://pbs.twimg.com/media/HCejv0UXIAACqgx?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770199046922240)
+[![Image 4: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-04.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770199046922240)
 
 Expected value is your conviction. Variance is your risk.
 
@@ -89,7 +89,7 @@ print(f"After 10,000 flips: {running_avg[-1]:.4f} (true: 0.5000)")
 
 Once you speak probability, you need to learn to listen to data.
 
-[![Image 5: Image](https://pbs.twimg.com/media/HCgQBaXXYAEaXBx?format=png&name=240x240)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028889248573644801)
+[![Image 5: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-05.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028889248573644801)
 
 That's statistics and the #1 lesson statistics teaches is "most of what looks like NOT A BS is actually NOISY BS"
 
@@ -109,13 +109,13 @@ Every single beginner massively overestimates how much NOT A BS they've found. Y
 
 Linear regression y=Xβ+ϵ is the workhorse. In finance, you regress your strategy's returns against known risk factors:
 
-[![Image 6: Image](https://pbs.twimg.com/media/HCgDDAkaEAEvrzK?format=png&name=small)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028874982357602305)
+[![Image 6: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-06.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028874982357602305)
 
 The intercept α is your alpha the return that can't be explained by known factors. If α is zero after accounting for factors, your "edge" is just disguised market exposure.
 
 The OLS estimator:
 
-[![Image 7: Image](https://pbs.twimg.com/media/HCgDMxxXIAA4zDW?format=png&name=240x240)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028875150184095744)
+[![Image 7: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-07.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028875150184095744)
 
 The most important number is α. Use Newey-West standard errors financial data has autocorrelation and heteroskedasticity, so default OLS standard errors are wrong. Using them is like driving with a cracked windshield.
 
@@ -123,7 +123,7 @@ The most important number is α. Use Newey-West standard errors financial data h
 
 Given data x_1,…,x_n,​ from a model with parameter θ:
 
-[![Image 8: Image](https://pbs.twimg.com/media/HCgQ6rLXUAAaw9F?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028890232339255296)
+[![Image 8: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-08.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028890232339255296)
 
 Set the derivative to zero and solve. (or it's over gng)
 
@@ -176,7 +176,7 @@ print(f"Reject normality? {'YES  fat tails confirmed' if p_normal < 0.05 else 'N
 
 Linear algebra sounds boring. It's the machinery that runs everything: portfolio construction, PCA, neural networks, covariance estimation, factor models. You cannot be a quant without being fluent in matrices.
 
-[![Image 9: Image](https://pbs.twimg.com/media/HCgSDNfawAUriXT?format=jpg&name=small)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028891478500753413)
+[![Image 9: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-09.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028891478500753413)
 
 (if u skipped Algebra in school school doing that, it's over)
 
@@ -184,7 +184,7 @@ Linear algebra sounds boring. It's the machinery that runs everything: portfolio
 
 A covariance matrix Σ captures how every asset moves relative to every other asset. For 500 stocks, Σ is 500×500 with 125,250 unique entries. Portfolio variance collapses to a single expression
 
-[![Image 10: Image](https://pbs.twimg.com/media/HCgEBHmWkAIWTsh?format=png&name=240x240)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028876049396699138)
+[![Image 10: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-10.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028876049396699138)
 
 This quadratic form is the core of Markowitz portfolio theory, of risk management, of everything.
 
@@ -243,7 +243,7 @@ Derivatives (the math kind): appears in every neural network backpropagation and
 
 Taylor expansion:
 
-[![Image 11: Image](https://pbs.twimg.com/media/HCgE6k4boAA07fr?format=png&name=small)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028877036509700096)
+[![Image 11: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-11.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028877036509700096)
 
 Delta hedging is the first-order approximation. Gamma hedging adds the second-order correction. And the reason Itô calculus differs from ordinary calculus is precisely because the second-order Taylor term doesn't vanish for random processes. Just Remember it
 
@@ -256,7 +256,7 @@ Before stochastic calculus, you're a data scientist who likes finance.
 
 After it, you're a quant. QUANTATIVE FINANCE EXPERT, you heard?
 
-[![Image 12: Image](https://pbs.twimg.com/media/HCgU9xXW8AAmAc_?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028894683586293760)
+[![Image 12: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-12.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028894683586293760)
 
 that's you
 
@@ -275,7 +275,7 @@ The critical insight that everything else depends on: dW_t has "size" dt, which 
 
 Geometric Brownian Motion models stock prices:
 
-[![Image 13: Image](https://pbs.twimg.com/media/HCgHgzZWIAAmud7?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028879892264132608)
+[![Image 13: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-13.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028879892264132608)
 
 ### Itô's lemma
 
@@ -285,7 +285,7 @@ But when x is a stochastic process, (dW_t)^2 = dt is first order. You can't drop
 
 Itô's lemma:
 
-[![Image 14: Image](https://pbs.twimg.com/media/HCgHxPzawAE8TWR?format=png&name=small)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880174767587329)
+[![Image 14: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-14.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880174767587329)
 
 Apply it to an option price and you get Black-Scholes. Formula is the engine behind the entire derivatives industry.
 
@@ -295,11 +295,11 @@ Follow along with pen and paper.
 
 Step 1: Let V(S,t) be an option price. Apply Itô's lemma:
 
-[![Image 15: Image](https://pbs.twimg.com/media/HCgH4u8W8AAi9NX?format=png&name=small)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880303385669632)
+[![Image 15: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-15.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880303385669632)
 
 Step 2: Construct a delta-hedged portfolio Π=V−∂S/∂V​⋅S. Compute dΠ:
 
-[![Image 16: Image](https://pbs.twimg.com/media/HCgIDXgXoAA_PP_?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880486072819712)
+[![Image 16: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-16.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880486072819712)
 
 The dW_t​ terms cancel perfectly. The portfolio is locally riskless.
 
@@ -307,7 +307,7 @@ Step 3: A riskless portfolio must earn the risk-free rate: dΠ=rΠ dt.
 
 Step 4: Substitute and rearrange:
 
-[![Image 17: Image](https://pbs.twimg.com/media/HCgIfdGWYAEfPl8?format=png&name=small)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880968610635777)
+[![Image 17: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-17.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880968610635777)
 
 This is the Black-Scholes PDE.
 
@@ -315,13 +315,13 @@ Notice what happened - the drift μ vanished. The option price doesn't depend on
 
 Solving this PDE for a European call with strike K and expiry T gives:
 
-[![Image 18: Image](https://pbs.twimg.com/media/HCgIq17boAAZdI7?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881164254289920)
+[![Image 18: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-18.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881164254289920)
 
-[![Image 19: Image](https://pbs.twimg.com/media/HCgIyuuawAAEWtg?format=png&name=240x240)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881299759611904)
+[![Image 19: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-19.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881299759611904)
 
 where d_1=
 
-[![Image 20: Image](https://pbs.twimg.com/media/HCgI4E5WoAAzATN?format=png&name=120x120)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881391610404864)
+[![Image 20: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-20.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881391610404864)
 
 d_2 = d_1 - σ√T
 
@@ -394,11 +394,11 @@ This is the most interesting market in the world right now and the math behind i
 
 The Logarithmic Market Scoring Rule (LMSR), invented by Robin Hanson, powers automated prediction markets. The cost function for n outcomes:
 
-[![Image 21: Image](https://pbs.twimg.com/media/HCgK1C4X0AAdWZK?format=png&name=360x360)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883538553065472)
+[![Image 21: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-21.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883538553065472)
 
 where q_i​ tracks outstanding shares of outcome i and b is the liquidity parameter. The price of outcome i:
 
-[![Image 22: Image](https://pbs.twimg.com/media/HCgK60sXYAEqP3I?format=png&name=240x240)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883637823823873)
+[![Image 22: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-22.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883637823823873)
 
 That's the softmax function - function powering every neural network classifier.
 
