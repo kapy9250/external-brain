@@ -28,7 +28,7 @@ URL: https://x.com/gemchange_ltd/status/2028904166895112617
 
 大多数人以绝对的方式思考。某件事要么是真的，要么不是。而量化交易员以条件的方式思考：基于我所知的信息，这件事发生的可能性有多大？
 
-[![Image 1: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-01.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769373503057920)
+[![Image 1: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-01.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769373503057920)
 
 在 B 发生的条件下 A 发生的概率，等于两者同时发生的概率除以 B 发生的概率。这有着深远的影响。
 
@@ -38,7 +38,7 @@ URL: https://x.com/gemchange_ltd/status/2028904166895112617
 
 ## 贝叶斯定理 (Bayes' theorem)
 
-[![Image 2: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-02.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769593448431616)
+[![Image 2: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-02.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028769593448431616)
 
 你更新后的信念等于：
 
@@ -54,9 +54,9 @@ URL: https://x.com/gemchange_ltd/status/2028904166895112617
 
 ## 期望值与方差：你最好的两个朋友
 
-[![Image 3: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-03.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770153844944896)
+[![Image 3: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-03.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770153844944896)
 
-[![Image 4: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-04.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770199046922240)
+[![Image 4: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-04.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028770199046922240)
 
 期望值 (Expected value) 代表你的确信度。方差 (Variance) 代表你的风险。
 
@@ -89,7 +89,7 @@ print(f"After 10,000 flips: {running_avg[-1]:.4f} (true: 0.5000)")
 
 一旦你懂得了概率的语言，你需要学会倾听数据。
 
-[![Image 5: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-05.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028889248573644801)
+[![Image 5: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-05.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028889248573644801)
 
 这就是统计学。统计学教给我们的第一课是：“大多数看起来像真理的东西，实际上都是充满噪音的废话 (NOISY BS)”。
 
@@ -109,13 +109,13 @@ print(f"After 10,000 flips: {running_avg[-1]:.4f} (true: 0.5000)")
 
 线性回归 y=Xβ+ϵ 是主力工具。在金融中，你将策略的回报针对已知的风险因子进行回归：
 
-[![Image 6: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-06.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028874982357602305)
+[![Image 6: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-06.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028874982357602305)
 
 截距 α 是你的 alpha——无法用已知因子解释的回报。如果在剔除因子影响后 α 为零，那么你的“优势”不过是伪装的市场敞口。
 
 OLS 估计量：
 
-[![Image 7: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-07.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028875150184095744)
+[![Image 7: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-07.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028875150184095744)
 
 最重要的数字是 α。使用 Newey-West 标准误——金融数据具有自相关性和异方差性，因此默认的 OLS 标准误是错误的。使用它们就像开着挡风玻璃碎裂的车一样危险。
 
@@ -123,7 +123,7 @@ OLS 估计量：
 
 给定来自具有参数 θ 的模型的数据 x_1,…,x_n：
 
-[![Image 8: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-08.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028890232339255296)
+[![Image 8: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-08.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028890232339255296)
 
 将导数设为零并求解。（或者说完了）
 
@@ -184,7 +184,7 @@ print(f"拒绝正态性吗？ {'是的  肥尾被证实' if p_normal < 0.05 else
 
 协方差矩阵 Σ 捕捉了每一项资产相对于其他各项资产的移动情况。对于 500 只股票，Σ 是 500×500 的，包含 125,250 个唯一的条目。投资组合方差坍缩成一个单一的表达式：
 
-[![Image 10: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-10.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028876049396699138)
+[![Image 10: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-10.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028876049396699138)
 
 这种二次型 (quadratic form) 是马科维茨 (Markowitz) 投资组合理论、风险管理以及一切的核心。
 
@@ -243,7 +243,7 @@ print(f"权重: {np.round(w.value, 4)}")
 
 泰勒展开 (Taylor expansion)：
 
-[![Image 11: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-11.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028877036509700096)
+[![Image 11: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-11.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028877036509700096)
 
 Delta 对冲是一阶近似。Gamma 对冲增加了二阶修正。而伊藤微积分 (Itô calculus) 之所以不同于普通微积分，正是因为对于随机过程来说，二阶泰勒项不会消失。记住这一点。
 
@@ -256,7 +256,7 @@ Delta 对冲是一阶近似。Gamma 对冲增加了二阶修正。而伊藤微�
 
 学完之后，你才是一名量化交易员。QUANTATIVE FINANCE EXPERT，听懂了吗？
 
-[![Image 12: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-12.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028894683586293760)
+[![Image 12: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-12.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028894683586293760)
 
 那就是你
 
@@ -275,7 +275,7 @@ Delta 对冲是一阶近似。Gamma 对冲增加了二阶修正。而伊藤微�
 
 几何布朗运动 (Geometric Brownian Motion) 模拟股票价格：
 
-[![Image 13: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-13.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028879892264132608)
+[![Image 13: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-13.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028879892264132608)
 
 ### 伊藤引理 (Itô's lemma)
 
@@ -285,7 +285,7 @@ Delta 对冲是一阶近似。Gamma 对冲增加了二阶修正。而伊藤微�
 
 伊藤引理：
 
-[![Image 14: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-14.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880174767587329)
+[![Image 14: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-14.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880174767587329)
 
 把它应用到一个期权价格上，你就得到了 Black-Scholes。这个公式是整个衍生品行业背后的引擎。
 
@@ -295,11 +295,11 @@ Delta 对冲是一阶近似。Gamma 对冲增加了二阶修正。而伊藤微�
 
 步骤 1：设 V(S,t) 为期权价格。应用伊藤引理：
 
-[![Image 15: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-15.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880303385669632)
+[![Image 15: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-15.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880303385669632)
 
 步骤 2：构建一个 Delta 对冲的投资组合 Π=V−∂V/∂S​⋅S。计算 dΠ：
 
-[![Image 16: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-16.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880486072819712)
+[![Image 16: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-16.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880486072819712)
 
 dW_t​ 项被完美抵消了。这个投资组合在局部是无风险的。
 
@@ -307,7 +307,7 @@ dW_t​ 项被完美抵消了。这个投资组合在局部是无风险的。
 
 步骤 4：代入并重新排列：
 
-[![Image 17: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-17.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880968610635777)
+[![Image 17: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-17.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028880968610635777)
 
 这就是布莱克-斯科尔斯偏微分方程 (Black-Scholes PDE)。
 
@@ -315,13 +315,13 @@ dW_t​ 项被完美抵消了。这个投资组合在局部是无风险的。
 
 求解这个针对具有执行价 K 和到期日 T 的欧式看涨期权的 PDE，可得：
 
-[![Image 18: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-18.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881164254289920)
+[![Image 18: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-18.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881164254289920)
 
-[![Image 19: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-19.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881299759611904)
+[![Image 19: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-19.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881299759611904)
 
 其中 d_1=
 
-[![Image 20: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-20.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881391610404864)
+[![Image 20: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-20.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028881391610404864)
 
 d_2 = d_1 - σ√T
 
@@ -394,11 +394,11 @@ for name, val in g.items():
 
 对数市场评分规则 (LMSR, Logarithmic Market Scoring Rule)，由 Robin Hanson 发明，驱动着自动预测市场。对于 n 个结果的成本函数：
 
-[![Image 21: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-21.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883538553065472)
+[![Image 21: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-21.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883538553065472)
 
 其中 q_i​ 追踪结果 i 的未平仓份额，b 是流动性参数。结果 i 的价格为：
 
-[![Image 22: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-22.jpg)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883637823823873)
+[![Image 22: Image](./assets/how-id-become-a-quant-if-i-had-to-start-over-tomorrow/image-22.png)](https://x.com/gemchange_ltd/article/2028904166895112617/media/2028883637823823873)
 
 那是 softmax 函数——驱动着每一个神经网络分类器的函数。
 
