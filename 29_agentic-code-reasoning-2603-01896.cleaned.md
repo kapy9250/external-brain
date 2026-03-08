@@ -14,72 +14,72 @@ Submit without GitHub Submit in GitHub
 
 [![Image 1: arXiv logo](https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg)Back to arXiv](https://arxiv.org/)
 
-[Why HTML?](https://info.arxiv.org/about/accessible_HTML.html)[Report Issue](https://arxiv.org/html/2603.01896v1# "Report an Issue")[Back to Abstract](https://arxiv.org/abs/2603.01896v1 "Back to abstract page")[Download PDF](https://arxiv.org/pdf/2603.01896v1 "Download PDF")[](javascript:toggleNavTOC(); "Toggle navigation")[](javascript:toggleReadingMode(); "Disable reading mode, show header and footer")[](javascript:toggleColorScheme(); "Toggle dark/light mode")
-1.   [Abstract](https://arxiv.org/html/2603.01896v1#abstract1 "In Agentic Code Reasoning")
-2.   [1 Introduction](https://arxiv.org/html/2603.01896v1#S1 "In Agentic Code Reasoning")
-    1.   [Motivating Example.](https://arxiv.org/html/2603.01896v1#S1.SS0.SSS0.Px1 "In 1 Introduction ‣ Agentic Code Reasoning")
-    2.   [Contributions.](https://arxiv.org/html/2603.01896v1#S1.SS0.SSS0.Px2 "In 1 Introduction ‣ Agentic Code Reasoning")
-    3.   [Data Contamination.](https://arxiv.org/html/2603.01896v1#S1.SS0.SSS0.Px3 "In 1 Introduction ‣ Agentic Code Reasoning")
+[Why HTML?](https://info.arxiv.org/about/accessible_HTML.html)[Report Issue](https://arxiv.org/html/2603.01896v2# "Report an Issue")[Back to Abstract](https://arxiv.org/abs/2603.01896v2 "Back to abstract page")[Download PDF](https://arxiv.org/pdf/2603.01896v2 "Download PDF")[](javascript:toggleNavTOC(); "Toggle navigation")[](javascript:toggleReadingMode(); "Disable reading mode, show header and footer")[](javascript:toggleColorScheme(); "Toggle dark/light mode")
+1.   [Abstract](https://arxiv.org/html/2603.01896v2#abstract1 "In Agentic Code Reasoning")
+2.   [1 Introduction](https://arxiv.org/html/2603.01896v2#S1 "In Agentic Code Reasoning")
+    1.   [Motivating Example.](https://arxiv.org/html/2603.01896v2#S1.SS0.SSS0.Px1 "In 1 Introduction ‣ Agentic Code Reasoning")
+    2.   [Contributions.](https://arxiv.org/html/2603.01896v2#S1.SS0.SSS0.Px2 "In 1 Introduction ‣ Agentic Code Reasoning")
+    3.   [Data Contamination.](https://arxiv.org/html/2603.01896v2#S1.SS0.SSS0.Px3 "In 1 Introduction ‣ Agentic Code Reasoning")
 
-3.   [2 Background](https://arxiv.org/html/2603.01896v1#S2 "In Agentic Code Reasoning")
-    1.   [2.1 Agentic vs. Single-Shot Verification](https://arxiv.org/html/2603.01896v1#S2.SS1 "In 2 Background ‣ Agentic Code Reasoning")
-    2.   [2.2 Patch Equivalence](https://arxiv.org/html/2603.01896v1#S2.SS2 "In 2 Background ‣ Agentic Code Reasoning")
-    3.   [2.3 Defects4J for Fault Localization](https://arxiv.org/html/2603.01896v1#S2.SS3 "In 2 Background ‣ Agentic Code Reasoning")
-    4.   [2.4 Code Question Answering](https://arxiv.org/html/2603.01896v1#S2.SS4 "In 2 Background ‣ Agentic Code Reasoning")
+3.   [2 Background](https://arxiv.org/html/2603.01896v2#S2 "In Agentic Code Reasoning")
+    1.   [2.1 Agentic vs. Single-Shot Verification](https://arxiv.org/html/2603.01896v2#S2.SS1 "In 2 Background ‣ Agentic Code Reasoning")
+    2.   [2.2 Patch Equivalence](https://arxiv.org/html/2603.01896v2#S2.SS2 "In 2 Background ‣ Agentic Code Reasoning")
+    3.   [2.3 Defects4J for Fault Localization](https://arxiv.org/html/2603.01896v2#S2.SS3 "In 2 Background ‣ Agentic Code Reasoning")
+    4.   [2.4 Code Question Answering](https://arxiv.org/html/2603.01896v2#S2.SS4 "In 2 Background ‣ Agentic Code Reasoning")
 
-4.   [3 Semi-formal Reasoning](https://arxiv.org/html/2603.01896v1#S3 "In Agentic Code Reasoning")
-    1.   [Standard Reasoning](https://arxiv.org/html/2603.01896v1#S3.SS0.SSS0.Px1 "In 3 Semi-formal Reasoning ‣ Agentic Code Reasoning")
-    2.   [Semi-formal Reasoning](https://arxiv.org/html/2603.01896v1#S3.SS0.SSS0.Px2 "In 3 Semi-formal Reasoning ‣ Agentic Code Reasoning")
+4.   [3 Semi-formal Reasoning](https://arxiv.org/html/2603.01896v2#S3 "In Agentic Code Reasoning")
+    1.   [Standard Reasoning](https://arxiv.org/html/2603.01896v2#S3.SS0.SSS0.Px1 "In 3 Semi-formal Reasoning ‣ Agentic Code Reasoning")
+    2.   [Semi-formal Reasoning](https://arxiv.org/html/2603.01896v2#S3.SS0.SSS0.Px2 "In 3 Semi-formal Reasoning ‣ Agentic Code Reasoning")
 
-5.   [4 Evaluation](https://arxiv.org/html/2603.01896v1#S4 "In Agentic Code Reasoning")
-    1.   [4.1 Patch Equivalence](https://arxiv.org/html/2603.01896v1#S4.SS1 "In 4 Evaluation ‣ Agentic Code Reasoning")
-        1.   [4.1.1 Curated Dataset Evaluation](https://arxiv.org/html/2603.01896v1#S4.SS1.SSS1 "In 4.1 Patch Equivalence ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        2.   [4.1.2 LLM Verifier With Test Specifications](https://arxiv.org/html/2603.01896v1#S4.SS1.SSS2 "In 4.1 Patch Equivalence ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+5.   [4 Evaluation](https://arxiv.org/html/2603.01896v2#S4 "In Agentic Code Reasoning")
+    1.   [4.1 Patch Equivalence](https://arxiv.org/html/2603.01896v2#S4.SS1 "In 4 Evaluation ‣ Agentic Code Reasoning")
+        1.   [4.1.1 Curated Dataset Evaluation](https://arxiv.org/html/2603.01896v2#S4.SS1.SSS1 "In 4.1 Patch Equivalence ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        2.   [4.1.2 LLM Verifier With Test Specifications](https://arxiv.org/html/2603.01896v2#S4.SS1.SSS2 "In 4.1 Patch Equivalence ‣ 4 Evaluation ‣ Agentic Code Reasoning")
 
-    2.   [4.2 Fault Localization](https://arxiv.org/html/2603.01896v1#S4.SS2 "In 4 Evaluation ‣ Agentic Code Reasoning")
-        1.   [Metric](https://arxiv.org/html/2603.01896v1#S4.SS2.SSS0.Px1 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        2.   [Available Information.](https://arxiv.org/html/2603.01896v1#S4.SS2.SSS0.Px2 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        3.   [Small-Scale Evaluation (50 bugs).](https://arxiv.org/html/2603.01896v1#S4.SS2.SSS0.Px3 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        4.   [Larger-Scale Validation (100 bugs).](https://arxiv.org/html/2603.01896v1#S4.SS2.SSS0.Px4 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        5.   [Error Analysis.](https://arxiv.org/html/2603.01896v1#S4.SS2.SSS0.Px5 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+    2.   [4.2 Fault Localization](https://arxiv.org/html/2603.01896v2#S4.SS2 "In 4 Evaluation ‣ Agentic Code Reasoning")
+        1.   [Metric](https://arxiv.org/html/2603.01896v2#S4.SS2.SSS0.Px1 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        2.   [Available Information.](https://arxiv.org/html/2603.01896v2#S4.SS2.SSS0.Px2 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        3.   [Small-Scale Evaluation (50 bugs).](https://arxiv.org/html/2603.01896v2#S4.SS2.SSS0.Px3 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        4.   [Larger-Scale Validation (100 bugs).](https://arxiv.org/html/2603.01896v2#S4.SS2.SSS0.Px4 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        5.   [Error Analysis.](https://arxiv.org/html/2603.01896v2#S4.SS2.SSS0.Px5 "In 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning")
 
-    3.   [4.3 Code Question Answering](https://arxiv.org/html/2603.01896v1#S4.SS3 "In 4 Evaluation ‣ Agentic Code Reasoning")
-        1.   [Available Information.](https://arxiv.org/html/2603.01896v1#S4.SS3.SSS0.Px1 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        2.   [Evaluation.](https://arxiv.org/html/2603.01896v1#S4.SS3.SSS0.Px2 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        3.   [Reasoning Modes.](https://arxiv.org/html/2603.01896v1#S4.SS3.SSS0.Px3 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
-        4.   [Error Analysis.](https://arxiv.org/html/2603.01896v1#S4.SS3.SSS0.Px4 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+    3.   [4.3 Code Question Answering](https://arxiv.org/html/2603.01896v2#S4.SS3 "In 4 Evaluation ‣ Agentic Code Reasoning")
+        1.   [Available Information.](https://arxiv.org/html/2603.01896v2#S4.SS3.SSS0.Px1 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        2.   [Evaluation.](https://arxiv.org/html/2603.01896v2#S4.SS3.SSS0.Px2 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        3.   [Reasoning Modes.](https://arxiv.org/html/2603.01896v2#S4.SS3.SSS0.Px3 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
+        4.   [Error Analysis.](https://arxiv.org/html/2603.01896v2#S4.SS3.SSS0.Px4 "In 4.3 Code Question Answering ‣ 4 Evaluation ‣ Agentic Code Reasoning")
 
-6.   [5 Related Work](https://arxiv.org/html/2603.01896v1#S5 "In Agentic Code Reasoning")
-    1.   [LLM-Based Software Engineering Agents.](https://arxiv.org/html/2603.01896v1#S5.SS0.SSS0.Px1 "In 5 Related Work ‣ Agentic Code Reasoning")
-    2.   [Execution-Free Verification for Code.](https://arxiv.org/html/2603.01896v1#S5.SS0.SSS0.Px2 "In 5 Related Work ‣ Agentic Code Reasoning")
-    3.   [LLM-Based Fault Localization and Code Understanding.](https://arxiv.org/html/2603.01896v1#S5.SS0.SSS0.Px3 "In 5 Related Work ‣ Agentic Code Reasoning")
-    4.   [Program Equivalence and Formal Verification.](https://arxiv.org/html/2603.01896v1#S5.SS0.SSS0.Px4 "In 5 Related Work ‣ Agentic Code Reasoning")
-    5.   [LLM Reasoning and Chain-of-Thought.](https://arxiv.org/html/2603.01896v1#S5.SS0.SSS0.Px5 "In 5 Related Work ‣ Agentic Code Reasoning")
-    6.   [Training and Scaling SWE Agents.](https://arxiv.org/html/2603.01896v1#S5.SS0.SSS0.Px6 "In 5 Related Work ‣ Agentic Code Reasoning")
+6.   [5 Related Work](https://arxiv.org/html/2603.01896v2#S5 "In Agentic Code Reasoning")
+    1.   [LLM-Based Software Engineering Agents.](https://arxiv.org/html/2603.01896v2#S5.SS0.SSS0.Px1 "In 5 Related Work ‣ Agentic Code Reasoning")
+    2.   [Execution-Free Verification for Code.](https://arxiv.org/html/2603.01896v2#S5.SS0.SSS0.Px2 "In 5 Related Work ‣ Agentic Code Reasoning")
+    3.   [LLM-Based Fault Localization and Code Understanding.](https://arxiv.org/html/2603.01896v2#S5.SS0.SSS0.Px3 "In 5 Related Work ‣ Agentic Code Reasoning")
+    4.   [Program Equivalence and Formal Verification.](https://arxiv.org/html/2603.01896v2#S5.SS0.SSS0.Px4 "In 5 Related Work ‣ Agentic Code Reasoning")
+    5.   [LLM Reasoning and Chain-of-Thought.](https://arxiv.org/html/2603.01896v2#S5.SS0.SSS0.Px5 "In 5 Related Work ‣ Agentic Code Reasoning")
+    6.   [Training and Scaling SWE Agents.](https://arxiv.org/html/2603.01896v2#S5.SS0.SSS0.Px6 "In 5 Related Work ‣ Agentic Code Reasoning")
 
-7.   [6 Conclusion and Future Work](https://arxiv.org/html/2603.01896v1#S6 "In Agentic Code Reasoning")
-8.   [References](https://arxiv.org/html/2603.01896v1#bib "In Agentic Code Reasoning")
-9.   [A Patch Equivalence Semi-formal Reasoning Template](https://arxiv.org/html/2603.01896v1#A1 "In Agentic Code Reasoning")
-    1.   [Semi-formal Prompt Template.](https://arxiv.org/html/2603.01896v1#A1.SS0.SSS0.Px1 "In Appendix A Patch Equivalence Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
-    2.   [Example: Semi-formal Analysis Discovers Name Shadowing (django-13670).](https://arxiv.org/html/2603.01896v1#A1.SS0.SSS0.Px2 "In Appendix A Patch Equivalence Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
+7.   [6 Conclusion and Future Work](https://arxiv.org/html/2603.01896v2#S6 "In Agentic Code Reasoning")
+8.   [References](https://arxiv.org/html/2603.01896v2#bib "In Agentic Code Reasoning")
+9.   [A Patch Equivalence Semi-formal Reasoning Template](https://arxiv.org/html/2603.01896v2#A1 "In Agentic Code Reasoning")
+    1.   [Semi-formal Prompt Template.](https://arxiv.org/html/2603.01896v2#A1.SS0.SSS0.Px1 "In Appendix A Patch Equivalence Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
+    2.   [Example: Semi-formal Analysis Discovers Name Shadowing (django-13670).](https://arxiv.org/html/2603.01896v2#A1.SS0.SSS0.Px2 "In Appendix A Patch Equivalence Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
 
-10.   [B Fault Localization Semi-formal Reasoning Template](https://arxiv.org/html/2603.01896v1#A2 "In Agentic Code Reasoning")
-    1.   [Semi-formal Prompt Template.](https://arxiv.org/html/2603.01896v1#A2.SS0.SSS0.Px1 "In Appendix B Fault Localization Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
-    2.   [Structured Exploration Format.](https://arxiv.org/html/2603.01896v1#A2.SS0.SSS0.Px2 "In Appendix B Fault Localization Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
+10.   [B Fault Localization Semi-formal Reasoning Template](https://arxiv.org/html/2603.01896v2#A2 "In Agentic Code Reasoning")
+    1.   [Semi-formal Prompt Template.](https://arxiv.org/html/2603.01896v2#A2.SS0.SSS0.Px1 "In Appendix B Fault Localization Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
+    2.   [Structured Exploration Format.](https://arxiv.org/html/2603.01896v2#A2.SS0.SSS0.Px2 "In Appendix B Fault Localization Semi-formal Reasoning Template ‣ Agentic Code Reasoning")
 
-11.   [C Case Study for Mockito_8](https://arxiv.org/html/2603.01896v1#A3 "In Agentic Code Reasoning")
-    1.   [Why the structured template mattered.](https://arxiv.org/html/2603.01896v1#A3.SS0.SSS0.Px1 "In Appendix C Case Study for Mockito_8 ‣ Agentic Code Reasoning")
+11.   [C Case Study for Mockito_8](https://arxiv.org/html/2603.01896v2#A3 "In Agentic Code Reasoning")
+    1.   [Why the structured template mattered.](https://arxiv.org/html/2603.01896v2#A3.SS0.SSS0.Px1 "In Appendix C Case Study for Mockito_8 ‣ Agentic Code Reasoning")
 
-12.   [D Code Question Answering Details](https://arxiv.org/html/2603.01896v1#A4 "In Agentic Code Reasoning")
-    1.   [Semi-formal Prompt Template.](https://arxiv.org/html/2603.01896v1#A4.SS0.SSS0.Px1 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
-    2.   [Example: Semi-formal vs. Standard Reasoning.](https://arxiv.org/html/2603.01896v1#A4.SS0.SSS0.Px2 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
-    3.   [Success Case: Verifying Code Invariants (cpp_3).](https://arxiv.org/html/2603.01896v1#A4.SS0.SSS0.Px3 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
-    4.   [Failure Case: Confident Wrong Answer (py_5).](https://arxiv.org/html/2603.01896v1#A4.SS0.SSS0.Px4 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
-    5.   [Per-Language Breakdown.](https://arxiv.org/html/2603.01896v1#A4.SS0.SSS0.Px5 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
+12.   [D Code Question Answering Details](https://arxiv.org/html/2603.01896v2#A4 "In Agentic Code Reasoning")
+    1.   [Semi-formal Prompt Template.](https://arxiv.org/html/2603.01896v2#A4.SS0.SSS0.Px1 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
+    2.   [Example: Semi-formal vs. Standard Reasoning.](https://arxiv.org/html/2603.01896v2#A4.SS0.SSS0.Px2 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
+    3.   [Success Case: Verifying Code Invariants (cpp_3).](https://arxiv.org/html/2603.01896v2#A4.SS0.SSS0.Px3 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
+    4.   [Failure Case: Confident Wrong Answer (py_5).](https://arxiv.org/html/2603.01896v2#A4.SS0.SSS0.Px4 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
+    5.   [Per-Language Breakdown.](https://arxiv.org/html/2603.01896v2#A4.SS0.SSS0.Px5 "In Appendix D Code Question Answering Details ‣ Agentic Code Reasoning")
 
 [License: arXiv.org perpetual non-exclusive license](https://info.arxiv.org/help/license/index.html#licenses-available)
 
- arXiv:2603.01896v1[cs.SE] 02 Mar 2026
+ arXiv:2603.01896v2 [cs.SE] 04 Mar 2026
 
 \correspondence
 Shubham Ugare at
@@ -87,11 +87,11 @@ Shubham Ugare at
 Agentic Code Reasoning
 ======================
 
-Shubham Ugare Satish Chandra Meta, USA [sugare@meta.com](https://arxiv.org/html/2603.01896v1/mailto:sugare@meta.com)
+Shubham Ugare Satish Chandra Meta, USA [sugare@meta.com](https://arxiv.org/html/2603.01896v2/mailto:sugare@meta.com)
 
 ###### Abstract
 
-Can LLM agents explore codebases and reason about code semantics without executing the code? We study this capability, which we call _agentic code reasoning_, and introduce _semi-formal reasoning_: a structured prompting methodology that requires agents to construct explicit premises, trace execution paths, and derive formal conclusions. Unlike unstructured chain-of-thought, semi-formal reasoning acts as a certificate: the agent cannot skip cases or make unsupported claims. We evaluate across three tasks (patch equivalence verification, fault localization, and code question answering) and show that semi-formal reasoning consistently improves accuracy on all of them. For patch equivalence, accuracy improves from 78% to 88% on curated examples and reaches 93% on real-world agent-generated patches, approaching the reliability needed for execution-free RL reward signals. For code question answering on RubberDuckBench rubberduckbench, semi-formal reasoning achieves 87% accuracy. For fault localization on Defects4J just2014defects4j, semi-formal reasoning improves Top-5 accuracy by 5 percentage points over standard reasoning. These results demonstrate that structured agentic reasoning enables meaningful semantic code analysis without execution, opening practical applications in RL training pipelines, code review, and static program analysis.
+Can LLM agents explore codebases and reason about code semantics without executing the code? We study this capability, which we call _agentic code reasoning_, and introduce _semi-formal reasoning_: a structured prompting methodology that requires agents to construct explicit premises, trace execution paths, and derive formal conclusions. Unlike unstructured chain-of-thought, semi-formal reasoning acts as a certificate: the agent cannot skip cases or make unsupported claims. We evaluate across three tasks (patch equivalence verification, fault localization, and code question answering) and show that semi-formal reasoning consistently improves accuracy on all of them. For patch equivalence, accuracy improves from 78% to 88% on curated examples and reaches 93% on real-world agent-generated patches, approaching the reliability needed for execution-free RL reward signals. For code question answering on RubberDuckBench rubberduckbench, semi-formal reasoning achieves 87% accuracy, a 9 percentage point gain over standard agentic reasoning. For fault localization on Defects4J just2014defects4j, semi-formal reasoning improves Top-5 accuracy by 5 percentage points over standard reasoning. These results demonstrate that structured agentic reasoning enables meaningful semantic code analysis without execution, opening practical applications in RL training pipelines, code review, and static program analysis.
 
 1 Introduction
 --------------
@@ -104,11 +104,11 @@ We introduce _semi-formal reasoning_, a general approach that bridges this gap. 
 
 ##### Motivating Example.
 
-Figure [1](https://arxiv.org/html/2603.01896v1#S1.F1 "Figure 1 ‣ Motivating Example. ‣ 1 Introduction ‣ Agentic Code Reasoning") illustrates how these techniques work together on a real patch equivalence task (django_django-13670). Two patches both attempt to fix 2-digit year formatting for years before 1000 CE:
+Figure [1](https://arxiv.org/html/2603.01896v2#S1.F1 "Figure 1 ‣ Motivating Example. ‣ 1 Introduction ‣ Agentic Code Reasoning") illustrates how these techniques work together on a real patch equivalence task (django_django-13670). Two patches both attempt to fix 2-digit year formatting for years before 1000 CE:
 
 Standard reasoning incorrectly concludes the patches are equivalent, assuming format() is Python’s builtin and both produce the same output. With semi-formal analysis, the agent discovers that format is shadowed by a module-level function in Django’s dateformat.py that expects a datetime object, not an integer. This causes Patch 1 to raise an AttributeError while Patch 2 succeeds. Unlike chain-of-thought prompting, which lets the model reason freely, our semi-formal approach requires filling in a structured certificate template with explicit premises, per-test execution traces, and a formal conclusion. This enforces completeness, ensuring the agent cannot skip cases or make unsupported claims, while remaining in natural language rather than requiring a fully formal proof language.
 
-Figure 1: Motivating example from Django (django-13670): Standard reasoning assumes format() is Python’s builtin; semi-formal analysis traces the actual definition and discovers a module-level function with different semantics, causing Patch 1 to raise AttributeError. See Appendix [C](https://arxiv.org/html/2603.01896v1#A3 "Appendix C Case Study for Mockito_8 ‣ Agentic Code Reasoning") for a detailed semi-formal proof walkthrough.
+Figure 1: Motivating example from Django (django-13670): Standard reasoning assumes format() is Python’s builtin; semi-formal analysis traces the actual definition and discovers a module-level function with different semantics, causing Patch 1 to raise AttributeError. See Appendix [C](https://arxiv.org/html/2603.01896v2#A3 "Appendix C Case Study for Mockito_8 ‣ Agentic Code Reasoning") for a detailed semi-formal proof walkthrough.
 
 We evaluate these techniques on three tasks that test different aspects of code reasoning. Our primary focus is _patch equivalence verification_: given two patches addressing the same specification, do they produce the same test outcomes? This task provides rigorous ground truth through test execution without requiring expensive human annotation. We additionally evaluate on _code question answering_ (RubberDuckBench) and _fault localization_ (Defects4J), which test nuanced semantic understanding and bug finding respectively. Patch equivalence and fault localization benefit from robust, objective ground truth (test execution outcomes and known buggy lines, respectively), while code question answering relies on expert-written rubrics evaluated by LLM graders.
 
@@ -172,11 +172,11 @@ The agent receives a minimal prompt asking it to determine equivalence, with no 
 
 ##### Semi-formal Reasoning
 
-Semi-formal reasoning adds structure: the agent must state explicit premises, trace execution for each test, and write a formal conclusion. In practice, we enforce this by including a structured template in the agent’s initial prompt that specifies the required format. The key insight is that by structuring the reasoning process, not just the output format, we force the agent to gather evidence before concluding, preventing the premature judgments common in unconstrained reasoning. We observed that this forces the agent to actually enumerate the program paths rather than make guesses, which naturally leads to deeper interprocedural reasoning as the agent traces function calls to justify its claims. For instance, in one example (django-13195), semi-formal reasoning caught that session-related tests existed and would fail when one patch omitted changes to the session middleware, something the informal mode missed. Figure [1](https://arxiv.org/html/2603.01896v1#S1.F1 "Figure 1 ‣ Motivating Example. ‣ 1 Introduction ‣ Agentic Code Reasoning") illustrates this with a concrete example where tracing a function call reveals a shadowed definition that causes one patch to fail.
+Semi-formal reasoning adds structure: the agent must state explicit premises, trace execution for each test, and write a formal conclusion. In practice, we enforce this by including a structured template in the agent’s initial prompt that specifies the required format. The key insight is that by structuring the reasoning process, not just the output format, we force the agent to gather evidence before concluding, preventing the premature judgments common in unconstrained reasoning. We observed that this forces the agent to actually enumerate the program paths rather than make guesses, which naturally leads to deeper interprocedural reasoning as the agent traces function calls to justify its claims. For instance, in one example (django-13195), semi-formal reasoning caught that session-related tests existed and would fail when one patch omitted changes to the session middleware, something the informal mode missed. Figure [1](https://arxiv.org/html/2603.01896v2#S1.F1 "Figure 1 ‣ Motivating Example. ‣ 1 Introduction ‣ Agentic Code Reasoning") illustrates this with a concrete example where tracing a function call reveals a shadowed definition that causes one patch to fail.
 
-The certificate template is task-specific: for patch equivalence, premises describe what each patch modifies and claims trace per-test behavior; for fault localization, premises describe suspicious code regions and claims trace whether each region could cause the observed test failure; for code question answering, the template requires a function trace table, data flow analysis, and semantic properties with explicit evidence. While the specific sections vary by task, all templates enforce the same principle: the agent must document verifiable evidence before reaching a conclusion. Figure [2](https://arxiv.org/html/2603.01896v1#S3.F2 "Figure 2 ‣ Semi-formal Reasoning ‣ 3 Semi-formal Reasoning ‣ Agentic Code Reasoning") shows a condensed example for patch equivalence.
+The certificate template is task-specific: for patch equivalence, premises describe what each patch modifies and claims trace per-test behavior; for fault localization, premises describe suspicious code regions and claims trace whether each region could cause the observed test failure; for code question answering, the template requires a function trace table, data flow analysis, and semantic properties with explicit evidence. While the specific sections vary by task, all templates enforce the same principle: the agent must document verifiable evidence before reaching a conclusion. Figure [2](https://arxiv.org/html/2603.01896v2#S3.F2 "Figure 2 ‣ Semi-formal Reasoning ‣ 3 Semi-formal Reasoning ‣ Agentic Code Reasoning") shows a condensed example for patch equivalence.
 
-Figure 2: Condensed semi-formal certificate template for patch equivalence. The agent must fill in every bracketed field with evidence gathered from the codebase. The full template includes additional fields for pass-to-pass tests, confidence levels, and alternative hypothesis checks. Templates for other tasks follow the same structure but with task-specific premises and claims. The full prompt appears in Appendix [A](https://arxiv.org/html/2603.01896v1#A1 "Appendix A Patch Equivalence Semi-formal Reasoning Template ‣ Agentic Code Reasoning").
+Figure 2: Condensed semi-formal certificate template for patch equivalence. The agent must fill in every bracketed field with evidence gathered from the codebase. The full template includes additional fields for pass-to-pass tests, confidence levels, and alternative hypothesis checks. Templates for other tasks follow the same structure but with task-specific premises and claims. The full prompt appears in Appendix [A](https://arxiv.org/html/2603.01896v2#A1 "Appendix A Patch Equivalence Semi-formal Reasoning Template ‣ Agentic Code Reasoning").
 
 4 Evaluation
 ------------
@@ -245,11 +245,11 @@ While these results demonstrate strong verification performance when fail-to-pas
 
 ### 4.2 Fault Localization
 
-We evaluate fault localization on Defects4J (see Section [2](https://arxiv.org/html/2603.01896v1#S2 "2 Background ‣ Agentic Code Reasoning")). Unlike patch equivalence where both patches are provided, fault localization requires the agent to _find_ the relevant code in a large search space, then reason about why it causes the test failure. Appendix [B](https://arxiv.org/html/2603.01896v1#A2 "Appendix B Fault Localization Semi-formal Reasoning Template ‣ Agentic Code Reasoning") shows the prompt we use for structured reasoning.
+We evaluate fault localization on Defects4J (see Section [2](https://arxiv.org/html/2603.01896v2#S2 "2 Background ‣ Agentic Code Reasoning")). Unlike patch equivalence where both patches are provided, fault localization requires the agent to _find_ the relevant code in a large search space, then reason about why it causes the test failure. Appendix [B](https://arxiv.org/html/2603.01896v2#A2 "Appendix B Fault Localization Semi-formal Reasoning Template ‣ Agentic Code Reasoning") shows the prompt we use for structured reasoning.
 
 ##### Metric
 
-For matching, we compare overlaps against buggy file regions — the lines in the patch, grouped per hunk into (file, min_deleted, max_deleted) ranges for deletions, and (file, insert_pos, insert_pos) for insertions. A prediction matches a region if their ranges overlap: pred_start <= region_end and pred_end >= region_start. This works for all patch types including deletion-only cases, which can be an issue with matching based on line number in the ground truth patch. With this matching, a bug is "solved at Top-N" only when all ground-truth hunks/lines/regions are covered by predictions in positions 1..N. (This deviates slightly from prior work.)
+For matching, we compare overlaps against buggy file regions: the lines in the patch, grouped per hunk into (file, min_deleted, max_deleted) ranges for deletions, and (file, insert_pos, insert_pos) for insertions. A prediction matches a region if their ranges overlap: pred_start ≤\leq region_end and pred_end ≥\geq region_start. This works for all patch types including deletion-only cases, which can be an issue with matching based on line number in the ground truth patch. We report two variants: All, where a bug is solved at Top-N only when every ground-truth hunk is covered by predictions in positions 1..N, and Any, where at least one ground-truth hunk must be covered. The All metric is stricter and penalizes multi-hunk bugs; the Any metric better reflects partial localization success.
 
 ##### Available Information.
 
@@ -259,31 +259,33 @@ The agent has access to (1) the failing test name and source code, (2) source fi
 
 We first evaluate on 50 bugs from Defects4J where all relevant source files fit within the context window, enabling comparison between single-shot (all code provided upfront) and agentic (iterative file exploration) modes. We do this by estimating the token count in loaded classes and cap it to 100K. These projects contained 43 unique bugs that were evaluable; others had missing source or test files, or other errors.
 
-Table 4: Fault localization accuracy on Defects4J (Opus-4.5)
+Table 4: Fault localization accuracy on Defects4J (Opus-4.5). “All” requires every ground-truth hunk to be covered; “Any” requires at least one.
 
-| Mode | Exploration | Top-1 | Top-3 | Top-5 |
-| --- | --- | --- | --- | --- |
-| Standard | Single-shot | 36.1% | 55.6% | 55.6% |
-| Semi-formal | Single-shot | 41.7% | 58.3% | 63.9% |
-| Standard | Agentic | 46.5% | 60.5% | 60.5% |
-| Semi-formal | Agentic | 53.5% | 67.4% | 72.1% |
+|  |  | All | Any |
+| --- | --- | --- | --- |
+| Mode | Exploration | Top-1 | Top-3 | Top-5 | Top-1 | Top-3 | Top-5 |
+| Standard | Single-shot | 36.1% | 55.6% | 55.6% | 47.2% | 69.4% | 69.4% |
+| Semi-formal | Single-shot | 41.7% | 58.3% | 63.9% | 55.6% | 75.0% | 77.8% |
+| Standard | Agentic | 46.5% | 60.5% | 60.5% | 65.1% | 79.1% | 81.4% |
+| Semi-formal | Agentic | 53.5% | 67.4% | 72.1% | 72.1% | 83.7% | 88.4% |
 
-Semi-formal reasoning improves Top-5 accuracy by 8–12pp across both exploration modes: +8pp for single-shot and +12pp for agentic. Agentic exploration with semi-formal reasoning achieves the best overall accuracy at 72.1% Top-5, outperforming single-shot semi-formal (63.9%).
+Semi-formal reasoning improves accuracy across both metrics and exploration modes. Under the stricter All metric, Top-5 accuracy improves by +8pp for single-shot and +12pp for agentic. Under the Any metric, the gains are similar: +8pp for single-shot and +7pp for agentic. Agentic exploration with semi-formal reasoning achieves the best overall accuracy at 72.1% Top-5 (All) and 88.4% Top-5 (Any).
 
 ##### Larger-Scale Validation (100 bugs).
 
 To validate our findings on a larger sample, we evaluated on 100 Defects4J bugs randomly sampled across 14 Java projects (of which 90 were evaluable). Unlike the small-scale study, many of these bugs involve source files exceeding context limits, requiring genuine agentic exploration. Standard mode sometimes makes a quick, correct prediction on turn 1 from just the test code (e.g., Closure_129, where the agent predicts correctly from the test code alone without reading any source files).
 
-Table [5](https://arxiv.org/html/2603.01896v1#S4.T5 "Table 5 ‣ Larger-Scale Validation (100 bugs). ‣ 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning") shows semi-formal reasoning improves accuracy by +5pp Top-5 over standard, confirming that semi-formal reasoning consistently outperforms standard mode across dataset sizes.
+Table [5](https://arxiv.org/html/2603.01896v2#S4.T5 "Table 5 ‣ Larger-Scale Validation (100 bugs). ‣ 4.2 Fault Localization ‣ 4 Evaluation ‣ Agentic Code Reasoning") shows semi-formal reasoning improves accuracy by +5pp Top-5 (All) over standard, confirming that semi-formal reasoning consistently outperforms standard mode across dataset sizes. The Any metric, which requires at least one ground-truth hunk to be covered, shows the same trend with higher absolute numbers.
 
-Table 5: Agentic fault localization on 100-bug sample, both Sonnet 4.5 and Opus 4.5
+Table 5: Agentic fault localization on 100-bug sample. “All” requires every ground-truth hunk to be covered; “Any” requires at least one.
 
-| Model | Mode | Top-1 | Top-3 | Top-5 |
-| --- | --- | --- | --- | --- |
-| Sonnet-4.5 | Standard | 20.0% | 30.0% | 31.1% |
-| Sonnet-4.5 | Semi-formal | 16.7% | 25.6% | 30.0% |
-| Opus-4.5 | Standard | 30.0% | 42.2% | 43.3% |
-| Opus-4.5 | Semi-formal | 34.4% | 47.8% | 47.8% |
+|  |  | All | Any |
+| --- | --- | --- | --- |
+| Model | Mode | Top-1 | Top-3 | Top-5 | Top-1 | Top-3 | Top-5 |
+| Sonnet-4.5 | Standard | 20.0% | 30.0% | 31.1% | 35.6% | 51.1% | 51.1% |
+| Sonnet-4.5 | Semi-formal | 16.7% | 25.6% | 30.0% | 30.0% | 43.3% | 50.0% |
+| Opus-4.5 | Standard | 30.0% | 42.2% | 43.3% | 53.3% | 64.4% | 65.6% |
+| Opus-4.5 | Semi-formal | 34.4% | 47.8% | 47.8% | 58.9% | 68.9% | 68.9% |
 
 ##### Error Analysis.
 
@@ -294,11 +296,11 @@ We analyzed failures for Opus-4.5 with semi-formal reasoning and identified four
 3.   3.Domain-specific bugs: Algorithmic bugs requiring specialized knowledge, such as numerical analysis issues in Math_81 (EigenDecomposition), exceed the model’s domain expertise. 
 4.   4.More than 5 fix regions: In a few cases (5/90), the number of distinct regions of changes in the ground truth was more than 5, which will result in a miss by our metric. 
 
-Appendix [C](https://arxiv.org/html/2603.01896v1#A3 "Appendix C Case Study for Mockito_8 ‣ Agentic Code Reasoning") gives a walkthrough of how semi-formal reasoning helps in the case of mockito_8.
+Appendix [C](https://arxiv.org/html/2603.01896v2#A3 "Appendix C Case Study for Mockito_8 ‣ Agentic Code Reasoning") gives a walkthrough of how semi-formal reasoning helps in the case of mockito_8.
 
 ### 4.3 Code Question Answering
 
-We evaluate code question answering on RubberDuckBench (see Section [2](https://arxiv.org/html/2603.01896v1#S2 "2 Background ‣ Agentic Code Reasoning")).
+We evaluate code question answering on RubberDuckBench (see Section [2](https://arxiv.org/html/2603.01896v2#S2 "2 Background ‣ Agentic Code Reasoning")).
 
 ##### Available Information.
 
@@ -332,7 +334,7 @@ The structured template requires the agent to fill in a function trace table (li
 
 ##### Error Analysis.
 
-The structured template forces the agent to document evidence systematically before reaching conclusions. For example, on a question about whether two API calls differ (cpp_3), standard reasoning stated “it provides proper error handling if an invalid key is somehow passed”—implying edge cases could occur. The semi-formal template required tracing both the map initialization and variable assignments, revealing they use the same enum values, thus proving invalid keys are impossible. This explicit verification step eliminated a deduction that standard reasoning incurred. Conversely, semi-formal reasoning can fail when agents construct elaborate but incomplete reasoning chains: on py_5, the agent thoroughly traced five functions but missed that downstream code already handled the edge case it identified, leading to a confident but wrong answer. See Appendix [D](https://arxiv.org/html/2603.01896v1#A4 "Appendix D Code Question Answering Details ‣ Agentic Code Reasoning") for detailed examples with full reasoning traces.
+The structured template forces the agent to document evidence systematically before reaching conclusions. For example, on a question about whether two API calls differ (cpp_3), standard reasoning stated “it provides proper error handling if an invalid key is somehow passed”—implying edge cases could occur. The semi-formal template required tracing both the map initialization and variable assignments, revealing they use the same enum values, thus proving invalid keys are impossible. This explicit verification step eliminated a deduction that standard reasoning incurred. Conversely, semi-formal reasoning can fail when agents construct elaborate but incomplete reasoning chains: on py_5, the agent thoroughly traced five functions but missed that downstream code already handled the edge case it identified, leading to a confident but wrong answer. See Appendix [D](https://arxiv.org/html/2603.01896v2#A4 "Appendix D Code Question Answering Details ‣ Agentic Code Reasoning") for detailed examples with full reasoning traces.
 
 5 Related Work
 --------------
@@ -369,8 +371,8 @@ Recent work has focused on training pipelines for software engineering agents. S
 We studied agentic code reasoning across three tasks: patch equivalence verification, code question answering, and fault localization. Our key findings include:
 
 *   •Semi-formal structured reasoning consistently improves agentic code reasoning across all three tasks, with gains of 5–12 percentage points over standard agentic baselines. 
-*   •For patch equivalence, we achieve 93% verification accuracy on real-world patches, enabling execution-free feedback for RL training pipelines. 
-*   •For code question answering, semi-formal reasoning achieves 87% accuracy on RubberDuckBench, demonstrating effective semantic understanding of complex codebases. 
+*   •For patch equivalence, we achieve 93% verification accuracy on real-world patches, a 7 percentage point improvement over single-shot baselines, enabling execution-free feedback for RL training pipelines. 
+*   •For code question answering, semi-formal reasoning achieves 87% accuracy on RubberDuckBench, a 9 percentage point gain over standard agentic reasoning. 
 *   •For fault localization on Defects4J, semi-formal reasoning consistently improves accuracy over standard reasoning, with gains of up to 12 percentage points on fit-in-context bugs and 5 percentage points on a larger 90-bug evaluation. 
 
 These results demonstrate that LLM agents can perform meaningful semantic code analysis without execution. Structured reasoning templates offer a complementary approach to classical static analysis: rather than encoding analysis logic in specialized algorithms, we can prompt agents with task-specific formats that generalize across languages and frameworks, though without the formal guarantees of traditional tools.
@@ -505,9 +507,9 @@ The agent thoroughly traced five functions and found a real edge case where BUIL
 
 ##### Per-Language Breakdown.
 
-Table [7](https://arxiv.org/html/2603.01896v1#A4.T7 "Table 7 ‣ Failure Case: Confident Wrong Answer (py_5). ‣ Appendix D Code Question Answering Details ‣ Agentic Code Reasoning") shows accuracy varies by programming language, with Java questions being most challenging due to their reliance on framework-specific semantics.
+Table [7](https://arxiv.org/html/2603.01896v2#A4.T7 "Table 7 ‣ Failure Case: Confident Wrong Answer (py_5). ‣ Appendix D Code Question Answering Details ‣ Agentic Code Reasoning") shows accuracy varies by programming language, with Java questions being most challenging due to their reliance on framework-specific semantics.
 
- Experimental support, please [view the build logs](https://arxiv.org/html/2603.01896v1/__stdout.txt) for errors. Generated by [L A T E xml![Image 2: [LOGO]](blob:http://localhost/70e087b9e50c3aa663763c3075b0d6c5)](https://math.nist.gov/~BMiller/LaTeXML/). 
+ Experimental support, please [view the build logs](https://arxiv.org/html/2603.01896v2/__stdout.txt) for errors. Generated by [L A T E xml![Image 2: [LOGO]](blob:http://localhost/70e087b9e50c3aa663763c3075b0d6c5)](https://math.nist.gov/~BMiller/LaTeXML/). 
 
 Instructions for reporting errors
 ---------------------------------
