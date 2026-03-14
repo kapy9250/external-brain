@@ -364,5 +364,67 @@
       "source_url": "https://x.com/yq_acc/article/2026250003577209173/media/2026225729177047040",
       "published_at": "2026-02-24 10:57 UTC"
     }
+  },
+  "10": {
+    "zh": {
+      "author": "heynavtoor",
+      "source_url": "https://x.com/heynavtoor"
+    },
+    "en": {
+      "author": "heynavtoor",
+      "source_url": "https://x.com/heynavtoor"
+    }
+  },
+  "26": {
+    "zh": {
+      "author": "jimprosser",
+      "source_url": "https://x.com/jimprosser"
+    },
+    "en": {
+      "author": "jimprosser",
+      "source_url": "https://x.com/jimprosser"
+    }
+  },
+  "27": {
+    "zh": {
+      "author": "OpenClaw Team",
+      "source_url": "https://blog.kapy.ca/p/27_openclaw-memory-masterclass.html"
+    },
+    "en": {
+      "author": "OpenClaw Team",
+      "source_url": "https://blog.kapy.ca/p/27_openclaw-memory-masterclass.html"
+    }
+  },
+  "31": {
+    "zh": {
+      "author": "Claude Shannon",
+      "source_url": "https://blog.kapy.ca/p/31_claude-shannon-creative-thinking.html",
+      "published_at": "1952-03-20"
+    },
+    "en": {
+      "author": "Claude Shannon",
+      "source_url": "https://blog.kapy.ca/p/31_claude-shannon-creative-thinking.html",
+      "published_at": "1952-03-20"
+    }
+  },
+  "33": {
+    "zh": {
+      "author": "未知",
+      "source_url": "https://blog.kapy.ca/p/33_coding-agents-reshape-epd.html"
+    },
+    "en": {
+      "author": "未知",
+      "source_url": "https://blog.kapy.ca/p/33_coding-agents-reshape-epd.html"
+    }
+  },
+  "34": {
+    "zh": {
+      "author": "OpenAI",
+      "source_url": "https://platform.openai.com/docs/codex/best-practices"
+    },
+    "en": {
+      "author": "OpenAI",
+      "source_url": "https://platform.openai.com/docs/codex/best-practices"
+    }
   }
 }

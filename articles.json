@@ -116,8 +116,8 @@
       "summary": "Getting started with Codex and proven practices for better results",
       "first_paragraph": "Getting started with Codex and proven practices for better results",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "OpenAI",
+        "source_url": "https://platform.openai.com/docs/codex/best-practices",
         "published_at": ""
       },
       "file": "34_openai-codex-best-practices.cleaned.md"
@@ -127,8 +127,8 @@
       "summary": "Codex 的入门指南以及获得更好结果的可靠实践",
       "first_paragraph": "Codex 的入门指南以及获得更好结果的可靠实践",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "OpenAI",
+        "source_url": "https://platform.openai.com/docs/codex/best-practices",
         "published_at": ""
       },
       "file": "34_openai-codex-best-practices.cleaned.zh.md"
@@ -143,8 +143,8 @@
       "summary": "EPD (Engineering, Product, and Design) at a software company is about creating good software. Separate roles exist, but the end goal is functional sof...",
       "first_paragraph": "EPD (Engineering, Product, and Design) at a software company is about creating good software. Separate roles exist, but the end goal is functional software that solves a business problem that users can use. At the end of the day, this is just code. It is important to recognize that the output of what EPD as a function builds is just code because… coding agents have suddenly made code very easy to write. So how does this change the role of EPD?",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "未知",
+        "source_url": "https://blog.kapy.ca/p/33_coding-agents-reshape-epd.html",
         "published_at": ""
       },
       "file": "33_coding-agents-reshape-epd.cleaned.md"
@@ -154,8 +154,8 @@
       "summary": "EPD（工程、产品和设计）在软件公司中意味着创造好的软件。虽然存在不同的角色，但最终目标是创造能够解决用户业务问题的功能性软件。说到底，这其实就是代码。我们要认识到 EPD 职能产出的就是代码，因为……编程 Agent 突然让代码变得非常容易编写。那么，这如何改变 EPD 的角色呢？",
       "first_paragraph": "EPD（工程、产品和设计）在软件公司中意味着创造好的软件。虽然存在不同的角色，但最终目标是创造能够解决用户业务问题的功能性软件。说到底，这其实就是代码。我们要认识到 EPD 职能产出的就是代码，因为……编程 Agent 突然让代码变得非常容易编写。那么，这如何改变 EPD 的角色呢？",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "未知",
+        "source_url": "https://blog.kapy.ca/p/33_coding-agents-reshape-epd.html",
         "published_at": ""
       },
       "file": "33_coding-agents-reshape-epd.cleaned.zh.md"
@@ -197,9 +197,9 @@
       "summary": "This document is a record of a speech on \"Creative Thinking\" given by Claude Shannon at Bell Labs on March 20, 1952.",
       "first_paragraph": "This document is a record of a speech on \"Creative Thinking\" given by Claude Shannon at Bell Labs on March 20, 1952.",
       "meta": {
-        "author": "",
-        "source_url": "",
-        "published_at": ""
+        "author": "Claude Shannon",
+        "source_url": "https://blog.kapy.ca/p/31_claude-shannon-creative-thinking.html",
+        "published_at": "1952-03-20"
       },
       "file": "31_claude-shannon-creative-thinking.cleaned.md"
     },
@@ -208,9 +208,9 @@
       "summary": "这份文档是克劳德·香农（Claude Shannon）于 1952 年 3 月 20 日在贝尔实验室发表的关于“创造性思维”的演讲记录。",
       "first_paragraph": "这份文档是克劳德·香农（Claude Shannon）于 1952 年 3 月 20 日在贝尔实验室发表的关于“创造性思维”的演讲记录。",
       "meta": {
-        "author": "",
-        "source_url": "",
-        "published_at": ""
+        "author": "Claude Shannon",
+        "source_url": "https://blog.kapy.ca/p/31_claude-shannon-creative-thinking.html",
+        "published_at": "1952-03-20"
       },
       "file": "31_claude-shannon-creative-thinking.cleaned.zh.md"
     }
@@ -305,8 +305,8 @@
       "summary": "March 5th, 2026",
       "first_paragraph": "March 5th, 2026",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "OpenClaw Team",
+        "source_url": "https://blog.kapy.ca/p/27_openclaw-memory-masterclass.html",
         "published_at": ""
       },
       "file": "27_openclaw-memory-masterclass.cleaned.md"
@@ -316,8 +316,8 @@
       "summary": "2026年3月5日",
       "first_paragraph": "2026年3月5日",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "OpenClaw Team",
+        "source_url": "https://blog.kapy.ca/p/27_openclaw-memory-masterclass.html",
         "published_at": ""
       },
       "file": "27_openclaw-memory-masterclass.cleaned.zh.md"
@@ -332,8 +332,8 @@
       "summary": "The dream of modern personalized technology has always been some kind of perfect digital assistant—a chief of staff that triages your inbox, organizes...",
       "first_paragraph": "The dream of modern personalized technology has always been some kind of perfect digital assistant—a chief of staff that triages your inbox, organizes your day, and handles the operational overhead of your life before you've had your first coffee. For most people, that dream still lives in the vague future, somewhere between \"Siri, but good\" and science fiction.",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "jimprosser",
+        "source_url": "https://x.com/jimprosser",
         "published_at": ""
       },
       "file": "26_jimprosser-chief-of-staff-claude-code.cleaned.md"
@@ -343,8 +343,8 @@
       "summary": "现代个性化科技的梦想一直是一种完美的数字助理——一位首席助理，能够在喝第一杯咖啡之前为你处理收件箱、安排日程、打理生活中的一切运营事务。对大多数人来说，这个梦想仍然停留在模糊的未来，介于“ Siri 变得好用 ”和科幻小说之间。",
       "first_paragraph": "现代个性化科技的梦想一直是一种完美的数字助理——一位首席助理，能够在喝第一杯咖啡之前为你处理收件箱、安排日程、打理生活中的一切运营事务。对大多数人来说，这个梦想仍然停留在模糊的未来，介于“ Siri 变得好用 ”和科幻小说之间。",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "jimprosser",
+        "source_url": "https://x.com/jimprosser",
         "published_at": ""
       },
       "file": "26_jimprosser-chief-of-staff-claude-code.cleaned.zh.md"
@@ -764,8 +764,8 @@
       "summary": "In seven weeks, I’ve run over 400 Cowork sessions. I’ve tested every plugin, every connector, every slash command. I’ve broken it in ways Anthropic pr...",
       "first_paragraph": "In seven weeks, I’ve run over 400 Cowork sessions. I’ve tested every plugin, every connector, every slash command. I’ve broken it in ways Anthropic probably hasn’t seen. And I’ve figured out the exact practices that separate people who think Cowork is “kind of cool” from people who’ve replaced half their software stack with it.",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "heynavtoor",
+        "source_url": "https://x.com/heynavtoor",
         "published_at": ""
       },
       "file": "10_17-best-practices-that-make-claude-cowork-100x-more-powerful.cleaned.md"
@@ -775,8 +775,8 @@
       "summary": "在过去七周里，我运行了 400 多次 Cowork 会话。我测试了每一个插件、每一个连接器、每一个斜杠命令。我以 Anthropic 可能从未见过的方式打破了它的极限。并且，我找出了那些将认为 Cowork “有点酷” 的人和用它替换掉一半软件栈的人区分开来的具体实践方法。",
       "first_paragraph": "在过去七周里，我运行了 400 多次 Cowork 会话。我测试了每一个插件、每一个连接器、每一个斜杠命令。我以 Anthropic 可能从未见过的方式打破了它的极限。并且，我找出了那些将认为 Cowork “有点酷” 的人和用它替换掉一半软件栈的人区分开来的具体实践方法。",
       "meta": {
-        "author": "",
-        "source_url": "",
+        "author": "heynavtoor",
+        "source_url": "https://x.com/heynavtoor",
         "published_at": ""
       },
       "file": "10_17-best-practices-that-make-claude-cowork-100x-more-powerful.cleaned.zh.md"
