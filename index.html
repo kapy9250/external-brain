@@ -738,31 +738,58 @@
             return;
           }
 
-          const src = remoteAudio.audio_base64
-            ? `data:audio/mpeg;base64,${remoteAudio.audio_base64}`
-            : remoteAudio.audio_url;
+          // Mobile-friendly: prefer URL first (iOS/Android more reliable), then base64 fallback
+          const sources = [];
+          if (remoteAudio.audio_url) sources.push(remoteAudio.audio_url);
+          if (remoteAudio.audio_base64) sources.push(`data:audio/mpeg;base64,${remoteAudio.audio_base64}`);
+          if (!sources.length) throw new Error('No playable audio source');
 
-          const audio = new Audio(src);
-          audio.preload = 'auto';
-          audio.playbackRate = TTS_PLAYBACK_RATE;
-          ttsState.audioEl = audio;
+          let played = false;
+          let lastPlayError = null;
 
-          const clearSafety = () => {
-            if (safetyTimer) {
-              clearTimeout(safetyTimer);
-              safetyTimer = null;
+          for (const src of sources) {
+            const audio = new Audio(src);
+            audio.preload = 'auto';
+            audio.playbackRate = TTS_PLAYBACK_RATE;
+            ttsState.audioEl = audio;
+
+            const clearSafety = () => {
+              if (safetyTimer) {
+                clearTimeout(safetyTimer);
+                safetyTimer = null;
+              }
+            };
+
+            audio.onended = async () => {
+              clearSafety();
+              if (!isPlaybackActive(token)) return;
+              ttsState.currentIndex += 1;
+              await speakCurrentSentenceRemote();
+            };
+
+            audio.onerror = () => {
+              clearSafety();
+            };
+
+            // 防卡死保护：单句超过 25 秒自动回退本地
+            safetyTimer = setTimeout(() => {
+              if (!isPlaybackActive(token)) return;
+              try { audio.pause(); } catch {}
+              activeTtsMode = 'webspeech';
+              speakCurrentSentence();
+            }, 25000);
+
+            try {
+              await audio.play();
+              played = true;
+              break;
+            } catch (e) {
+              lastPlayError = e;
+              clearSafety();
             }
-          };
+          }
 
-          audio.onended = async () => {
-            clearSafety();
-            if (!isPlaybackActive(token)) return;
-            ttsState.currentIndex += 1;
-            await speakCurrentSentenceRemote();
-          };
-
-          audio.onerror = async () => {
-            clearSafety();
+          if (!played) {
             if (!isPlaybackActive(token)) return;
             if (retryCount < maxRetries) {
               retryCount += 1;
@@ -771,27 +798,10 @@
               }, 500 * retryCount);
               return;
             }
-            // remote 失败：自动回退本地，并从当前句继续
+            console.error(lastPlayError || new Error('Audio play failed for all sources'));
             activeTtsMode = 'webspeech';
             speakCurrentSentence();
-          };
-
-          // 防卡死保护：单句超过 25 秒自动回退本地
-          safetyTimer = setTimeout(() => {
-            if (!isPlaybackActive(token)) return;
-            try { audio.pause(); } catch {}
-            if (retryCount < maxRetries) {
-              retryCount += 1;
-              setTimeout(() => {
-                if (isPlaybackActive(token)) playRemoteAudio();
-              }, 500 * retryCount);
-              return;
-            }
-            activeTtsMode = 'webspeech';
-            speakCurrentSentence();
-          }, 25000);
-
-          await audio.play();
+          }
         };
 
         await playRemoteAudio();
