@@ -18,17 +18,33 @@ def extract_metadata(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
+    lines = content.split('\n')
+
     # Extract Title (first # heading)
     match_title = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
     if match_title:
         title = match_title.group(1).strip()
 
-    # Extract first meaningful paragraph
-    lines = content.split('\n')
-    for line in lines:
-        line = line.strip()
+    # Fallback: if no markdown heading, use first meaningful line as title
+    if not title:
+        for raw in lines:
+            line = raw.strip()
+            if not line:
+                continue
+            if line.startswith('>') or line.startswith('![') or line.startswith('[!['):
+                continue
+            if line.startswith('**GitHub**') or line.startswith('**Stars**'):
+                continue
+            title = re.sub(r'[*_~`]', '', line).strip()
+            break
+
+    # Extract first meaningful paragraph (skip title line)
+    consumed_title = False
+    for raw in lines:
+        line = raw.strip()
         if not line:
             continue
+
         if line.startswith('#'):
             continue
         if line.startswith('>'):
@@ -43,6 +59,10 @@ def extract_metadata(filepath):
         clean_line = re.sub(r'[*_~`]', '', line)
         clean_line = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', clean_line)
         clean_line = clean_line.strip()
+
+        if not consumed_title and title and clean_line == title:
+            consumed_title = True
+            continue
 
         first_paragraph = clean_line
         summary = clean_line[:150] + '...' if len(clean_line) > 150 else clean_line

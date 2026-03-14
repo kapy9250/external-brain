@@ -147,9 +147,9 @@
     "id": 29,
     "slug": "agentic-code-reasoning-2603-01896",
     "en": {
-      "title": "",
-      "summary": "Agentic Code Reasoning",
-      "first_paragraph": "Agentic Code Reasoning",
+      "title": "Agentic Code Reasoning",
+      "summary": "===============",
+      "first_paragraph": "===============",
       "file": "29_agentic-code-reasoning-2603-01896.cleaned.md"
     },
     "zh": {
@@ -195,15 +195,15 @@
     "id": 26,
     "slug": "jimprosser-chief-of-staff-claude-code",
     "en": {
-      "title": "",
-      "summary": "My chief of staff, Claude Code",
-      "first_paragraph": "My chief of staff, Claude Code",
+      "title": "My chief of staff, Claude Code",
+      "summary": "The dream of modern personalized technology has always been some kind of perfect digital assistant—a chief of staff that triages your inbox, organizes...",
+      "first_paragraph": "The dream of modern personalized technology has always been some kind of perfect digital assistant—a chief of staff that triages your inbox, organizes your day, and handles the operational overhead of your life before you've had your first coffee. For most people, that dream still lives in the vague future, somewhere between \"Siri, but good\" and science fiction.",
       "file": "26_jimprosser-chief-of-staff-claude-code.cleaned.md"
     },
     "zh": {
-      "title": "",
-      "summary": "我的首席助理：Claude Code",
-      "first_paragraph": "我的首席助理：Claude Code",
+      "title": "我的首席助理：Claude Code",
+      "summary": "现代个性化科技的梦想一直是一种完美的数字助理——一位首席助理，能够在喝第一杯咖啡之前为你处理收件箱、安排日程、打理生活中的一切运营事务。对大多数人来说，这个梦想仍然停留在模糊的未来，介于“ Siri 变得好用 ”和科幻小说之间。",
+      "first_paragraph": "现代个性化科技的梦想一直是一种完美的数字助理——一位首席助理，能够在喝第一杯咖啡之前为你处理收件箱、安排日程、打理生活中的一切运营事务。对大多数人来说，这个梦想仍然停留在模糊的未来，介于“ Siri 变得好用 ”和科幻小说之间。",
       "file": "26_jimprosser-chief-of-staff-claude-code.cleaned.zh.md"
     }
   },
@@ -211,9 +211,9 @@
     "id": 25,
     "slug": "45-thoughts-about-agents",
     "en": {
-      "title": "",
-      "summary": "Title: 45 Thoughts About Agents",
-      "first_paragraph": "Title: 45 Thoughts About Agents",
+      "title": "Title: 45 Thoughts About Agents",
+      "summary": "URL Source: https://secondthoughts.ai/p/45-thoughts-about-agents",
+      "first_paragraph": "URL Source: https://secondthoughts.ai/p/45-thoughts-about-agents",
       "file": "25_45-thoughts-about-agents.cleaned.md"
     },
     "zh": {
@@ -467,15 +467,15 @@
     "id": 9,
     "slug": "best-practices-for-claude-code-100x-powerful",
     "en": {
-      "title": "",
-      "summary": "welcome back guys",
-      "first_paragraph": "welcome back guys",
+      "title": "welcome back guys",
+      "summary": "last time i wrote a full breakdown of \"Transformer Architecture\" and the response was honestly insane",
+      "first_paragraph": "last time i wrote a full breakdown of \"Transformer Architecture\" and the response was honestly insane",
       "file": "9_best-practices-for-claude-code-100x-powerful.cleaned.md"
     },
     "zh": {
-      "title": "",
-      "summary": "欢迎回来，伙计们",
-      "first_paragraph": "欢迎回来，伙计们",
+      "title": "欢迎回来，伙计们",
+      "summary": "上次我写了“变压器架构”的完整分解，老实说，反应很疯狂",
+      "first_paragraph": "上次我写了“变压器架构”的完整分解，老实说，反应很疯狂",
       "file": "9_best-practices-for-claude-code-100x-powerful.cleaned.zh.md"
     }
   },
@@ -483,15 +483,15 @@
     "id": 8,
     "slug": "lessons-from-building-claude-code-prompt-caching-is-everything",
     "en": {
-      "title": "",
-      "summary": "It is often said in engineering that “Cache Rules Everything Around Me,” and the same rule holds for agents.",
-      "first_paragraph": "It is often said in engineering that “Cache Rules Everything Around Me,” and the same rule holds for agents.",
+      "title": "It is often said in engineering that “Cache Rules Everything Around Me,” and the same rule holds for agents.",
+      "summary": "Long-running agent products like Claude Code are economically feasible because of prompt caching: reusing prior computation to reduce both latency and...",
+      "first_paragraph": "Long-running agent products like Claude Code are economically feasible because of prompt caching: reusing prior computation to reduce both latency and cost.",
       "file": "8_lessons-from-building-claude-code-prompt-caching-is-everything.cleaned.md"
     },
     "zh": {
-      "title": "",
-      "summary": "工程里常说一句话：“Cache Rules Everything Around Me（缓存决定一切）”，对 Agent 也是一样。",
-      "first_paragraph": "工程里常说一句话：“Cache Rules Everything Around Me（缓存决定一切）”，对 Agent 也是一样。",
+      "title": "工程里常说一句话：“Cache Rules Everything Around Me（缓存决定一切）”，对 Agent 也是一样。",
+      "summary": "像 Claude Code 这种长时运行的 Agent 产品之所以在成本与延迟上可行，核心就在 prompt caching：复用前一轮计算结果，显著降低时延与费用。",
+      "first_paragraph": "像 Claude Code 这种长时运行的 Agent 产品之所以在成本与延迟上可行，核心就在 prompt caching：复用前一轮计算结果，显著降低时延与费用。",
       "file": "8_lessons-from-building-claude-code-prompt-caching-is-everything.cleaned.zh.md"
     }
   },
@@ -515,15 +515,15 @@
     "id": 6,
     "slug": "lessons-from-building-claude-code-seeing-like-an-agent",
     "en": {
-      "title": "",
-      "summary": "One of the hardest parts of building an agent harness is constructing its action space.",
-      "first_paragraph": "One of the hardest parts of building an agent harness is constructing its action space.",
+      "title": "One of the hardest parts of building an agent harness is constructing its action space.",
+      "summary": "Claude acts through Tool Calling, but there are a number of ways tools can be constructed in the Claude API with primitives like bash, skills and rece...",
+      "first_paragraph": "Claude acts through Tool Calling, but there are a number of ways tools can be constructed in the Claude API with primitives like bash, skills and recently code execution (read more about programmatic tool calling on the Claude API in the official docs).",
       "file": "6_lessons-from-building-claude-code-seeing-like-an-agent.cleaned.md"
     },
     "zh": {
-      "title": "",
-      "summary": "构建 agent harness 最难的部分之一，就是设计它的动作空间（action space）。",
-      "first_paragraph": "构建 agent harness 最难的部分之一，就是设计它的动作空间（action space）。",
+      "title": "构建 agent harness 最难的部分之一，就是设计它的动作空间（action space）。",
+      "summary": "Claude 通过 Tool Calling 来行动，但在 Claude API 里，工具可以用很多方式构造：比如 bash、skills，以及最近的 code execution（关于 Claude API 的程序化 tool calling，可参考官方文档）。",
+      "first_paragraph": "Claude 通过 Tool Calling 来行动，但在 Claude API 里，工具可以用很多方式构造：比如 bash、skills，以及最近的 code execution（关于 Claude API 的程序化 tool calling，可参考官方文档）。",
       "file": "6_lessons-from-building-claude-code-seeing-like-an-agent.cleaned.zh.md"
     }
   },
@@ -531,15 +531,15 @@
     "id": 5,
     "slug": "prompt-personalities-gpt5",
     "en": {
-      "title": "",
-      "summary": "Markdown Content:",
-      "first_paragraph": "Markdown Content:",
+      "title": "Markdown Content:",
+      "summary": "Similar to ChatGPT’s built-in personality presets, you can steer your Agent’s behavior by explicitly defining its personality in your prompt instructi...",
+      "first_paragraph": "Similar to ChatGPT’s built-in personality presets, you can steer your Agent’s behavior by explicitly defining its personality in your prompt instructions. These instructions—sometimes called the “system prompt” or “developer prompt”—guide the agent’s tone, detail level, and style of responses. In this notebook, we’ll refer to them simply as “instructions,” following the term used in the OpenAI API documentation for consistency.",
       "file": "5_prompt-personalities-gpt5.cleaned.md"
     },
     "zh": {
-      "title": "",
-      "summary": "降价内容：",
-      "first_paragraph": "降价内容：",
+      "title": "降价内容：",
+      "summary": "与 ChatGPT 的内置个性预设类似，您可以通过在提示指令中明确定义代理的个性来引导代理的行为。这些指令（有时称为“系统提示”或“开发人员提示”）指导代理的语气、详细程度和响应风格。在本笔记本中，为了保持一致性，我们将它们简单地称为“指令”，遵循 OpenAI API 文档 中使用的术语。",
+      "first_paragraph": "与 ChatGPT 的内置个性预设类似，您可以通过在提示指令中明确定义代理的个性来引导代理的行为。这些指令（有时称为“系统提示”或“开发人员提示”）指导代理的语气、详细程度和响应风格。在本笔记本中，为了保持一致性，我们将它们简单地称为“指令”，遵循 OpenAI API 文档 中使用的术语。",
       "file": "5_prompt-personalities-gpt5.cleaned.zh.md"
     }
   },
@@ -596,8 +596,8 @@
     "slug": "ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap",
     "en": {
       "title": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
-      "summary": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
-      "first_paragraph": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
+      "summary": "Two weeks ago I made a bet with Vitalik that one person could agentic-code an Ethereum client targeting the entire 2030+ roadmap. Completed-roadmap Et...",
+      "first_paragraph": "Two weeks ago I made a bet with Vitalik that one person could agentic-code an Ethereum client targeting the entire 2030+ roadmap. Completed-roadmap Ethereum is a genuinely extraordinary machine - 10,000+ TPS on L1, finality in seconds instead of 15 minutes, solo staking for 1 ETH, stateless nodes on a $7 Raspberry Pi, over a million TPS across L1+L2 - but that future depends on 65 planned upgrades across eight phases actually fitting together. The specs are scattered across dozens of EIPs, many still in draft. Nobody had tried to build all of them into one codebase to see if they compose. So I did.",
       "file": "1_ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap.cleaned.md"
     },
     "zh": {
