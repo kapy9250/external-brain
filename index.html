@@ -447,27 +447,35 @@
     }
 
     async function fetchRemoteSentenceAudio(text) {
-      const res = await fetch(TTS_API_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text,
-          lang: currentLang,
-          provider: 'openai',
-          voice_id: OPENAI_TTS_VOICE,
-          format: 'mp3'
-        })
-      });
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000); // 12s hard timeout
 
-      if (!res.ok) {
-        throw new Error(`TTS API failed: ${res.status}`);
-      }
+      try {
+        const res = await fetch(TTS_API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
+          body: JSON.stringify({
+            text,
+            lang: currentLang,
+            provider: 'openai',
+            voice_id: OPENAI_TTS_VOICE,
+            format: 'mp3'
+          })
+        });
 
-      const data = await res.json();
-      if (!data.audio_url) {
-        throw new Error('TTS API response missing audio_url');
+        if (!res.ok) {
+          throw new Error(`TTS API failed: ${res.status}`);
+        }
+
+        const data = await res.json();
+        if (!data.audio_url) {
+          throw new Error('TTS API response missing audio_url');
+        }
+        return data.audio_url;
+      } finally {
+        clearTimeout(timeout);
       }
-      return data.audio_url;
     }
 
     function speakCurrentSentenceWebSpeech() {
@@ -534,18 +542,36 @@
 
         const audioUrl = await fetchRemoteSentenceAudio(text);
         const audio = new Audio(audioUrl);
+        audio.preload = 'auto';
         ttsState.audioEl = audio;
 
+        let safetyTimer = null;
+        const clearSafety = () => {
+          if (safetyTimer) {
+            clearTimeout(safetyTimer);
+            safetyTimer = null;
+          }
+        };
+
         audio.onended = async () => {
+          clearSafety();
           ttsState.currentIndex += 1;
           await speakCurrentSentenceRemote();
         };
 
         audio.onerror = async () => {
+          clearSafety();
           // remote 失败：自动回退本地，并从当前句继续
           activeTtsMode = 'webspeech';
           speakCurrentSentence();
         };
+
+        // 防卡死保护：单句超过 25 秒自动回退本地
+        safetyTimer = setTimeout(() => {
+          try { audio.pause(); } catch {}
+          activeTtsMode = 'webspeech';
+          speakCurrentSentence();
+        }, 25000);
 
         await audio.play();
       } catch (err) {
