@@ -265,7 +265,8 @@
       bufferMap: new Map(),   // index -> remoteAudio payload
       inflightMap: new Map(), // index -> Promise
       prefetchAheadCount: 3,
-      sessionToken: 0
+      sessionToken: 0,
+      audioUnlocked: false
     };
 
     const sleepState = {
@@ -273,6 +274,22 @@
       endAt: null,
       minutes: 0
     };
+
+    async function unlockAudioIfNeeded() {
+      if (ttsState.audioUnlocked) return;
+      try {
+        const a = new Audio();
+        a.muted = true;
+        // tiny silent wav data URI (very short)
+        a.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+        await a.play();
+        a.pause();
+        a.currentTime = 0;
+      } catch (_) {
+        // ignore; some browsers still unlock on direct user gesture without this
+      }
+      ttsState.audioUnlocked = true;
+    }
 
     function isPlaybackActive(token) {
       return ttsState.isPlaying && !ttsState.isPaused && expandedId === ttsState.articleId && token === ttsState.sessionToken;
@@ -855,10 +872,11 @@
       updateFloatingMenuVisibility();
     }
 
-    function togglePlayPause() {
+    async function togglePlayPause() {
       if (expandedId === null) return;
 
       if (!ttsState.isPlaying) {
+        await unlockAudioIfNeeded();
         startTTS(expandedId, 0);
         return;
       }
