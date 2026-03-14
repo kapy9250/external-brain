@@ -156,6 +156,10 @@
       opacity: 0.45;
       cursor: not-allowed;
     }
+    .floating-btn.active {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
 
     .loader {
       text-align: center;
@@ -180,6 +184,7 @@
 
   <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
     <button id="btnPlayPause" class="floating-btn" aria-label="播放或暂停" title="播放/暂停">▷</button>
+    <button id="btnSleep" class="floating-btn" aria-label="定时关闭" title="定时关闭">⏱</button>
     <button id="btnShare" class="floating-btn" aria-label="分享当前文章" title="分享当前文章">↗</button>
     <button id="btnPrev" class="floating-btn" aria-label="上一篇" title="上一篇">&lt;</button>
     <button id="btnNext" class="floating-btn" aria-label="下一篇" title="下一篇">&gt;</button>
@@ -197,6 +202,7 @@
     const loader = document.getElementById('loader');
     const floatingMenu = document.getElementById('floatingMenu');
     const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnSleep = document.getElementById('btnSleep');
     const btnShare = document.getElementById('btnShare');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
@@ -222,8 +228,38 @@
       sessionToken: 0
     };
 
+    const sleepState = {
+      timerId: null,
+      endAt: null,
+      minutes: 0
+    };
+
     function isPlaybackActive(token) {
       return ttsState.isPlaying && !ttsState.isPaused && expandedId === ttsState.articleId && token === ttsState.sessionToken;
+    }
+
+    function clearSleepTimer() {
+      if (sleepState.timerId) {
+        clearTimeout(sleepState.timerId);
+        sleepState.timerId = null;
+      }
+      sleepState.endAt = null;
+      sleepState.minutes = 0;
+      btnSleep?.classList.remove('active');
+      btnSleep.title = '定时关闭';
+    }
+
+    function setSleepTimer(minutes) {
+      clearSleepTimer();
+      if (!minutes || minutes <= 0) return;
+      sleepState.minutes = minutes;
+      sleepState.endAt = Date.now() + minutes * 60 * 1000;
+      sleepState.timerId = setTimeout(() => {
+        stopTTS();
+        clearSleepTimer();
+      }, minutes * 60 * 1000);
+      btnSleep?.classList.add('active');
+      btnSleep.title = `定时关闭 ${minutes} 分钟`; 
     }
 
     async function init() {
@@ -344,6 +380,7 @@
       ttsState.utterance = null;
       ttsState.bufferMap.clear();
       ttsState.inflightMap.clear();
+      clearSleepTimer();
       clearSentenceHighlight();
       updateFloatingMenuVisibility();
     }
@@ -806,6 +843,26 @@
 
     function setupFloatingMenuActions() {
       btnPlayPause.addEventListener('click', togglePlayPause);
+
+      btnSleep.addEventListener('click', () => {
+        const current = sleepState.minutes || 0;
+        const choice = window.prompt(
+          '定时关闭（分钟），可选：5 / 10 / 15 / 20 / 30 / 45 / 60\n输入 0 取消定时',
+          current ? String(current) : '15'
+        );
+        if (choice === null) return;
+        const m = Number(choice.trim());
+        const allowed = new Set([0, 5, 10, 15, 20, 30, 45, 60]);
+        if (!Number.isFinite(m) || !allowed.has(m)) {
+          alert('请输入有效值：0, 5, 10, 15, 20, 30, 45, 60');
+          return;
+        }
+        if (m === 0) {
+          clearSleepTimer();
+          return;
+        }
+        setSleepTimer(m);
+      });
 
       btnShare.addEventListener('click', async () => {
         if (expandedId === null) return;
