@@ -1,0 +1,534 @@
+[
+  {
+    "id": 38,
+    "slug": "the-verification-economy",
+    "en": {
+      "title": "the verification economy: we solved generation. now what?",
+      "summary": "for two years the conversation on AI disrupting software engineering followed the same storyline: models were getting smarter, benchmarks were climbin...",
+      "file": "38_the-verification-economy.cleaned.md"
+    },
+    "zh": {
+      "title": "验证经济：我们解决了生成问题，然后呢？",
+      "summary": "两年来，关于 AI 颠覆软件工程的讨论一直遵循着相同的故事情节：模型变得越来越聪明，基准测试的成绩不断攀升。",
+      "file": "38_the-verification-economy.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 37,
+    "slug": "how-to-build-a-world-class-sales-team",
+    "en": {
+      "title": "Your product won’t sell itself: How to build a world-class sales team",
+      "summary": "Founders obsess over product details: features, UX, performance, reliability, and documentation. Now imagine applying that same intensity to sales and...",
+      "file": "37_how-to-build-a-world-class-sales-team.cleaned.md"
+    },
+    "zh": {
+      "title": "你的产品不会自动卖出去：如何建立世界级的销售团队",
+      "summary": "创始人往往对产品细节非常痴迷：功能、用户体验、性能、可靠性以及文档。现在想象一下，将同样的专注度应用到销售和市场推广（go-to-market）上。",
+      "file": "37_how-to-build-a-world-class-sales-team.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 36,
+    "slug": "english-language-arts-10-12-learnalberta",
+    "en": {
+      "title": "English Language Arts (10–12)",
+      "summary": "There are two basic aims of senior high school English language arts. One aim is to encourage, in students, an understanding and appreciation of the s...",
+      "file": "36_english-language-arts-10-12-learnalberta.cleaned.md"
+    },
+    "zh": {
+      "title": "English Language Arts (10–12) (英语语言艺术 10-12年级)",
+      "summary": "高中英语语言艺术有两个基本目标。一个目标是鼓励学生理解和欣赏文学的意义与艺术性。第二个目标是使每个学生能够理解和欣赏语言，并能在为了交流、个人满足和学习而面对各种目的、各种受众和各种情况时自信、胜任地使用语言。",
+      "file": "36_english-language-arts-10-12-learnalberta.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 35,
+    "slug": "discovery-of-e",
+    "en": {
+      "title": "From $1 to 2.71828: The Discovery of e",
+      "summary": "In mathematics, one of the most important numbers is e which is called Euler's number, and is approaximately equal to 2.71828. This number can be foun...",
+      "file": "35_discovery-of-e.cleaned.md"
+    },
+    "zh": {
+      "title": "从 $1 到 2.71828：e 的发现",
+      "summary": "在数学中，最重要的数字之一是 e，它被称为欧拉数（Euler's number），约等于 2.71828。这个数字可以在很多地方找到，比如人口增长、放射性衰变以及微积分中的许多公式。",
+      "file": "35_discovery-of-e.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 34,
+    "slug": "openai-codex-best-practices",
+    "en": {
+      "title": "Best practices",
+      "summary": "Getting started with Codex and proven practices for better results",
+      "file": "34_openai-codex-best-practices.cleaned.md"
+    },
+    "zh": {
+      "title": "最佳实践 (Best practices)",
+      "summary": "Codex 的入门指南以及获得更好结果的可靠实践",
+      "file": "34_openai-codex-best-practices.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 33,
+    "slug": "coding-agents-reshape-epd",
+    "en": {
+      "title": "How Coding Agents Are Reshaping Engineering, Product and Design",
+      "summary": "EPD (Engineering, Product, and Design) at a software company is about creating good software. Separate roles exist, but the end goal is functional sof...",
+      "file": "33_coding-agents-reshape-epd.cleaned.md"
+    },
+    "zh": {
+      "title": "编程 Agent 如何重塑工程、产品和设计",
+      "summary": "EPD（工程、产品和设计）在软件公司中意味着创造好的软件。虽然存在不同的角色，但最终目标是创造能够解决用户业务问题的功能性软件。说到底，这其实就是代码。我们要认识到 EPD 职能产出的就是代码，因为……编程 Agent 突然让代码变得非常容易编写。那么，这如何改变 EPD 的角色呢？",
+      "file": "33_coding-agents-reshape-epd.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 32,
+    "slug": "harness-engineering-cybernetics",
+    "en": {
+      "title": "Harness Engineering Is Cybernetics",
+      "summary": "Reading OpenAI's [Agent SDK](https://openai.com/index/introducing-agents-sdk/), I kept having a feeling I couldn't place. Then it clicked: I'd seen th...",
+      "file": "32_harness-engineering-cybernetics.cleaned.md"
+    },
+    "zh": {
+      "title": "Harness 工程就是控制论",
+      "summary": "阅读 OpenAI 的 [Agent SDK](https://openai.com/index/introducing-agents-sdk/) 时，我始终有一种说不清的感觉。直到突然意识到：我以前见过这种模式。不是一次——而是三次。",
+      "file": "32_harness-engineering-cybernetics.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 31,
+    "slug": "claude-shannon-creative-thinking",
+    "en": {
+      "title": "Claude Shannon: Creative Thinking",
+      "summary": "This document is a record of a speech on \"Creative Thinking\" given by Claude Shannon at Bell Labs on March 20, 1952.",
+      "file": "31_claude-shannon-creative-thinking.cleaned.md"
+    },
+    "zh": {
+      "title": "克劳德·香农：创造性思维 (Creative Thinking)",
+      "summary": "这份文档是克劳德·香农（Claude Shannon）于 1952 年 3 月 20 日在贝尔实验室发表的关于“创造性思维”的演讲记录。",
+      "file": "31_claude-shannon-creative-thinking.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 30,
+    "slug": "karpathy-autoresearch",
+    "en": {
+      "title": "Andrej Karpathy on X: autoresearch",
+      "summary": "I packaged up the \"autoresearch\" project into a new self-contained minimal repo if people would like to play over the weekend. It's basically nanochat...",
+      "file": "30_karpathy-autoresearch.cleaned.md"
+    },
+    "zh": {
+      "title": "Andrej Karpathy on X: autoresearch",
+      "summary": "我把 \"autoresearch\" 项目打包成了一个全新的、自包含的极简仓库，大家如果想在周末玩一玩的话可以试试。它基本上就是把 nanochat LLM 训练核心精简成了一个单 GPU、单文件版本（约 630 行代码），然后：",
+      "file": "30_karpathy-autoresearch.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 29,
+    "slug": "agentic-code-reasoning-2603-01896",
+    "en": {
+      "title": "",
+      "summary": "Agentic Code Reasoning",
+      "file": "29_agentic-code-reasoning-2603-01896.cleaned.md"
+    },
+    "zh": {
+      "title": "Agentic Code Reasoning (智能体代码推理) [v2]",
+      "summary": "**作者**: Shubham Ugare, Satish Chandra (Meta, USA)",
+      "file": "29_agentic-code-reasoning-2603-01896.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 28,
+    "slug": "anthropic-labor-market-impacts-of-ai",
+    "en": {
+      "title": "Labor market impacts of AI: A new measure and early evidence",
+      "summary": "*   We introduce a new measure of AI displacement risk, _observed exposure_, that combines theoretical LLM capability and real-world usage data, weigh...",
+      "file": "28_anthropic-labor-market-impacts-of-ai.cleaned.md"
+    },
+    "zh": {
+      "title": "AI 对劳动力市场的影响：一项新指标与早期证据",
+      "summary": "*   我们引入了一项衡量 AI 替代风险的新指标——**观察到的暴露度**（observed exposure），它结合了 LLM 的理论能力和真实世界的使用数据，并对自动化用途（而非增强型用途）和与工作相关的用途赋予更高的权重。",
+      "file": "28_anthropic-labor-market-impacts-of-ai.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 27,
+    "slug": "openclaw-memory-masterclass",
+    "en": {
+      "title": "OpenClaw Memory Masterclass: The complete guide to agent memory that survives",
+      "summary": "March 5th, 2026",
+      "file": "27_openclaw-memory-masterclass.cleaned.md"
+    },
+    "zh": {
+      "title": "OpenClaw 记忆大师课：能够存活的智能体记忆完整指南",
+      "summary": "2026年3月5日",
+      "file": "27_openclaw-memory-masterclass.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 26,
+    "slug": "jimprosser-chief-of-staff-claude-code",
+    "en": {
+      "title": "",
+      "summary": "My chief of staff, Claude Code",
+      "file": "26_jimprosser-chief-of-staff-claude-code.cleaned.md"
+    },
+    "zh": {
+      "title": "",
+      "summary": "我的首席助理：Claude Code",
+      "file": "26_jimprosser-chief-of-staff-claude-code.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 25,
+    "slug": "45-thoughts-about-agents",
+    "en": {
+      "title": "",
+      "summary": "Title: 45 Thoughts About Agents",
+      "file": "25_45-thoughts-about-agents.cleaned.md"
+    },
+    "zh": {
+      "title": "关于 AI Agent 的 45 个思考",
+      "summary": "我最受欢迎的文章之一是《关于 AGI 的 35 个思考和关于 GPT-5 的 1 个思考》，这是关于通往 AGI 之路的大杂烩（外加关于 GPT-5 的一些尖锐的旁白）。",
+      "file": "25_45-thoughts-about-agents.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 24,
+    "slug": "white-papers-on-surveillance-and-tracking",
+    "en": {
+      "title": "White Papers on Surveillance and Tracking",
+      "summary": "*Source: Sara Konecny (@signal2prompt)*",
+      "file": "24_white-papers-on-surveillance-and-tracking.cleaned.md"
+    },
+    "zh": {
+      "title": "关于监控和追踪的白皮书",
+      "summary": "*来源：Sara Konecny (@signal2prompt)*",
+      "file": "24_white-papers-on-surveillance-and-tracking.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 23,
+    "slug": "how-to-set-up-claude-cowork",
+    "en": {
+      "title": "How to set up Claude Cowork (to level up from ChatGPT)",
+      "summary": "*Author: Ruben Hassid*",
+      "file": "23_how-to-set-up-claude-cowork.cleaned.md"
+    },
+    "zh": {
+      "title": "如何设置 Claude Cowork（从 ChatGPT 升级的必读指南）",
+      "summary": "*作者: Ruben Hassid*",
+      "file": "23_how-to-set-up-claude-cowork.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 22,
+    "slug": "when-we-stand-at-the-beginning-of-a-transformation",
+    "en": {
+      "title": "When We Stand at the Beginning of a Transformation",
+      "summary": "*Original article by Jiayuan (JY) Zhang*",
+      "file": "22_when-we-stand-at-the-beginning-of-a-transformation.cleaned.md"
+    },
+    "zh": {
+      "title": "当我们站在变革的开端",
+      "summary": "URL: https://x.com/jiayuan_jy/status/2029851505583607961",
+      "file": "22_when-we-stand-at-the-beginning-of-a-transformation.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 21,
+    "slug": "chinese-open-source-a-definitive-history",
+    "en": {
+      "title": "Chinese Open Source: A Definitive History",
+      "summary": "URL: https://x.com/kevinsxu/status/2029961571296743585",
+      "file": "21_chinese-open-source-a-definitive-history.cleaned.md"
+    },
+    "zh": {
+      "title": "中国开源的权威发展史",
+      "summary": "URL: https://x.com/kevinsxu/status/2029961571296743585",
+      "file": "21_chinese-open-source-a-definitive-history.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 20,
+    "slug": "mits-quant-course-decoded-for-every-prediction-market-trader",
+    "en": {
+      "title": "MIT's Quant Course Decoded for Every Prediction Market Trader",
+      "summary": "URL: https://x.com/rohonchain/status/2028489070394171427",
+      "file": "20_mits-quant-course-decoded-for-every-prediction-market-trader.cleaned.md"
+    },
+    "zh": {
+      "title": "MIT量化课程解码：写给每一位预测市场交易员",
+      "summary": "URL: https://x.com/rohonchain/status/2028489070394171427",
+      "file": "20_mits-quant-course-decoded-for-every-prediction-market-trader.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 19,
+    "slug": "mcp-vs-skills-for-ai-agents",
+    "en": {
+      "title": "MCP vs. Skills for AI agents, clearly explained!",
+      "summary": "URL: https://x.com/akshay_pachaar/status/2029534926828388537",
+      "file": "19_mcp-vs-skills-for-ai-agents.cleaned.md"
+    },
+    "zh": {
+      "title": "MCP vs. Skills for AI agents，一文讲透！",
+      "summary": "URL: https://x.com/akshay_pachaar/status/2029534926828388537",
+      "file": "19_mcp-vs-skills-for-ai-agents.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 18,
+    "slug": "45-thoughts-about-agents-steve-newman",
+    "en": {
+      "title": "Recommend this \"45 Thoughts About Agents\"",
+      "summary": "URL: https://x.com/runes_leo/status/2029081154066723039",
+      "file": "18_45-thoughts-about-agents-steve-newman.cleaned.md"
+    },
+    "zh": {
+      "title": "推荐这篇「45 Thoughts About Agents」",
+      "summary": "URL: https://x.com/runes_leo/status/2029081154066723039",
+      "file": "18_45-thoughts-about-agents-steve-newman.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 17,
+    "slug": "codex-5-4-opus-4-6-gpt-5-3-gemini-3-1",
+    "en": {
+      "title": "Om Patel: codex 5.4 >>>> opus 4.6 >>>> gpt 5.3 >>>> gemini 3.1",
+      "summary": "URL: https://x.com/om_patel5/status/2029644536306143588",
+      "file": "17_codex-5-4-opus-4-6-gpt-5-3-gemini-3-1.cleaned.md"
+    },
+    "zh": {
+      "title": "Om Patel: codex 5.4 >>>> opus 4.6 >>>> gpt 5.3 >>>> gemini 3.1",
+      "summary": "URL: https://x.com/om_patel5/status/2029644536306143588",
+      "file": "17_codex-5-4-opus-4-6-gpt-5-3-gemini-3-1.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 16,
+    "slug": "how-id-become-a-quant-if-i-had-to-start-over-tomorrow",
+    "en": {
+      "title": "How I'd Become a Quant If I Had to Start Over Tomorrow",
+      "summary": "URL: https://x.com/gemchange_ltd/status/2028904166895112617",
+      "file": "16_how-id-become-a-quant-if-i-had-to-start-over-tomorrow.cleaned.md"
+    },
+    "zh": {
+      "title": "如果明天我要重新开始，我会如何成为一名量化交易员",
+      "summary": "URL: https://x.com/gemchange_ltd/status/2028904166895112617",
+      "file": "16_how-id-become-a-quant-if-i-had-to-start-over-tomorrow.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 15,
+    "slug": "gitnexus-interactive-knowledge-graph",
+    "en": {
+      "title": "GitNexus: Turn Any GitHub Repo into an Interactive Knowledge Graph",
+      "summary": "URL: https://x.com/MillieMarconnni/status/2028436636841996451",
+      "file": "15_gitnexus-interactive-knowledge-graph.cleaned.md"
+    },
+    "zh": {
+      "title": "GitNexus：将任何 GitHub 仓库转化为交互式知识图谱",
+      "summary": "URL: https://x.com/MillieMarconnni/status/2028436636841996451",
+      "file": "15_gitnexus-interactive-knowledge-graph.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 14,
+    "slug": "the-only-guide-to-google-workspace-ai-agents-youll-ever-need",
+    "en": {
+      "title": "The Only Guide to Google Workspace AI Agents You'll Ever Need",
+      "summary": "URL: https://x.com/sharbel/status/2029494091336032686",
+      "file": "14_the-only-guide-to-google-workspace-ai-agents-youll-ever-need.cleaned.md"
+    },
+    "zh": {
+      "title": "你唯一需要的 Google Workspace AI 智能体指南",
+      "summary": "URL: https://x.com/sharbel/status/2029494091336032686",
+      "file": "14_the-only-guide-to-google-workspace-ai-agents-youll-ever-need.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 13,
+    "slug": "investigating-how-codex-context-compaction-works",
+    "en": {
+      "title": "Investigating how Codex context compaction works",
+      "summary": "URL: https://x.com/kangwook_lee/status/2028955292025962534",
+      "file": "13_investigating-how-codex-context-compaction-works.cleaned.md"
+    },
+    "zh": {
+      "title": "探究 Codex 上下文压缩的工作原理",
+      "summary": "URL: https://x.com/kangwook_lee/status/2028955292025962534",
+      "file": "13_investigating-how-codex-context-compaction-works.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 12,
+    "slug": "the-ultimate-beginners-guide-to-claude",
+    "en": {
+      "title": "The Ultimate Beginner’s Guide to Claude (March 2026)",
+      "summary": "URL: https://x.com/aiedge_/status/2029233676111008061",
+      "file": "12_the-ultimate-beginners-guide-to-claude.cleaned.md"
+    },
+    "zh": {
+      "title": "Claude 终极新手指南（2026年3月）",
+      "summary": "URL: https://x.com/aiedge_/status/2029233676111008061",
+      "file": "12_the-ultimate-beginners-guide-to-claude.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 11,
+    "slug": "how-to-be-a-world-class-agentic-engineer",
+    "en": {
+      "title": "How To Be A World-Class Agentic Engineer",
+      "summary": "URL: https://x.com/systematicls/status/2028814227004395561",
+      "file": "11_how-to-be-a-world-class-agentic-engineer.cleaned.md"
+    },
+    "zh": {
+      "title": "如何成为一名世界级的 Agentic 工程师（作者：sysls）",
+      "summary": "URL: https://x.com/systematicls/status/2028814227004395561",
+      "file": "11_how-to-be-a-world-class-agentic-engineer.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 10,
+    "slug": "17-best-practices-that-make-claude-cowork-100x-more-powerful",
+    "en": {
+      "title": "[Skill Name]",
+      "summary": "In seven weeks, I’ve run over 400 Cowork sessions. I’ve tested every plugin, every connector, every slash command. I’ve broken it in ways Anthropic pr...",
+      "file": "10_17-best-practices-that-make-claude-cowork-100x-more-powerful.cleaned.md"
+    },
+    "zh": {
+      "title": "[Skill Name]",
+      "summary": "在过去七周里，我运行了 400 多次 Cowork 会话。我测试了每一个插件、每一个连接器、每一个斜杠命令。我以 Anthropic 可能从未见过的方式打破了它的极限。并且，我找出了那些将认为 Cowork “有点酷” 的人和用它替换掉一半软件栈的人区分开来的具体实践方法。",
+      "file": "10_17-best-practices-that-make-claude-cowork-100x-more-powerful.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 9,
+    "slug": "best-practices-for-claude-code-100x-powerful",
+    "en": {
+      "title": "",
+      "summary": "welcome back guys",
+      "file": "9_best-practices-for-claude-code-100x-powerful.cleaned.md"
+    },
+    "zh": {
+      "title": "",
+      "summary": "欢迎回来，伙计们",
+      "file": "9_best-practices-for-claude-code-100x-powerful.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 8,
+    "slug": "lessons-from-building-claude-code-prompt-caching-is-everything",
+    "en": {
+      "title": "",
+      "summary": "It is often said in engineering that “Cache Rules Everything Around Me,” and the same rule holds for agents.",
+      "file": "8_lessons-from-building-claude-code-prompt-caching-is-everything.cleaned.md"
+    },
+    "zh": {
+      "title": "",
+      "summary": "工程里常说一句话：“Cache Rules Everything Around Me（缓存决定一切）”，对 Agent 也是一样。",
+      "file": "8_lessons-from-building-claude-code-prompt-caching-is-everything.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 7,
+    "slug": "the-claude-native-law-firm",
+    "en": {
+      "title": "The Claude-Native Law Firm",
+      "summary": "[![Image 1: Image](./assets/the-claude-native-law-firm/image-01.jpg)](https://x.com/zackbshapiro/article/2027389987444957625/media/2027390569685618689...",
+      "file": "7_the-claude-native-law-firm.cleaned.md"
+    },
+    "zh": {
+      "title": "Claude-Native 律师事务所",
+      "summary": "[![Image 1: Image](./assets/the-claude-native-law-firm/image-01.jpg)](https://x.com/zackbshapiro/article/2027389987444957625/media/2027390569685618689...",
+      "file": "7_the-claude-native-law-firm.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 6,
+    "slug": "lessons-from-building-claude-code-seeing-like-an-agent",
+    "en": {
+      "title": "",
+      "summary": "One of the hardest parts of building an agent harness is constructing its action space.",
+      "file": "6_lessons-from-building-claude-code-seeing-like-an-agent.cleaned.md"
+    },
+    "zh": {
+      "title": "",
+      "summary": "构建 agent harness 最难的部分之一，就是设计它的动作空间（action space）。",
+      "file": "6_lessons-from-building-claude-code-seeing-like-an-agent.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 5,
+    "slug": "prompt-personalities-gpt5",
+    "en": {
+      "title": "",
+      "summary": "Markdown Content:",
+      "file": "5_prompt-personalities-gpt5.cleaned.md"
+    },
+    "zh": {
+      "title": "",
+      "summary": "降价内容：",
+      "file": "5_prompt-personalities-gpt5.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 4,
+    "slug": "context-personalization-openai-agents-sdk",
+    "en": {
+      "title": "Your openai key",
+      "summary": "Jan 5, 2026",
+      "file": "4_context-personalization-openai-agents-sdk.cleaned.md"
+    },
+    "zh": {
+      "title": "Your openai key",
+      "summary": "2026 年 1 月 5 日",
+      "file": "4_context-personalization-openai-agents-sdk.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 3,
+    "slug": "OpenClaw-Ebook-Final",
+    "en": {
+      "title": "OpenClaw Ebook - Final",
+      "summary": "OpenClaw:  What  People",
+      "file": "3_OpenClaw-Ebook-Final.cleaned.md"
+    },
+    "zh": {
+      "title": "OpenClaw 电子书 - 最终版",
+      "summary": "OpenClaw： 什么人  是 其实 做事 与 它 真正的自动化。 真实的结果。 没有BS。 让我们面对现实吧  OpenClaw 不是典型的聊天机器人。  那些只坐在一个窗口的人工智能助手？ OpenClaw 不是那样的。 它在  你的 电子邮件， 你的 日历, 你的 松弛， 你的 开发者 环境...",
+      "file": "3_OpenClaw-Ebook-Final.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 2,
+    "slug": "The-Self-Improving-AI-System-That-Built-Itself",
+    "en": {
+      "title": "The Self-Improving AI System That Built Itself",
+      "summary": "I was trying to ship faster",
+      "file": "2_The-Self-Improving-AI-System-That-Built-Itself.cleaned.md"
+    },
+    "zh": {
+      "title": "构建了自身的自我改进 AI 系统",
+      "summary": "我试图运送得更快",
+      "file": "2_The-Self-Improving-AI-System-That-Built-Itself.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 1,
+    "slug": "ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap",
+    "en": {
+      "title": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
+      "summary": "[![Image 1: Image](./assets/eth2030/image-01.jpg)](https://x.com/yq_acc/article/2026250003577209173/media/2026225729177047040)",
+      "file": "1_ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap.cleaned.md"
+    },
+    "zh": {
+      "title": "ETH2030：面向 2030+ 路线图的 Agentic Coding 以太坊客户端",
+      "summary": "[![Image 1: Image](./assets/eth2030/image-01.jpg)](https://x.com/yq_acc/article/2026250003577209173/media/2026225729177047040)",
+      "file": "1_ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap.cleaned.zh.md"
+    }
+  }
+]

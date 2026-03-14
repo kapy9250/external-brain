@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>External Brain</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #f5f5f7;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --text-muted: #666666;
+      --primary-color: #007aff;
+      --border-radius: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #1c1c1e;
+        --card-bg: #2c2c2e;
+        --text-color: #f5f5f7;
+        --text-muted: #ebebf5;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto 30px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    /* Toggle Switch */
+    .lang-switch {
+      display: flex;
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .lang-btn {
+      padding: 8px 16px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-color);
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .lang-btn.active {
+      background: var(--primary-color);
+      color: #fff;
+    }
+    
+    /* Masonry Layout */
+    .masonry {
+      column-count: 3;
+      column-gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .masonry { column-count: 2; }
+    }
+    @media (max-width: 600px) {
+      .masonry { column-count: 1; }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      break-inside: avoid;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+    .card-title {
+      font-size: 20px;
+      margin: 0 0 10px 0;
+      cursor: pointer;
+      color: var(--primary-color);
+    }
+    .card-title:hover {
+      text-decoration: underline;
+    }
+    .card-summary {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0;
+    }
+    .card-content {
+      display: none;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(128,128,128,0.2);
+      font-size: 15px;
+      overflow-x: auto;
+    }
+    .card-content img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .card-content pre {
+      background: rgba(128,128,128,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    
+    .loader {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>External Brain</h1>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="zh">中文</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <div class="masonry" id="masonry"></div>
+  <div class="loader" id="loader">Loading more...</div>
+
+  <script>
+    let currentLang = 'zh';
+    let articles = [];
+    let page = 0;
+    const pageSize = 10;
+    let expandedId = null;
+
+    const masonry = document.getElementById('masonry');
+    const loader = document.getElementById('loader');
+
+    // Init
+    async function init() {
+      try {
+        const res = await fetch('./articles.json');
+        articles = await res.json();
+        renderNextPage();
+        setupObserver();
+      } catch (e) {
+        loader.innerText = 'Failed to load articles.';
+      }
+    }
+
+    function renderNextPage() {
+      const start = page * pageSize;
+      const end = start + pageSize;
+      const slice = articles.slice(start, end);
+      
+      if (slice.length === 0) {
+        loader.innerText = 'No more articles.';
+        return;
+      }
+
+      slice.forEach(article => {
+        const data = article[currentLang];
+        
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.id = `card-${article.id}`;
+        card.dataset.id = article.id;
+        
+        card.innerHTML = `
+          <h2 class="card-title" onclick="toggleCard(${article.id})">${data.title}</h2>
+          <p class="card-summary">${data.summary}</p>
+          <div class="card-content" id="content-${article.id}"></div>
+        `;
+        masonry.appendChild(card);
+      });
+
+      page++;
+      if (page * pageSize >= articles.length) {
+        loader.innerText = 'All loaded.';
+      }
+    }
+
+    async function toggleCard(id) {
+      const contentDiv = document.getElementById(`content-${id}`);
+      
+      // Close currently expanded if it's different
+      if (expandedId !== null && expandedId !== id) {
+        const prevDiv = document.getElementById(`content-${expandedId}`);
+        if(prevDiv) prevDiv.style.display = 'none';
+      }
+
+      const isExpanded = contentDiv.style.display === 'block';
+      
+      if (isExpanded) {
+        contentDiv.style.display = 'none';
+        expandedId = null;
+      } else {
+        contentDiv.style.display = 'block';
+        expandedId = id;
+        await loadArticleContent(id);
+      }
+    }
+
+    async function loadArticleContent(id) {
+      const contentDiv = document.getElementById(`content-${id}`);
+      const article = articles.find(a => a.id === id);
+      const fileUrl = article[currentLang].file;
+      
+      if (!contentDiv.dataset.loadedLang || contentDiv.dataset.loadedLang !== currentLang) {
+        contentDiv.innerHTML = '<p>Loading...</p>';
+        try {
+          const res = await fetch(`./${fileUrl}`);
+          if (!res.ok) throw new Error('Network response was not ok');
+          const md = await res.text();
+          contentDiv.innerHTML = marked.parse(md);
+          contentDiv.dataset.loadedLang = currentLang;
+        } catch (e) {
+          contentDiv.innerHTML = '<p>Error loading content.</p>';
+        }
+      }
+    }
+
+    // Infinite Scroll Observer
+    function setupObserver() {
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && page * pageSize < articles.length) {
+          renderNextPage();
+        }
+      }, { rootMargin: '100px' });
+      observer.observe(loader);
+    }
+
+    // Language Toggle
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        currentLang = e.target.dataset.lang;
+        updateUIToCurrentLang();
+      });
+    });
+
+    async function updateUIToCurrentLang() {
+      // Update rendered cards
+      const cards = document.querySelectorAll('.card');
+      for (let card of cards) {
+        const id = parseInt(card.dataset.id);
+        const article = articles.find(a => a.id === id);
+        const data = article[currentLang];
+        
+        card.querySelector('.card-title').innerText = data.title || article['en'].title;
+        card.querySelector('.card-summary').innerText = data.summary || article['en'].summary;
+        
+        // Reload content if expanded
+        if (expandedId === id) {
+          await loadArticleContent(id);
+        }
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
