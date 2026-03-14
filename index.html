@@ -541,39 +541,61 @@
         updateFloatingMenuVisibility();
 
         const audioUrl = await fetchRemoteSentenceAudio(text);
-        const audio = new Audio(audioUrl);
-        audio.preload = 'auto';
-        ttsState.audioEl = audio;
 
+        let retryCount = 0;
+        const maxRetries = 5; // handle KV eventual consistency
         let safetyTimer = null;
-        const clearSafety = () => {
-          if (safetyTimer) {
-            clearTimeout(safetyTimer);
-            safetyTimer = null;
-          }
+
+        const playRemoteAudio = async () => {
+          const audio = new Audio(audioUrl);
+          audio.preload = 'auto';
+          ttsState.audioEl = audio;
+
+          const clearSafety = () => {
+            if (safetyTimer) {
+              clearTimeout(safetyTimer);
+              safetyTimer = null;
+            }
+          };
+
+          audio.onended = async () => {
+            clearSafety();
+            ttsState.currentIndex += 1;
+            await speakCurrentSentenceRemote();
+          };
+
+          audio.onerror = async () => {
+            clearSafety();
+            if (retryCount < maxRetries) {
+              retryCount += 1;
+              setTimeout(() => {
+                playRemoteAudio();
+              }, 500 * retryCount);
+              return;
+            }
+            // remote 失败：自动回退本地，并从当前句继续
+            activeTtsMode = 'webspeech';
+            speakCurrentSentence();
+          };
+
+          // 防卡死保护：单句超过 25 秒自动回退本地
+          safetyTimer = setTimeout(() => {
+            try { audio.pause(); } catch {}
+            if (retryCount < maxRetries) {
+              retryCount += 1;
+              setTimeout(() => {
+                playRemoteAudio();
+              }, 500 * retryCount);
+              return;
+            }
+            activeTtsMode = 'webspeech';
+            speakCurrentSentence();
+          }, 25000);
+
+          await audio.play();
         };
 
-        audio.onended = async () => {
-          clearSafety();
-          ttsState.currentIndex += 1;
-          await speakCurrentSentenceRemote();
-        };
-
-        audio.onerror = async () => {
-          clearSafety();
-          // remote 失败：自动回退本地，并从当前句继续
-          activeTtsMode = 'webspeech';
-          speakCurrentSentence();
-        };
-
-        // 防卡死保护：单句超过 25 秒自动回退本地
-        safetyTimer = setTimeout(() => {
-          try { audio.pause(); } catch {}
-          activeTtsMode = 'webspeech';
-          speakCurrentSentence();
-        }, 25000);
-
-        await audio.play();
+        await playRemoteAudio();
       } catch (err) {
         console.error(err);
         // remote 失败：自动回退本地，并从当前句继续
