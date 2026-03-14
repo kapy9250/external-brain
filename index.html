@@ -13,6 +13,7 @@
       --text-muted: #666666;
       --primary-color: #007aff;
       --border-radius: 12px;
+      --tts-highlight: rgba(255, 230, 90, 0.5);
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -20,11 +21,10 @@
         --card-bg: #2c2c2e;
         --text-color: #f5f5f7;
         --text-muted: #ebebf5;
+        --tts-highlight: rgba(255, 196, 0, 0.35);
       }
     }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
@@ -40,10 +40,7 @@
       max-width: 800px;
       margin: 0 auto 30px;
     }
-    .header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+    .header h1 { margin: 0; font-size: 28px; }
 
     .lang-switch {
       display: flex;
@@ -61,10 +58,7 @@
       font-weight: bold;
       transition: background 0.3s;
     }
-    .lang-btn.active {
-      background: var(--primary-color);
-      color: #fff;
-    }
+    .lang-btn.active { background: var(--primary-color); color: #fff; }
 
     .masonry {
       display: flex;
@@ -81,23 +75,15 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
       transition: transform 0.2s;
     }
-    .card:hover {
-      transform: translateY(-2px);
-    }
+    .card:hover { transform: translateY(-2px); }
     .card-title {
       font-size: 20px;
       margin: 0 0 8px 0;
       cursor: pointer;
       color: var(--primary-color);
     }
-    .card-title:hover {
-      text-decoration: underline;
-    }
-    .card-summary {
-      color: var(--text-muted);
-      font-size: 15px;
-      margin: 0;
-    }
+    .card-title:hover { text-decoration: underline; }
+    .card-summary { color: var(--text-muted); font-size: 15px; margin: 0; }
     .card-content {
       display: none;
       margin-top: 15px;
@@ -125,6 +111,15 @@
       color: var(--text-muted);
     }
 
+    .tts-sentence {
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      cursor: pointer;
+    }
+    .tts-sentence.active {
+      background: var(--tts-highlight);
+    }
+
     .floating-menu {
       position: fixed;
       right: 16px;
@@ -134,9 +129,7 @@
       gap: 8px;
       z-index: 999;
     }
-    .floating-menu.show {
-      display: flex;
-    }
+    .floating-menu.show { display: flex; }
     .floating-btn {
       border: none;
       border-radius: 999px;
@@ -146,7 +139,7 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.15);
       cursor: pointer;
       font-weight: 600;
-      min-width: 84px;
+      min-width: 96px;
     }
     .floating-btn:disabled {
       opacity: 0.45;
@@ -175,6 +168,7 @@
   <div class="loader" id="loader">Loading more...</div>
 
   <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
+    <button id="btnPlayPause" class="floating-btn">播放</button>
     <button id="btnPrev" class="floating-btn">上一篇</button>
     <button id="btnNext" class="floating-btn">下一篇</button>
     <button id="btnTop" class="floating-btn">返回 Top</button>
@@ -190,9 +184,19 @@
     const masonry = document.getElementById('masonry');
     const loader = document.getElementById('loader');
     const floatingMenu = document.getElementById('floatingMenu');
+    const btnPlayPause = document.getElementById('btnPlayPause');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
     const btnTop = document.getElementById('btnTop');
+
+    const ttsState = {
+      articleId: null,
+      sentences: [],
+      currentIndex: 0,
+      isPaused: false,
+      isPlaying: false,
+      utterance: null
+    };
 
     async function init() {
       try {
@@ -218,7 +222,6 @@
 
       slice.forEach(article => {
         const data = article[currentLang];
-
         const card = document.createElement('div');
         card.className = 'card';
         card.id = `card-${article.id}`;
@@ -233,9 +236,7 @@
       });
 
       page++;
-      if (page * pageSize >= articles.length) {
-        loader.innerText = 'All loaded.';
-      }
+      if (page * pageSize >= articles.length) loader.innerText = 'All loaded.';
     }
 
     function getArticleIndexById(id) {
@@ -253,11 +254,86 @@
         floatingMenu.classList.remove('show');
         return;
       }
-
       floatingMenu.classList.add('show');
       const idx = getArticleIndexById(expandedId);
       btnPrev.disabled = idx <= 0;
       btnNext.disabled = idx >= articles.length - 1;
+      btnPlayPause.textContent = ttsState.isPlaying && !ttsState.isPaused ? '暂停' : '播放';
+    }
+
+    function stopTTS() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      ttsState.articleId = null;
+      ttsState.sentences = [];
+      ttsState.currentIndex = 0;
+      ttsState.isPaused = false;
+      ttsState.isPlaying = false;
+      ttsState.utterance = null;
+      clearSentenceHighlight();
+      updateFloatingMenuVisibility();
+    }
+
+    function clearSentenceHighlight() {
+      document.querySelectorAll('.tts-sentence.active').forEach(el => el.classList.remove('active'));
+    }
+
+    function highlightCurrentSentence() {
+      clearSentenceHighlight();
+      const span = ttsState.sentences[ttsState.currentIndex];
+      if (!span) return;
+      span.classList.add('active');
+      span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function splitToSentences(text) {
+      const cleaned = text.replace(/\s+/g, ' ').trim();
+      if (!cleaned) return [];
+      const parts = cleaned.match(/[^。！？!?\.]+[。！？!?\.]?|[^。！？!?\.]+$/g) || [];
+      return parts.map(s => s.trim()).filter(Boolean);
+    }
+
+    function wrapTextNodeWithSentenceSpans(textNode) {
+      const text = textNode.nodeValue;
+      if (!text || !text.trim()) return;
+      const sentences = splitToSentences(text);
+      if (!sentences.length) return;
+
+      const frag = document.createDocumentFragment();
+      sentences.forEach((s, idx) => {
+        const span = document.createElement('span');
+        span.className = 'tts-sentence';
+        span.textContent = s + (idx === sentences.length - 1 ? '' : ' ');
+        frag.appendChild(span);
+      });
+      textNode.parentNode.replaceChild(frag, textNode);
+    }
+
+    function prepareReadableSentences(contentDiv) {
+      const walker = document.createTreeWalker(contentDiv, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          const parent = node.parentNode;
+          if (!parent) return NodeFilter.FILTER_REJECT;
+          const tag = parent.tagName;
+          if (['SCRIPT', 'STYLE', 'PRE', 'CODE'].includes(tag)) return NodeFilter.FILTER_REJECT;
+          if (parent.closest('pre,code')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+      textNodes.forEach(wrapTextNodeWithSentenceSpans);
+
+      contentDiv.querySelectorAll('.tts-sentence').forEach((span, idx) => {
+        span.dataset.sentenceIndex = idx;
+        span.addEventListener('dblclick', async () => {
+          if (expandedId === null) return;
+          await startTTS(expandedId, idx);
+        });
+      });
     }
 
     async function openCard(id) {
@@ -268,6 +344,7 @@
       if (expandedId !== null && expandedId !== id) {
         const prevDiv = document.getElementById(`content-${expandedId}`);
         if (prevDiv) prevDiv.style.display = 'none';
+        stopTTS();
       }
 
       contentDiv.style.display = 'block';
@@ -284,13 +361,13 @@
       const contentDiv = document.getElementById(`content-${id}`);
       if (contentDiv) contentDiv.style.display = 'none';
       if (expandedId === id) expandedId = null;
+      stopTTS();
       updateFloatingMenuVisibility();
     }
 
     async function toggleCard(id) {
       const contentDiv = document.getElementById(`content-${id}`);
       if (!contentDiv) return;
-
       const isExpanded = contentDiv.style.display === 'block';
       if (isExpanded) {
         closeCard(id);
@@ -311,10 +388,109 @@
           if (!res.ok) throw new Error('Network response was not ok');
           const md = await res.text();
           contentDiv.innerHTML = marked.parse(md);
+          prepareReadableSentences(contentDiv);
           contentDiv.dataset.loadedLang = currentLang;
         } catch (e) {
           contentDiv.innerHTML = '<p>Error loading content.</p>';
         }
+      }
+    }
+
+    function getBestVoiceForLang(lang) {
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return null;
+      if (lang === 'zh') {
+        return voices.find(v => v.lang.toLowerCase().includes('zh')) || voices[0];
+      }
+      return voices.find(v => v.lang.toLowerCase().includes('en')) || voices[0];
+    }
+
+    function speakCurrentSentence() {
+      if (!ttsState.sentences.length) {
+        stopTTS();
+        return;
+      }
+      if (ttsState.currentIndex >= ttsState.sentences.length) {
+        stopTTS();
+        return;
+      }
+
+      const span = ttsState.sentences[ttsState.currentIndex];
+      const text = span.textContent.trim();
+      if (!text) {
+        ttsState.currentIndex += 1;
+        speakCurrentSentence();
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = currentLang === 'zh' ? 'zh-CN' : 'en-US';
+      const voice = getBestVoiceForLang(currentLang);
+      if (voice) utterance.voice = voice;
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+
+      utterance.onstart = () => {
+        ttsState.isPlaying = true;
+        ttsState.isPaused = false;
+        highlightCurrentSentence();
+        updateFloatingMenuVisibility();
+      };
+
+      utterance.onend = () => {
+        ttsState.currentIndex += 1;
+        speakCurrentSentence();
+      };
+
+      utterance.onerror = () => {
+        ttsState.currentIndex += 1;
+        speakCurrentSentence();
+      };
+
+      ttsState.utterance = utterance;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    async function startTTS(articleId, startIndex = 0) {
+      if (!('speechSynthesis' in window)) {
+        alert('当前浏览器不支持语音朗读');
+        return;
+      }
+
+      const contentDiv = document.getElementById(`content-${articleId}`);
+      if (!contentDiv) return;
+
+      const spans = Array.from(contentDiv.querySelectorAll('.tts-sentence')).filter(s => s.textContent.trim().length > 0);
+      if (!spans.length) return;
+
+      window.speechSynthesis.cancel();
+      ttsState.articleId = articleId;
+      ttsState.sentences = spans;
+      ttsState.currentIndex = Math.min(Math.max(startIndex, 0), spans.length - 1);
+      ttsState.isPlaying = true;
+      ttsState.isPaused = false;
+
+      speakCurrentSentence();
+      updateFloatingMenuVisibility();
+    }
+
+    function togglePlayPause() {
+      if (!('speechSynthesis' in window)) return;
+      if (expandedId === null) return;
+
+      if (!ttsState.isPlaying) {
+        startTTS(expandedId, 0);
+        return;
+      }
+
+      if (ttsState.isPaused) {
+        window.speechSynthesis.resume();
+        ttsState.isPaused = false;
+        updateFloatingMenuVisibility();
+      } else {
+        window.speechSynthesis.pause();
+        ttsState.isPaused = true;
+        updateFloatingMenuVisibility();
       }
     }
 
@@ -328,6 +504,8 @@
     }
 
     function setupFloatingMenuActions() {
+      btnPlayPause.addEventListener('click', togglePlayPause);
+
       btnTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
@@ -352,12 +530,13 @@
     }
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', async (e) => {
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
 
         currentLang = e.target.dataset.lang;
-        updateUIToCurrentLang();
+        stopTTS();
+        await updateUIToCurrentLang();
       });
     });
 
@@ -372,11 +551,15 @@
         card.querySelector('.card-summary').innerText = data.summary || article['en'].summary;
 
         if (expandedId === id) {
+          const contentDiv = document.getElementById(`content-${id}`);
+          contentDiv.dataset.loadedLang = '';
           await loadArticleContent(id);
         }
       }
       updateFloatingMenuVisibility();
     }
+
+    window.speechSynthesis.onvoiceschanged = () => {};
 
     init();
   </script>
