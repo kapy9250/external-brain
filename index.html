@@ -22,6 +22,9 @@
         --text-muted: #ebebf5;
       }
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
@@ -34,7 +37,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 800px; /* Reduced width for single column */
+      max-width: 800px;
       margin: 0 auto 30px;
     }
     .header h1 {
@@ -102,7 +105,7 @@
       margin-top: 15px;
       padding-top: 15px;
       border-top: 1px solid rgba(128,128,128,0.2);
-      font-size: 16px; /* Slightly larger text for reading */
+      font-size: 16px;
       overflow-x: auto;
     }
     .card-content img {
@@ -200,6 +203,7 @@
     }
 
     async function toggleCard(id) {
+      const targetCard = document.getElementById(`card-${id}`);
       const contentDiv = document.getElementById(`content-${id}`);
       
       // Close currently expanded if it's different
@@ -217,6 +221,11 @@
         contentDiv.style.display = 'block';
         expandedId = id;
         await loadArticleContent(id);
+        
+        // Ensure the newly opened card is scrolled into view smoothly
+        setTimeout(() => {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50); // slight delay to allow display:block to render height
       }
     }
 
