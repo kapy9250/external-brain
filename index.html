@@ -273,8 +273,16 @@
     }
 
     function buildShareUrl(id) {
-      const url = new URL(window.location.href);
-      url.searchParams.set('article', String(id));
+      const article = articles.find(a => a.id === id);
+      if (!article) {
+        const fallback = new URL(window.location.href);
+        fallback.searchParams.set('article', String(id));
+        return fallback.toString();
+      }
+
+      const base = `${window.location.origin}/p/${article.id}_${article.slug}.html`;
+      const url = new URL(base);
+      url.searchParams.set('lang', currentLang);
       return url.toString();
     }
 
