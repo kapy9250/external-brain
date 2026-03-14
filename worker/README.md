@@ -1,6 +1,8 @@
-# TTS Worker (ElevenLabs, cache-first)
+# TTS Worker (OpenAI default, cache-first)
 
 This Cloudflare Worker provides secure TTS generation without exposing API keys in frontend.
+
+Default provider is OpenAI TTS (`provider: "openai"`). ElevenLabs remains optional.
 
 ## Features
 

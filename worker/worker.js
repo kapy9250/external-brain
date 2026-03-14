@@ -20,12 +20,14 @@ export default {
 
 async function handleTTS(request, env) {
   try {
-    const { text = '', lang = 'zh', voice_id = '', format = 'mp3_44100_128' } = await request.json();
+    const { text = '', lang = 'zh', voice_id = '', format = 'mp3', provider = 'openai' } = await request.json();
     const normalized = normalizeText(text);
     if (!normalized) return json({ error: 'text is required' }, 400, env);
-    if (!voice_id) return json({ error: 'voice_id is required' }, 400, env);
 
-    const hash = await sha256Hex(`${voice_id}|${lang}|${format}|${normalized}`);
+    const ttsVoice = (voice_id || env.OPENAI_TTS_VOICE || 'alloy');
+    const ttsModel = env.OPENAI_TTS_MODEL || 'gpt-4o-mini-tts';
+
+    const hash = await sha256Hex(`${provider}|${ttsVoice}|${lang}|${format}|${normalized}`);
     const metaKey = `meta:${hash}`;
     const audioKey = `audio:${hash}`;
 
@@ -47,33 +49,51 @@ async function handleTTS(request, env) {
     }
     await env.TTS_CACHE.put(lockKey, '1', { expirationTtl: 60 });
 
-    const elevenRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice_id}`, {
-      method: 'POST',
-      headers: {
-        'xi-api-key': env.ELEVENLABS_API_KEY,
-        'content-type': 'application/json',
-        'accept': 'audio/mpeg'
-      },
-      body: JSON.stringify({
-        text: normalized,
-        model_id: 'eleven_multilingual_v2',
-        output_format: format,
-        voice_settings: {
-          stability: 0.45,
-          similarity_boost: 0.8,
-          style: 0.35,
-          use_speaker_boost: true
-        }
-      })
-    });
+    let ttsRes;
 
-    if (!elevenRes.ok) {
-      const errText = await elevenRes.text();
-      await env.TTS_CACHE.delete(lockKey);
-      return json({ error: 'elevenlabs_failed', detail: errText }, 502, env);
+    if (provider === 'openai') {
+      ttsRes = await fetch('https://api.openai.com/v1/audio/speech', {
+        method: 'POST',
+        headers: {
+          'authorization': `Bearer ${env.OPENAI_API_KEY}`,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: ttsModel,
+          voice: ttsVoice,
+          input: normalized,
+          format: format || 'mp3'
+        })
+      });
+    } else {
+      ttsRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${ttsVoice}`, {
+        method: 'POST',
+        headers: {
+          'xi-api-key': env.ELEVENLABS_API_KEY,
+          'content-type': 'application/json',
+          'accept': 'audio/mpeg'
+        },
+        body: JSON.stringify({
+          text: normalized,
+          model_id: 'eleven_multilingual_v2',
+          output_format: 'mp3_44100_128',
+          voice_settings: {
+            stability: 0.45,
+            similarity_boost: 0.8,
+            style: 0.35,
+            use_speaker_boost: true
+          }
+        })
+      });
     }
 
-    const audioBuffer = await elevenRes.arrayBuffer();
+    if (!ttsRes.ok) {
+      const errText = await ttsRes.text();
+      await env.TTS_CACHE.delete(lockKey);
+      return json({ error: `${provider}_tts_failed`, detail: errText }, 502, env);
+    }
+
+    const audioBuffer = await ttsRes.arrayBuffer();
     const base64 = arrayBufferToBase64(audioBuffer);
 
     await env.TTS_CACHE.put(audioKey, base64, { expirationTtl: 60 * 60 * 24 * 30 });

@@ -6,6 +6,8 @@ compatibility_date = "2026-03-14"
 [vars]
 ALLOWED_ORIGIN = "https://kapy9250.github.io"
 AUDIO_BASE_URL = "https://kapy9250.github.io/external-brain/audio"
+OPENAI_TTS_MODEL = "gpt-4o-mini-tts"
+OPENAI_TTS_VOICE = "alloy"
 
 # KV for metadata cache
 [[kv_namespaces]]

@@ -8,7 +8,7 @@
   <script>
     // Remote TTS endpoint (ElevenLabs via Cloudflare Worker)
     window.TTS_API_ENDPOINT = "https://external-brain-tts.filda.workers.dev/tts";
-    window.ELEVENLABS_VOICE_ID = "agczkAUlHLowaNnL72Cc";
+    window.OPENAI_TTS_VOICE = "alloy";
   </script>
   <style>
     :root {
@@ -195,7 +195,7 @@
     const btnTop = document.getElementById('btnTop');
 
     const TTS_API_ENDPOINT = window.TTS_API_ENDPOINT || '';
-    const ELEVENLABS_VOICE_ID = window.ELEVENLABS_VOICE_ID || 'agczkAUlHLowaNnL72Cc';
+    const OPENAI_TTS_VOICE = window.OPENAI_TTS_VOICE || 'alloy';
     // 默认优先 remote(ElevenLabs)，失败后自动回退 webspeech
     let activeTtsMode = TTS_API_ENDPOINT ? 'remote' : 'webspeech';
 
@@ -453,8 +453,9 @@
         body: JSON.stringify({
           text,
           lang: currentLang,
-          voice_id: ELEVENLABS_VOICE_ID,
-          format: 'mp3_44100_128'
+          provider: 'openai',
+          voice_id: OPENAI_TTS_VOICE,
+          format: 'mp3'
         })
       });
 
