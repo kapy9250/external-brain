@@ -202,6 +202,7 @@
 
     const TTS_API_ENDPOINT = window.TTS_API_ENDPOINT || '';
     const OPENAI_TTS_VOICE = window.OPENAI_TTS_VOICE || 'alloy';
+    const TTS_PLAYBACK_RATE = 1.25;
     // 默认优先 remote(OpenAI Worker)，失败后自动回退 webspeech
     let activeTtsMode = TTS_API_ENDPOINT ? 'remote' : 'webspeech';
 
@@ -551,7 +552,7 @@
       utterance.lang = currentLang === 'zh' ? 'zh-CN' : 'en-US';
       const voice = getBestVoiceForLang(currentLang);
       if (voice) utterance.voice = voice;
-      utterance.rate = 1.0;
+      utterance.rate = TTS_PLAYBACK_RATE;
       utterance.pitch = 1.0;
 
       utterance.onstart = () => {
@@ -620,6 +621,7 @@
 
           const audio = new Audio(src);
           audio.preload = 'auto';
+          audio.playbackRate = TTS_PLAYBACK_RATE;
           ttsState.audioEl = audio;
 
           const clearSafety = () => {
