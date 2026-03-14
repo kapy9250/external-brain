@@ -170,7 +170,7 @@
       "summary": "Reading OpenAI's Agent SDK, I kept having a feeling I couldn't place. Then it clicked: I'd seen this pattern before. Not once — three times.",
       "first_paragraph": "Reading OpenAI's Agent SDK, I kept having a feeling I couldn't place. Then it clicked: I'd seen this pattern before. Not once — three times.",
       "meta": {
-        "author": "",
+        "author": "openai.com",
         "source_url": "https://openai.com/index/introducing-agents-sdk/",
         "published_at": ""
       },
@@ -181,7 +181,7 @@
       "summary": "阅读 OpenAI 的 Agent SDK 时，我始终有一种说不清的感觉。直到突然意识到：我以前见过这种模式。不是一次——而是三次。",
       "first_paragraph": "阅读 OpenAI 的 Agent SDK 时，我始终有一种说不清的感觉。直到突然意识到：我以前见过这种模式。不是一次——而是三次。",
       "meta": {
-        "author": "",
+        "author": "openai.com",
         "source_url": "https://openai.com/index/introducing-agents-sdk/",
         "published_at": ""
       },
@@ -251,7 +251,7 @@
       "summary": "===============",
       "first_paragraph": "===============",
       "meta": {
-        "author": "",
+        "author": "arxiv.org",
         "source_url": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg",
         "published_at": ""
       },
@@ -262,7 +262,7 @@
       "summary": "作者: Shubham Ugare, Satish Chandra (Meta, USA)",
       "first_paragraph": "作者: Shubham Ugare, Satish Chandra (Meta, USA)",
       "meta": {
-        "author": "",
+        "author": "arxiv.org",
         "source_url": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg",
         "published_at": ""
       },
@@ -278,7 +278,7 @@
       "summary": "We introduce a new measure of AI displacement risk, observed exposure, that combines theoretical LLM capability and real-world usage data, weighting a...",
       "first_paragraph": "We introduce a new measure of AI displacement risk, observed exposure, that combines theoretical LLM capability and real-world usage data, weighting automated (rather than augmentative) and work-related uses more heavily",
       "meta": {
-        "author": "",
+        "author": "onetcenter.org",
         "source_url": "https://www.onetcenter.org/database.html",
         "published_at": ""
       },
@@ -289,7 +289,7 @@
       "summary": "我们引入了一项衡量 AI 替代风险的新指标——观察到的暴露度（observed exposure），它结合了 LLM 的理论能力和真实世界的使用数据，并对自动化用途（而非增强型用途）和与工作相关的用途赋予更高的权重。",
       "first_paragraph": "我们引入了一项衡量 AI 替代风险的新指标——观察到的暴露度（observed exposure），它结合了 LLM 的理论能力和真实世界的使用数据，并对自动化用途（而非增强型用途）和与工作相关的用途赋予更高的权重。",
       "meta": {
-        "author": "",
+        "author": "onetcenter.org",
         "source_url": "https://www.onetcenter.org/database.html",
         "published_at": ""
       },
@@ -359,7 +359,7 @@
       "summary": "URL Source: https://secondthoughts.ai/p/45-thoughts-about-agents",
       "first_paragraph": "URL Source: https://secondthoughts.ai/p/45-thoughts-about-agents",
       "meta": {
-        "author": "",
+        "author": "secondthoughts.ai",
         "source_url": "https://secondthoughts.ai/p/45-thoughts-about-agents",
         "published_at": ""
       },
@@ -370,7 +370,7 @@
       "summary": "我最受欢迎的文章之一是《关于 AGI 的 35 个思考和关于 GPT-5 的 1 个思考》，这是关于通往 AGI 之路的大杂烩（外加关于 GPT-5 的一些尖锐的旁白）。",
       "first_paragraph": "我最受欢迎的文章之一是《关于 AGI 的 35 个思考和关于 GPT-5 的 1 个思考》，这是关于通往 AGI 之路的大杂烩（外加关于 GPT-5 的一些尖锐的旁白）。",
       "meta": {
-        "author": "",
+        "author": "secondthoughts.ai",
         "source_url": "https://secondthoughts.ai/p/45-thoughts-about-agents",
         "published_at": ""
       },
@@ -899,7 +899,7 @@
       "summary": "Similar to ChatGPT’s built-in personality presets, you can steer your Agent’s behavior by explicitly defining its personality in your prompt instructi...",
       "first_paragraph": "Similar to ChatGPT’s built-in personality presets, you can steer your Agent’s behavior by explicitly defining its personality in your prompt instructions. These instructions—sometimes called the “system prompt” or “developer prompt”—guide the agent’s tone, detail level, and style of responses. In this notebook, we’ll refer to them simply as “instructions,” following the term used in the OpenAI API documentation for consistency.",
       "meta": {
-        "author": "",
+        "author": "help.openai.com",
         "source_url": "https://help.openai.com/en/articles/11899719-customizing-your-chatgpt-personality",
         "published_at": ""
       },
@@ -910,7 +910,7 @@
       "summary": "与 ChatGPT 的内置个性预设类似，您可以通过在提示指令中明确定义代理的个性来引导代理的行为。这些指令（有时称为“系统提示”或“开发人员提示”）指导代理的语气、详细程度和响应风格。在本笔记本中，为了保持一致性，我们将它们简单地称为“指令”，遵循 OpenAI API 文档 中使用的术语。",
       "first_paragraph": "与 ChatGPT 的内置个性预设类似，您可以通过在提示指令中明确定义代理的个性来引导代理的行为。这些指令（有时称为“系统提示”或“开发人员提示”）指导代理的语气、详细程度和响应风格。在本笔记本中，为了保持一致性，我们将它们简单地称为“指令”，遵循 OpenAI API 文档 中使用的术语。",
       "meta": {
-        "author": "",
+        "author": "help.openai.com",
         "source_url": "https://help.openai.com/en/articles/11899719-customizing-your-chatgpt-personality",
         "published_at": ""
       },
@@ -926,7 +926,7 @@
       "summary": "Jan 5, 2026",
       "first_paragraph": "Jan 5, 2026",
       "meta": {
-        "author": "",
+        "author": "avatars.githubusercontent.com",
         "source_url": "https://avatars.githubusercontent.com/u/26163154?v=4",
         "published_at": ""
       },
@@ -937,7 +937,7 @@
       "summary": "2026 年 1 月 5 日",
       "first_paragraph": "2026 年 1 月 5 日",
       "meta": {
-        "author": "",
+        "author": "avatars.githubusercontent.com",
         "source_url": "https://avatars.githubusercontent.com/u/26163154?v=4",
         "published_at": ""
       },
@@ -953,7 +953,7 @@
       "summary": "OpenClaw:  What  People",
       "first_paragraph": "OpenClaw:  What  People",
       "meta": {
-        "author": "",
+        "author": "docs.openclaw.ai",
         "source_url": "https://docs.openclaw.ai",
         "published_at": ""
       },
@@ -964,7 +964,7 @@
       "summary": "OpenClaw： 什么人  是 其实 做事 与 它 真正的自动化。 真实的结果。 没有BS。 让我们面对现实吧  OpenClaw 不是典型的聊天机器人。  那些只坐在一个窗口的人工智能助手？ OpenClaw 不是那样的。 它在  你的 电子邮件， 你的 日历, 你的 松弛， 你的 开发者 环境...",
       "first_paragraph": "OpenClaw： 什么人  是 其实 做事 与 它 真正的自动化。 真实的结果。 没有BS。 让我们面对现实吧  OpenClaw 不是典型的聊天机器人。  那些只坐在一个窗口的人工智能助手？ OpenClaw 不是那样的。 它在  你的 电子邮件， 你的 日历, 你的 松弛， 你的 开发者 环境。 到处。 人们正在用它做疯狂的事情。  本指南向您准确展示了他们正在构建的内容。 不是理论。 不是“你  可以 也许……” — 这个 是 什么是 工作 对 现在。 每个教程都是对话式的。 你与 OpenClaw 交谈， 它会构建什么  你 需要。 准备好？ 我们走吧。",
       "meta": {
-        "author": "",
+        "author": "docs.",
         "source_url": "https://docs.",
         "published_at": ""
       },
