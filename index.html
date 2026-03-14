@@ -248,6 +248,12 @@
     const btnTop = document.getElementById('btnTop');
     const sleepPanel = document.getElementById('sleepPanel');
 
+    // Single shared audio element for better mobile/iOS compatibility
+    const sharedAudio = new Audio();
+    sharedAudio.preload = 'auto';
+    sharedAudio.setAttribute('playsinline', '');
+    sharedAudio.setAttribute('webkit-playsinline', '');
+
     const TTS_API_ENDPOINT = window.TTS_API_ENDPOINT || '';
     const OPENAI_TTS_VOICE = window.OPENAI_TTS_VOICE || 'alloy';
     const TTS_PLAYBACK_RATE = 1.25;
@@ -278,13 +284,13 @@
     async function unlockAudioIfNeeded() {
       if (ttsState.audioUnlocked) return;
       try {
-        const a = new Audio();
-        a.muted = true;
+        sharedAudio.muted = true;
         // tiny silent wav data URI (very short)
-        a.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
-        await a.play();
-        a.pause();
-        a.currentTime = 0;
+        sharedAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+        await sharedAudio.play();
+        sharedAudio.pause();
+        sharedAudio.currentTime = 0;
+        sharedAudio.muted = false;
       } catch (_) {
         // ignore; some browsers still unlock on direct user gesture without this
       }
@@ -428,11 +434,12 @@
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
-      if (ttsState.audioEl) {
-        ttsState.audioEl.pause();
-        ttsState.audioEl.src = '';
-        ttsState.audioEl = null;
-      }
+      try {
+        sharedAudio.pause();
+        sharedAudio.removeAttribute('src');
+        sharedAudio.load();
+      } catch {}
+      ttsState.audioEl = null;
       ttsState.sessionToken += 1;
       ttsState.articleId = null;
       ttsState.sentences = [];
@@ -765,8 +772,7 @@
           let lastPlayError = null;
 
           for (const src of sources) {
-            const audio = new Audio(src);
-            audio.preload = 'auto';
+            const audio = sharedAudio;
             audio.playbackRate = TTS_PLAYBACK_RATE;
             ttsState.audioEl = audio;
 
@@ -797,6 +803,8 @@
             }, 25000);
 
             try {
+              audio.src = src;
+              audio.load();
               await audio.play();
               played = true;
               break;
@@ -882,12 +890,11 @@
       }
 
       if (activeTtsMode === 'remote') {
-        if (!ttsState.audioEl) return;
         if (ttsState.isPaused) {
-          ttsState.audioEl.play();
+          sharedAudio.play().catch(() => {});
           ttsState.isPaused = false;
         } else {
-          ttsState.audioEl.pause();
+          sharedAudio.pause();
           ttsState.isPaused = true;
           clearSleepTimer();
         }
