@@ -10,6 +10,15 @@ AUDIO_BASE_URL = "https://kapy9250.github.io/external-brain/audio"
 OPENAI_TTS_MODEL = "gpt-4o-mini-tts"
 OPENAI_TTS_VOICE = "alloy"
 
+# Periodic persistence to GitHub repo
+GH_OWNER = "kapy9250"
+GH_REPO = "external-brain"
+GH_BRANCH = "main"
+
+[triggers]
+# every hour
+crons = ["0 * * * *"]
+
 # KV for metadata cache
 [[kv_namespaces]]
 binding = "TTS_CACHE"

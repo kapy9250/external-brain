@@ -9,7 +9,8 @@ Default provider is OpenAI TTS (`provider: "openai"`). ElevenLabs remains option
 - On-demand generation (no request, no cost)
 - Shared cache by content hash
 - Same text + params generated once and reused
-- Frontend only gets `audio_url`
+- Cache-first read path (KV first)
+- Periodic persistence from KV to GitHub repo (`audio-cache/*.mp3`) via cron
 
 ## API
 
@@ -31,19 +32,27 @@ Response:
 ```json
 {
   "audio_url": "https://your-cdn-domain/audio/abcd1234.mp3",
+  "audio_base64": "...",
   "cache_hit": true
 }
 ```
+
+Manual persistence trigger (optional):
+
+`POST /persist`
 
 ## Deploy
 
 1. Install Wrangler
 2. Configure `wrangler.toml` (see `wrangler.toml.example`)
-3. Set secret:
+3. Set secrets:
 
 ```bash
-wrangler secret put ELEVENLABS_API_KEY
+wrangler secret put OPENAI_API_KEY
+wrangler secret put GH_PAT
 ```
+
+> `GH_PAT` needs repo write permission to persist `audio-cache/*.mp3`.
 
 4. Deploy:
 
