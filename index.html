@@ -191,7 +191,8 @@
 
     const TTS_API_ENDPOINT = window.TTS_API_ENDPOINT || '';
     const ELEVENLABS_VOICE_ID = window.ELEVENLABS_VOICE_ID || 'agczkAUlHLowaNnL72Cc';
-    const TTS_MODE = TTS_API_ENDPOINT ? 'remote' : 'webspeech'; // remote = Cloudflare Worker API
+    // 默认优先 remote(ElevenLabs)，失败后自动回退 webspeech
+    let activeTtsMode = TTS_API_ENDPOINT ? 'remote' : 'webspeech';
 
     const ttsState = {
       articleId: null,
@@ -535,20 +536,22 @@
         };
 
         audio.onerror = async () => {
-          ttsState.currentIndex += 1;
-          await speakCurrentSentenceRemote();
+          // remote 失败：自动回退本地，并从当前句继续
+          activeTtsMode = 'webspeech';
+          speakCurrentSentence();
         };
 
         await audio.play();
       } catch (err) {
         console.error(err);
-        ttsState.currentIndex += 1;
-        await speakCurrentSentenceRemote();
+        // remote 失败：自动回退本地，并从当前句继续
+        activeTtsMode = 'webspeech';
+        speakCurrentSentence();
       }
     }
 
     function speakCurrentSentence() {
-      if (TTS_MODE === 'remote') {
+      if (activeTtsMode === 'remote') {
         speakCurrentSentenceRemote();
       } else {
         speakCurrentSentenceWebSpeech();
@@ -556,10 +559,13 @@
     }
 
     async function startTTS(articleId, startIndex = 0) {
-      if (TTS_MODE === 'webspeech' && !('speechSynthesis' in window)) {
+      if (!('speechSynthesis' in window) && !TTS_API_ENDPOINT) {
         alert('当前浏览器不支持语音朗读');
         return;
       }
+
+      // 每次新朗读都重置为：优先 remote，有 endpoint 才启用
+      activeTtsMode = TTS_API_ENDPOINT ? 'remote' : 'webspeech';
 
       const contentDiv = document.getElementById(`content-${articleId}`);
       if (!contentDiv) return;
@@ -586,7 +592,7 @@
         return;
       }
 
-      if (TTS_MODE === 'remote') {
+      if (activeTtsMode === 'remote') {
         if (!ttsState.audioEl) return;
         if (ttsState.isPaused) {
           ttsState.audioEl.play();
