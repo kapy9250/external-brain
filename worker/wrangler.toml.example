@@ -1,0 +1,18 @@
+name = "external-brain-tts"
+main = "worker.js"
+compatibility_date = "2026-03-14"
+
+# Update with your website domain for CORS
+[vars]
+ALLOWED_ORIGIN = "https://kapy9250.github.io"
+AUDIO_BASE_URL = "https://kapy9250.github.io/external-brain/audio"
+
+# KV for metadata cache
+[[kv_namespaces]]
+binding = "TTS_CACHE"
+id = "YOUR_KV_NAMESPACE_ID"
+
+# Optional: R2 for audio storage (recommended for scale)
+# [[r2_buckets]]
+# binding = "AUDIO_BUCKET"
+# bucket_name = "external-brain-tts"

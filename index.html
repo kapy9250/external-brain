@@ -189,13 +189,18 @@
     const btnNext = document.getElementById('btnNext');
     const btnTop = document.getElementById('btnTop');
 
+    const TTS_API_ENDPOINT = window.TTS_API_ENDPOINT || '';
+    const ELEVENLABS_VOICE_ID = window.ELEVENLABS_VOICE_ID || 'agczkAUlHLowaNnL72Cc';
+    const TTS_MODE = TTS_API_ENDPOINT ? 'remote' : 'webspeech'; // remote = Cloudflare Worker API
+
     const ttsState = {
       articleId: null,
       sentences: [],
       currentIndex: 0,
       isPaused: false,
       isPlaying: false,
-      utterance: null
+      utterance: null,
+      audioEl: null
     };
 
     async function init() {
@@ -264,6 +269,11 @@
     function stopTTS() {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
+      }
+      if (ttsState.audioEl) {
+        ttsState.audioEl.pause();
+        ttsState.audioEl.src = '';
+        ttsState.audioEl = null;
       }
       ttsState.articleId = null;
       ttsState.sentences = [];
@@ -405,12 +415,31 @@
       return voices.find(v => v.lang.toLowerCase().includes('en')) || voices[0];
     }
 
-    function speakCurrentSentence() {
-      if (!ttsState.sentences.length) {
-        stopTTS();
-        return;
+    async function fetchRemoteSentenceAudio(text) {
+      const res = await fetch(TTS_API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text,
+          lang: currentLang,
+          voice_id: ELEVENLABS_VOICE_ID,
+          format: 'mp3_44100_128'
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error(`TTS API failed: ${res.status}`);
       }
-      if (ttsState.currentIndex >= ttsState.sentences.length) {
+
+      const data = await res.json();
+      if (!data.audio_url) {
+        throw new Error('TTS API response missing audio_url');
+      }
+      return data.audio_url;
+    }
+
+    function speakCurrentSentenceWebSpeech() {
+      if (!ttsState.sentences.length || ttsState.currentIndex >= ttsState.sentences.length) {
         stopTTS();
         return;
       }
@@ -419,7 +448,7 @@
       const text = span.textContent.trim();
       if (!text) {
         ttsState.currentIndex += 1;
-        speakCurrentSentence();
+        speakCurrentSentenceWebSpeech();
         return;
       }
 
@@ -439,20 +468,70 @@
 
       utterance.onend = () => {
         ttsState.currentIndex += 1;
-        speakCurrentSentence();
+        speakCurrentSentenceWebSpeech();
       };
 
       utterance.onerror = () => {
         ttsState.currentIndex += 1;
-        speakCurrentSentence();
+        speakCurrentSentenceWebSpeech();
       };
 
       ttsState.utterance = utterance;
       window.speechSynthesis.speak(utterance);
     }
 
+    async function speakCurrentSentenceRemote() {
+      if (!ttsState.sentences.length || ttsState.currentIndex >= ttsState.sentences.length) {
+        stopTTS();
+        return;
+      }
+
+      const span = ttsState.sentences[ttsState.currentIndex];
+      const text = span.textContent.trim();
+      if (!text) {
+        ttsState.currentIndex += 1;
+        await speakCurrentSentenceRemote();
+        return;
+      }
+
+      try {
+        ttsState.isPlaying = true;
+        ttsState.isPaused = false;
+        highlightCurrentSentence();
+        updateFloatingMenuVisibility();
+
+        const audioUrl = await fetchRemoteSentenceAudio(text);
+        const audio = new Audio(audioUrl);
+        ttsState.audioEl = audio;
+
+        audio.onended = async () => {
+          ttsState.currentIndex += 1;
+          await speakCurrentSentenceRemote();
+        };
+
+        audio.onerror = async () => {
+          ttsState.currentIndex += 1;
+          await speakCurrentSentenceRemote();
+        };
+
+        await audio.play();
+      } catch (err) {
+        console.error(err);
+        ttsState.currentIndex += 1;
+        await speakCurrentSentenceRemote();
+      }
+    }
+
+    function speakCurrentSentence() {
+      if (TTS_MODE === 'remote') {
+        speakCurrentSentenceRemote();
+      } else {
+        speakCurrentSentenceWebSpeech();
+      }
+    }
+
     async function startTTS(articleId, startIndex = 0) {
-      if (!('speechSynthesis' in window)) {
+      if (TTS_MODE === 'webspeech' && !('speechSynthesis' in window)) {
         alert('当前浏览器不支持语音朗读');
         return;
       }
@@ -475,7 +554,6 @@
     }
 
     function togglePlayPause() {
-      if (!('speechSynthesis' in window)) return;
       if (expandedId === null) return;
 
       if (!ttsState.isPlaying) {
@@ -483,15 +561,28 @@
         return;
       }
 
+      if (TTS_MODE === 'remote') {
+        if (!ttsState.audioEl) return;
+        if (ttsState.isPaused) {
+          ttsState.audioEl.play();
+          ttsState.isPaused = false;
+        } else {
+          ttsState.audioEl.pause();
+          ttsState.isPaused = true;
+        }
+        updateFloatingMenuVisibility();
+        return;
+      }
+
+      if (!('speechSynthesis' in window)) return;
       if (ttsState.isPaused) {
         window.speechSynthesis.resume();
         ttsState.isPaused = false;
-        updateFloatingMenuVisibility();
       } else {
         window.speechSynthesis.pause();
         ttsState.isPaused = true;
-        updateFloatingMenuVisibility();
       }
+      updateFloatingMenuVisibility();
     }
 
     function setupObserver() {
