@@ -6,6 +6,32 @@ import html
 from datetime import datetime, timezone
 
 SITE_BASE_URL = os.environ.get('SITE_BASE_URL', 'https://blog.kapy.ca').rstrip('/')
+METADATA_OVERRIDES_FILE = os.environ.get('METADATA_OVERRIDES_FILE', 'metadata_overrides.json')
+
+
+def load_metadata_overrides():
+    if not os.path.exists(METADATA_OVERRIDES_FILE):
+        return {}
+    try:
+        with open(METADATA_OVERRIDES_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def apply_overrides(article_id: int, lang_key: str, meta: dict, overrides: dict):
+    item = overrides.get(str(article_id), {})
+    lang_override = item.get(lang_key, {}) if isinstance(item, dict) else {}
+    if not isinstance(lang_override, dict):
+        return meta
+
+    merged = dict(meta or {})
+    for k in ('author', 'source_url', 'published_at'):
+        v = lang_override.get(k)
+        if isinstance(v, str) and v.strip():
+            merged[k] = v.strip()
+    return merged
 
 
 def _extract_username_from_url(url: str) -> str:
@@ -265,6 +291,7 @@ def generate_preview_pages(sorted_articles):
 
 def main():
     files = glob.glob('*_*.cleaned.md')
+    overrides = load_metadata_overrides()
 
     # Group by prefix N
     articles = {}
@@ -304,6 +331,10 @@ def main():
                 en_meta['source_url'] = zh_meta.get('source_url', '')
             if not en_meta.get('published_at'):
                 en_meta['published_at'] = zh_meta.get('published_at', '')
+
+            # apply manual overrides (higher priority)
+            en_meta = apply_overrides(num, 'en', en_meta, overrides)
+            zh_meta = apply_overrides(num, 'zh', zh_meta, overrides)
 
             file_for_time = zh_file if os.path.exists(zh_file) else en_file
             mtime = datetime.fromtimestamp(os.path.getmtime(file_for_time), tz=timezone.utc)
