@@ -44,7 +44,7 @@
       margin: 0;
       font-size: 28px;
     }
-    /* Toggle Switch */
+
     .lang-switch {
       display: flex;
       background: var(--card-bg);
@@ -65,8 +65,7 @@
       background: var(--primary-color);
       color: #fff;
     }
-    
-    /* Single Column Layout */
+
     .masonry {
       display: flex;
       flex-direction: column;
@@ -75,7 +74,6 @@
       margin: 0 auto;
     }
 
-    /* Cards */
     .card {
       background: var(--card-bg);
       border-radius: var(--border-radius);
@@ -126,7 +124,35 @@
       padding-left: 15px;
       color: var(--text-muted);
     }
-    
+
+    .floating-menu {
+      position: fixed;
+      right: 16px;
+      bottom: 24px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 999;
+    }
+    .floating-menu.show {
+      display: flex;
+    }
+    .floating-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--card-bg);
+      color: var(--text-color);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      cursor: pointer;
+      font-weight: 600;
+      min-width: 84px;
+    }
+    .floating-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
     .loader {
       text-align: center;
       padding: 20px;
@@ -148,6 +174,12 @@
   <div class="masonry" id="masonry"></div>
   <div class="loader" id="loader">Loading more...</div>
 
+  <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
+    <button id="btnPrev" class="floating-btn">上一篇</button>
+    <button id="btnNext" class="floating-btn">下一篇</button>
+    <button id="btnTop" class="floating-btn">返回 Top</button>
+  </div>
+
   <script>
     let currentLang = 'zh';
     let articles = [];
@@ -157,14 +189,18 @@
 
     const masonry = document.getElementById('masonry');
     const loader = document.getElementById('loader');
+    const floatingMenu = document.getElementById('floatingMenu');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnTop = document.getElementById('btnTop');
 
-    // Init
     async function init() {
       try {
         const res = await fetch('./articles.json');
         articles = await res.json();
         renderNextPage();
         setupObserver();
+        setupFloatingMenuActions();
       } catch (e) {
         loader.innerText = 'Failed to load articles.';
       }
@@ -174,7 +210,7 @@
       const start = page * pageSize;
       const end = start + pageSize;
       const slice = articles.slice(start, end);
-      
+
       if (slice.length === 0) {
         loader.innerText = 'No more articles.';
         return;
@@ -182,12 +218,12 @@
 
       slice.forEach(article => {
         const data = article[currentLang];
-        
+
         const card = document.createElement('div');
         card.className = 'card';
         card.id = `card-${article.id}`;
         card.dataset.id = article.id;
-        
+
         card.innerHTML = `
           <h2 class="card-title" onclick="toggleCard(${article.id})">${data.title}</h2>
           <p class="card-summary">${data.summary}</p>
@@ -202,30 +238,64 @@
       }
     }
 
-    async function toggleCard(id) {
-      const targetCard = document.getElementById(`card-${id}`);
-      const contentDiv = document.getElementById(`content-${id}`);
-      
-      // Close currently expanded if it's different
-      if (expandedId !== null && expandedId !== id) {
-        const prevDiv = document.getElementById(`content-${expandedId}`);
-        if(prevDiv) prevDiv.style.display = 'none';
+    function getArticleIndexById(id) {
+      return articles.findIndex(a => a.id === id);
+    }
+
+    async function ensureRenderedByIndex(index) {
+      while (index >= page * pageSize && page * pageSize < articles.length) {
+        renderNextPage();
+      }
+    }
+
+    function updateFloatingMenuVisibility() {
+      if (expandedId === null) {
+        floatingMenu.classList.remove('show');
+        return;
       }
 
+      floatingMenu.classList.add('show');
+      const idx = getArticleIndexById(expandedId);
+      btnPrev.disabled = idx <= 0;
+      btnNext.disabled = idx >= articles.length - 1;
+    }
+
+    async function openCard(id) {
+      const targetCard = document.getElementById(`card-${id}`);
+      const contentDiv = document.getElementById(`content-${id}`);
+      if (!targetCard || !contentDiv) return;
+
+      if (expandedId !== null && expandedId !== id) {
+        const prevDiv = document.getElementById(`content-${expandedId}`);
+        if (prevDiv) prevDiv.style.display = 'none';
+      }
+
+      contentDiv.style.display = 'block';
+      expandedId = id;
+      await loadArticleContent(id);
+      updateFloatingMenuVisibility();
+
+      setTimeout(() => {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+
+    function closeCard(id) {
+      const contentDiv = document.getElementById(`content-${id}`);
+      if (contentDiv) contentDiv.style.display = 'none';
+      if (expandedId === id) expandedId = null;
+      updateFloatingMenuVisibility();
+    }
+
+    async function toggleCard(id) {
+      const contentDiv = document.getElementById(`content-${id}`);
+      if (!contentDiv) return;
+
       const isExpanded = contentDiv.style.display === 'block';
-      
       if (isExpanded) {
-        contentDiv.style.display = 'none';
-        expandedId = null;
+        closeCard(id);
       } else {
-        contentDiv.style.display = 'block';
-        expandedId = id;
-        await loadArticleContent(id);
-        
-        // Ensure the newly opened card is scrolled into view smoothly
-        setTimeout(() => {
-          targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50); // slight delay to allow display:block to render height
+        await openCard(id);
       }
     }
 
@@ -233,7 +303,7 @@
       const contentDiv = document.getElementById(`content-${id}`);
       const article = articles.find(a => a.id === id);
       const fileUrl = article[currentLang].file;
-      
+
       if (!contentDiv.dataset.loadedLang || contentDiv.dataset.loadedLang !== currentLang) {
         contentDiv.innerHTML = '<p>Loading...</p>';
         try {
@@ -248,7 +318,6 @@
       }
     }
 
-    // Infinite Scroll Observer
     function setupObserver() {
       const observer = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting && page * pageSize < articles.length) {
@@ -258,33 +327,55 @@
       observer.observe(loader);
     }
 
-    // Language Toggle
+    function setupFloatingMenuActions() {
+      btnTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      btnPrev.addEventListener('click', async () => {
+        if (expandedId === null) return;
+        const idx = getArticleIndexById(expandedId);
+        if (idx <= 0) return;
+        const targetIndex = idx - 1;
+        await ensureRenderedByIndex(targetIndex);
+        await openCard(articles[targetIndex].id);
+      });
+
+      btnNext.addEventListener('click', async () => {
+        if (expandedId === null) return;
+        const idx = getArticleIndexById(expandedId);
+        if (idx >= articles.length - 1) return;
+        const targetIndex = idx + 1;
+        await ensureRenderedByIndex(targetIndex);
+        await openCard(articles[targetIndex].id);
+      });
+    }
+
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         e.target.classList.add('active');
-        
+
         currentLang = e.target.dataset.lang;
         updateUIToCurrentLang();
       });
     });
 
     async function updateUIToCurrentLang() {
-      // Update rendered cards
       const cards = document.querySelectorAll('.card');
       for (let card of cards) {
         const id = parseInt(card.dataset.id);
         const article = articles.find(a => a.id === id);
         const data = article[currentLang];
-        
+
         card.querySelector('.card-title').innerText = data.title || article['en'].title;
         card.querySelector('.card-summary').innerText = data.summary || article['en'].summary;
-        
-        // Reload content if expanded
+
         if (expandedId === id) {
           await loadArticleContent(id);
         }
       }
+      updateFloatingMenuVisibility();
     }
 
     init();
