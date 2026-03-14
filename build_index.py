@@ -8,6 +8,29 @@ from datetime import datetime, timezone
 SITE_BASE_URL = os.environ.get('SITE_BASE_URL', 'https://blog.kapy.ca').rstrip('/')
 
 
+def _extract_username_from_url(url: str) -> str:
+    m = re.match(r'^https?://(?:www\.)?(?:x\.com|twitter\.com)/([^/\s?#]+)', url, re.IGNORECASE)
+    if m:
+        return m.group(1).strip()
+
+    m = re.match(r'^https?://(?:www\.)?github\.com/([^/\s?#]+)', url, re.IGNORECASE)
+    if m:
+        return m.group(1).strip()
+
+    return ""
+
+
+def _x_snowflake_to_utc_text(snowflake_str: str) -> str:
+    # X/Twitter Snowflake: timestamp = (id >> 22) + 1288834974657 (ms)
+    try:
+        sid = int(snowflake_str)
+        ts_ms = (sid >> 22) + 1288834974657
+        dt = datetime.fromtimestamp(ts_ms / 1000, tz=timezone.utc)
+        return dt.strftime('%Y-%m-%d %H:%M UTC')
+    except Exception:
+        return ""
+
+
 def parse_basic_meta(content):
     author = ""
     source_url = ""
@@ -16,7 +39,7 @@ def parse_basic_meta(content):
     lines = content.split('\n')
 
     # Explicit metadata lines
-    for raw in lines[:80]:
+    for raw in lines[:120]:
         line = raw.strip()
         if not line:
             continue
@@ -37,7 +60,18 @@ def parse_basic_meta(content):
     if not source_url:
         url_match = re.search(r'https?://[^\s)]+', content)
         if url_match:
-            source_url = url_match.group(0)
+            source_url = url_match.group(0).strip()
+
+    # Author fallback from source URL
+    if not author and source_url:
+        author = _extract_username_from_url(source_url)
+
+    # Published time fallback from X status/article snowflake ID
+    if not published_at and source_url:
+        # support /status/<id> and /article/<id>
+        m = re.search(r'/(?:status|article)/(\d{10,})', source_url)
+        if m:
+            published_at = _x_snowflake_to_utc_text(m.group(1))
 
     return {
         "author": author,
