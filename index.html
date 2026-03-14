@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>External Brain</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23007aff'/%3E%3Cpath d='M16 20h32v6H16zm0 12h22v6H16zm0 12h32v6H16z' fill='white'/%3E%3C/svg%3E" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     // Remote TTS endpoint (ElevenLabs via Cloudflare Worker)
@@ -138,13 +139,18 @@
     .floating-btn {
       border: none;
       border-radius: 999px;
-      padding: 10px 14px;
+      width: 44px;
+      height: 44px;
+      padding: 0;
       background: var(--card-bg);
       color: var(--text-color);
       box-shadow: 0 6px 18px rgba(0,0,0,0.15);
       cursor: pointer;
       font-weight: 600;
-      min-width: 96px;
+      font-size: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .floating-btn:disabled {
       opacity: 0.45;
@@ -173,10 +179,10 @@
   <div class="loader" id="loader">Loading more...</div>
 
   <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
-    <button id="btnPlayPause" class="floating-btn">播放</button>
-    <button id="btnPrev" class="floating-btn">上一篇</button>
-    <button id="btnNext" class="floating-btn">下一篇</button>
-    <button id="btnTop" class="floating-btn">返回 Top</button>
+    <button id="btnPlayPause" class="floating-btn" aria-label="播放或暂停" title="播放/暂停">▶️</button>
+    <button id="btnPrev" class="floating-btn" aria-label="上一篇" title="上一篇">⬆️</button>
+    <button id="btnNext" class="floating-btn" aria-label="下一篇" title="下一篇">⬇️</button>
+    <button id="btnTop" class="floating-btn" aria-label="返回顶部" title="返回顶部">⤒</button>
   </div>
 
   <script>
@@ -196,7 +202,7 @@
 
     const TTS_API_ENDPOINT = window.TTS_API_ENDPOINT || '';
     const OPENAI_TTS_VOICE = window.OPENAI_TTS_VOICE || 'alloy';
-    // 默认优先 remote(ElevenLabs)，失败后自动回退 webspeech
+    // 默认优先 remote(OpenAI Worker)，失败后自动回退 webspeech
     let activeTtsMode = TTS_API_ENDPOINT ? 'remote' : 'webspeech';
 
     const ttsState = {
@@ -209,8 +215,13 @@
       audioEl: null,
       bufferMap: new Map(),   // index -> remoteAudio payload
       inflightMap: new Map(), // index -> Promise
-      prefetchAheadCount: 3
+      prefetchAheadCount: 3,
+      sessionToken: 0
     };
+
+    function isPlaybackActive(token) {
+      return ttsState.isPlaying && !ttsState.isPaused && expandedId === ttsState.articleId && token === ttsState.sessionToken;
+    }
 
     async function init() {
       try {
@@ -272,7 +283,7 @@
       const idx = getArticleIndexById(expandedId);
       btnPrev.disabled = idx <= 0;
       btnNext.disabled = idx >= articles.length - 1;
-      btnPlayPause.textContent = ttsState.isPlaying && !ttsState.isPaused ? '暂停' : '播放';
+      btnPlayPause.textContent = ttsState.isPlaying && !ttsState.isPaused ? '⏸️' : '▶️';
     }
 
     function stopTTS() {
@@ -284,6 +295,7 @@
         ttsState.audioEl.src = '';
         ttsState.audioEl = null;
       }
+      ttsState.sessionToken += 1;
       ttsState.articleId = null;
       ttsState.sentences = [];
       ttsState.currentIndex = 0;
@@ -564,6 +576,8 @@
     }
 
     async function speakCurrentSentenceRemote() {
+      const token = ttsState.sessionToken;
+      if (!isPlaybackActive(token)) return;
       if (!ttsState.sentences.length || ttsState.currentIndex >= ttsState.sentences.length) {
         stopTTS();
         return;
@@ -617,16 +631,18 @@
 
           audio.onended = async () => {
             clearSafety();
+            if (!isPlaybackActive(token)) return;
             ttsState.currentIndex += 1;
             await speakCurrentSentenceRemote();
           };
 
           audio.onerror = async () => {
             clearSafety();
+            if (!isPlaybackActive(token)) return;
             if (retryCount < maxRetries) {
               retryCount += 1;
               setTimeout(() => {
-                playRemoteAudio();
+                if (isPlaybackActive(token)) playRemoteAudio();
               }, 500 * retryCount);
               return;
             }
@@ -637,11 +653,12 @@
 
           // 防卡死保护：单句超过 25 秒自动回退本地
           safetyTimer = setTimeout(() => {
+            if (!isPlaybackActive(token)) return;
             try { audio.pause(); } catch {}
             if (retryCount < maxRetries) {
               retryCount += 1;
               setTimeout(() => {
-                playRemoteAudio();
+                if (isPlaybackActive(token)) playRemoteAudio();
               }, 500 * retryCount);
               return;
             }
@@ -655,6 +672,7 @@
         await playRemoteAudio();
       } catch (err) {
         console.error(err);
+        if (!isPlaybackActive(token)) return;
         // remote 失败：自动回退本地，并从当前句继续
         activeTtsMode = 'webspeech';
         speakCurrentSentence();
@@ -685,6 +703,7 @@
       if (!spans.length) return;
 
       window.speechSynthesis.cancel();
+      ttsState.sessionToken += 1;
       ttsState.articleId = articleId;
       ttsState.sentences = spans;
       ttsState.currentIndex = Math.min(Math.max(startIndex, 0), spans.length - 1);
@@ -799,6 +818,17 @@
     }
 
     window.speechSynthesis.onvoiceschanged = () => {};
+
+    // 页面状态变化时停止播放，避免后台/切页后继续出声
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopTTS();
+    });
+    window.addEventListener('pagehide', stopTTS);
+    window.addEventListener('beforeunload', stopTTS);
+    window.addEventListener('blur', () => {
+      // 移动端切到其他 app 场景也能更快停掉
+      if (document.hidden) stopTTS();
+    });
 
     init();
   </script>
