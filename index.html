@@ -206,7 +206,10 @@
       isPaused: false,
       isPlaying: false,
       utterance: null,
-      audioEl: null
+      audioEl: null,
+      bufferMap: new Map(),   // index -> remoteAudio payload
+      inflightMap: new Map(), // index -> Promise
+      prefetchAheadCount: 3
     };
 
     async function init() {
@@ -287,6 +290,8 @@
       ttsState.isPaused = false;
       ttsState.isPlaying = false;
       ttsState.utterance = null;
+      ttsState.bufferMap.clear();
+      ttsState.inflightMap.clear();
       clearSentenceHighlight();
       updateFloatingMenuVisibility();
     }
@@ -478,6 +483,44 @@
       }
     }
 
+    async function ensureRemoteAudioForIndex(index) {
+      if (ttsState.bufferMap.has(index)) {
+        return ttsState.bufferMap.get(index);
+      }
+
+      if (ttsState.inflightMap.has(index)) {
+        return await ttsState.inflightMap.get(index);
+      }
+
+      const span = ttsState.sentences[index];
+      if (!span) return null;
+      const text = span.textContent.trim();
+      if (!text) return null;
+
+      const p = fetchRemoteSentenceAudio(text)
+        .then((audio) => {
+          ttsState.bufferMap.set(index, audio);
+          return audio;
+        })
+        .finally(() => {
+          ttsState.inflightMap.delete(index);
+        });
+
+      ttsState.inflightMap.set(index, p);
+      return await p;
+    }
+
+    function prefetchRemoteAhead(fromIndex) {
+      if (activeTtsMode !== 'remote') return;
+      const end = Math.min(ttsState.sentences.length - 1, fromIndex + ttsState.prefetchAheadCount);
+      for (let i = fromIndex; i <= end; i++) {
+        if (i < 0) continue;
+        if (ttsState.bufferMap.has(i) || ttsState.inflightMap.has(i)) continue;
+        // fire and forget
+        ensureRemoteAudioForIndex(i).catch(() => {});
+      }
+    }
+
     function speakCurrentSentenceWebSpeech() {
       if (!ttsState.sentences.length || ttsState.currentIndex >= ttsState.sentences.length) {
         stopTTS();
@@ -540,13 +583,23 @@
         highlightCurrentSentence();
         updateFloatingMenuVisibility();
 
-        const remoteAudio = await fetchRemoteSentenceAudio(text);
+        // 当前句优先从缓冲取，没有则即时取
+        const remoteAudio = await ensureRemoteAudioForIndex(ttsState.currentIndex);
+        // 同时预取后续几句，减少句间停顿
+        prefetchRemoteAhead(ttsState.currentIndex + 1);
 
         let retryCount = 0;
         const maxRetries = 5; // handle KV eventual consistency
         let safetyTimer = null;
 
         const playRemoteAudio = async () => {
+          if (!remoteAudio) {
+            // 空句或取音频失败，跳下一句
+            ttsState.currentIndex += 1;
+            await speakCurrentSentenceRemote();
+            return;
+          }
+
           const src = remoteAudio.audio_base64
             ? `data:audio/mpeg;base64,${remoteAudio.audio_base64}`
             : remoteAudio.audio_url;
@@ -637,6 +690,12 @@
       ttsState.currentIndex = Math.min(Math.max(startIndex, 0), spans.length - 1);
       ttsState.isPlaying = true;
       ttsState.isPaused = false;
+      ttsState.bufferMap.clear();
+      ttsState.inflightMap.clear();
+
+      if (activeTtsMode === 'remote') {
+        prefetchRemoteAhead(ttsState.currentIndex);
+      }
 
       speakCurrentSentence();
       updateFloatingMenuVisibility();
