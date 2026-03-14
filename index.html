@@ -180,6 +180,7 @@
 
   <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
     <button id="btnPlayPause" class="floating-btn" aria-label="播放或暂停" title="播放/暂停">▶️</button>
+    <button id="btnShare" class="floating-btn" aria-label="分享当前文章" title="分享当前文章">🔗</button>
     <button id="btnPrev" class="floating-btn" aria-label="上一篇" title="上一篇">⬆️</button>
     <button id="btnNext" class="floating-btn" aria-label="下一篇" title="下一篇">⬇️</button>
     <button id="btnTop" class="floating-btn" aria-label="返回顶部" title="返回顶部">⤒</button>
@@ -196,6 +197,7 @@
     const loader = document.getElementById('loader');
     const floatingMenu = document.getElementById('floatingMenu');
     const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnShare = document.getElementById('btnShare');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
     const btnTop = document.getElementById('btnTop');
@@ -231,6 +233,7 @@
         renderNextPage();
         setupObserver();
         setupFloatingMenuActions();
+        await openFromDeepLink();
       } catch (e) {
         loader.innerText = 'Failed to load articles.';
       }
@@ -267,6 +270,34 @@
 
     function getArticleIndexById(id) {
       return articles.findIndex(a => a.id === id);
+    }
+
+    function buildShareUrl(id) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('article', String(id));
+      return url.toString();
+    }
+
+    function syncUrlForArticle(id) {
+      const url = new URL(window.location.href);
+      if (id === null || id === undefined) {
+        url.searchParams.delete('article');
+      } else {
+        url.searchParams.set('article', String(id));
+      }
+      history.replaceState({}, '', url.toString());
+    }
+
+    async function openFromDeepLink() {
+      const url = new URL(window.location.href);
+      const articleParam = url.searchParams.get('article');
+      if (!articleParam) return;
+      const id = Number(articleParam);
+      if (!Number.isFinite(id)) return;
+      const idx = getArticleIndexById(id);
+      if (idx < 0) return;
+      await ensureRenderedByIndex(idx);
+      await openCard(id);
     }
 
     async function ensureRenderedByIndex(index) {
@@ -383,6 +414,7 @@
 
       contentDiv.style.display = 'block';
       expandedId = id;
+      syncUrlForArticle(id);
       await loadArticleContent(id);
       updateFloatingMenuVisibility();
 
@@ -395,6 +427,7 @@
       const contentDiv = document.getElementById(`content-${id}`);
       if (contentDiv) contentDiv.style.display = 'none';
       if (expandedId === id) expandedId = null;
+      syncUrlForArticle(null);
       stopTTS();
       updateFloatingMenuVisibility();
     }
@@ -765,6 +798,23 @@
 
     function setupFloatingMenuActions() {
       btnPlayPause.addEventListener('click', togglePlayPause);
+
+      btnShare.addEventListener('click', async () => {
+        if (expandedId === null) return;
+        const shareUrl = buildShareUrl(expandedId);
+        try {
+          if (navigator.share) {
+            await navigator.share({ title: 'External Brain', url: shareUrl });
+          } else {
+            await navigator.clipboard.writeText(shareUrl);
+            const old = btnShare.textContent;
+            btnShare.textContent = '✅';
+            setTimeout(() => { btnShare.textContent = old; }, 900);
+          }
+        } catch {
+          // user canceled share or clipboard unavailable
+        }
+      });
 
       btnTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
