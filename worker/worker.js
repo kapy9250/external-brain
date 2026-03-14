@@ -45,7 +45,7 @@ async function handleTTS(request, env) {
         return json({ audio_url: `${originFromRequest(request)}/audio/${hash}`, cache_hit: true }, 200, env);
       }
     }
-    await env.TTS_CACHE.put(lockKey, '1', { expirationTtl: 30 });
+    await env.TTS_CACHE.put(lockKey, '1', { expirationTtl: 60 });
 
     const elevenRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice_id}`, {
       method: 'POST',
