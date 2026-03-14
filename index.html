@@ -137,14 +137,14 @@
     }
     .floating-menu.show { display: flex; }
     .floating-btn {
-      border: none;
-      border-radius: 999px;
-      width: 44px;
-      height: 44px;
+      border: 1px solid rgba(127,127,127,.28);
+      border-radius: 10px;
+      width: 40px;
+      height: 40px;
       padding: 0;
       background: var(--card-bg);
       color: var(--text-color);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      box-shadow: none;
       cursor: pointer;
       font-weight: 600;
       font-size: 18px;
@@ -179,11 +179,11 @@
   <div class="loader" id="loader">Loading more...</div>
 
   <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
-    <button id="btnPlayPause" class="floating-btn" aria-label="播放或暂停" title="播放/暂停">▶️</button>
-    <button id="btnShare" class="floating-btn" aria-label="分享当前文章" title="分享当前文章">🔗</button>
-    <button id="btnPrev" class="floating-btn" aria-label="上一篇" title="上一篇">⬆️</button>
-    <button id="btnNext" class="floating-btn" aria-label="下一篇" title="下一篇">⬇️</button>
-    <button id="btnTop" class="floating-btn" aria-label="返回顶部" title="返回顶部">⤒</button>
+    <button id="btnPlayPause" class="floating-btn" aria-label="播放或暂停" title="播放/暂停">▷</button>
+    <button id="btnShare" class="floating-btn" aria-label="分享当前文章" title="分享当前文章">↗</button>
+    <button id="btnPrev" class="floating-btn" aria-label="上一篇" title="上一篇">&lt;</button>
+    <button id="btnNext" class="floating-btn" aria-label="下一篇" title="下一篇">&gt;</button>
+    <button id="btnTop" class="floating-btn" aria-label="返回顶部" title="返回顶部">^</button>
   </div>
 
   <script>
@@ -323,7 +323,7 @@
       const idx = getArticleIndexById(expandedId);
       btnPrev.disabled = idx <= 0;
       btnNext.disabled = idx >= articles.length - 1;
-      btnPlayPause.textContent = ttsState.isPlaying && !ttsState.isPaused ? '⏸️' : '▶️';
+      btnPlayPause.textContent = ttsState.isPlaying && !ttsState.isPaused ? '||' : '▷';
     }
 
     function stopTTS() {
