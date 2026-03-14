@@ -88,12 +88,12 @@
     "slug": "harness-engineering-cybernetics",
     "en": {
       "title": "Harness Engineering Is Cybernetics",
-      "summary": "Reading OpenAI's [Agent SDK](https://openai.com/index/introducing-agents-sdk/), I kept having a feeling I couldn't place. Then it clicked: I'd seen th...",
+      "summary": "Reading OpenAI's Agent SDK, I kept having a feeling I couldn't place. Then it clicked: I'd seen this pattern before. Not once — three times.",
       "file": "32_harness-engineering-cybernetics.cleaned.md"
     },
     "zh": {
       "title": "Harness 工程就是控制论",
-      "summary": "阅读 OpenAI 的 [Agent SDK](https://openai.com/index/introducing-agents-sdk/) 时，我始终有一种说不清的感觉。直到突然意识到：我以前见过这种模式。不是一次——而是三次。",
+      "summary": "阅读 OpenAI 的 Agent SDK 时，我始终有一种说不清的感觉。直到突然意识到：我以前见过这种模式。不是一次——而是三次。",
       "file": "32_harness-engineering-cybernetics.cleaned.zh.md"
     }
   },
@@ -135,7 +135,7 @@
     },
     "zh": {
       "title": "Agentic Code Reasoning (智能体代码推理) [v2]",
-      "summary": "**作者**: Shubham Ugare, Satish Chandra (Meta, USA)",
+      "summary": "作者: Shubham Ugare, Satish Chandra (Meta, USA)",
       "file": "29_agentic-code-reasoning-2603-01896.cleaned.zh.md"
     }
   },
@@ -144,12 +144,12 @@
     "slug": "anthropic-labor-market-impacts-of-ai",
     "en": {
       "title": "Labor market impacts of AI: A new measure and early evidence",
-      "summary": "*   We introduce a new measure of AI displacement risk, _observed exposure_, that combines theoretical LLM capability and real-world usage data, weigh...",
+      "summary": "   We introduce a new measure of AI displacement risk, observed exposure, that combines theoretical LLM capability and real-world usage data, weightin...",
       "file": "28_anthropic-labor-market-impacts-of-ai.cleaned.md"
     },
     "zh": {
       "title": "AI 对劳动力市场的影响：一项新指标与早期证据",
-      "summary": "*   我们引入了一项衡量 AI 替代风险的新指标——**观察到的暴露度**（observed exposure），它结合了 LLM 的理论能力和真实世界的使用数据，并对自动化用途（而非增强型用途）和与工作相关的用途赋予更高的权重。",
+      "summary": "   我们引入了一项衡量 AI 替代风险的新指标——观察到的暴露度（observed exposure），它结合了 LLM 的理论能力和真实世界的使用数据，并对自动化用途（而非增强型用途）和与工作相关的用途赋予更高的权重。",
       "file": "28_anthropic-labor-market-impacts-of-ai.cleaned.zh.md"
     }
   },
@@ -200,12 +200,12 @@
     "slug": "white-papers-on-surveillance-and-tracking",
     "en": {
       "title": "White Papers on Surveillance and Tracking",
-      "summary": "*Source: Sara Konecny (@signal2prompt)*",
+      "summary": "Source: Sara Konecny (@signal2prompt)",
       "file": "24_white-papers-on-surveillance-and-tracking.cleaned.md"
     },
     "zh": {
       "title": "关于监控和追踪的白皮书",
-      "summary": "*来源：Sara Konecny (@signal2prompt)*",
+      "summary": "来源：Sara Konecny (@signal2prompt)",
       "file": "24_white-papers-on-surveillance-and-tracking.cleaned.zh.md"
     }
   },
@@ -214,12 +214,12 @@
     "slug": "how-to-set-up-claude-cowork",
     "en": {
       "title": "How to set up Claude Cowork (to level up from ChatGPT)",
-      "summary": "*Author: Ruben Hassid*",
+      "summary": "Author: Ruben Hassid",
       "file": "23_how-to-set-up-claude-cowork.cleaned.md"
     },
     "zh": {
       "title": "如何设置 Claude Cowork（从 ChatGPT 升级的必读指南）",
-      "summary": "*作者: Ruben Hassid*",
+      "summary": "作者: Ruben Hassid",
       "file": "23_how-to-set-up-claude-cowork.cleaned.zh.md"
     }
   },
@@ -228,12 +228,12 @@
     "slug": "when-we-stand-at-the-beginning-of-a-transformation",
     "en": {
       "title": "When We Stand at the Beginning of a Transformation",
-      "summary": "*Original article by Jiayuan (JY) Zhang*",
+      "summary": "Original article by Jiayuan (JY) Zhang",
       "file": "22_when-we-stand-at-the-beginning-of-a-transformation.cleaned.md"
     },
     "zh": {
       "title": "当我们站在变革的开端",
-      "summary": "URL: https://x.com/jiayuan_jy/status/2029851505583607961",
+      "summary": "URL: https://x.com/jiayuanjy/status/2029851505583607961",
       "file": "22_when-we-stand-at-the-beginning-of-a-transformation.cleaned.zh.md"
     }
   },
@@ -270,12 +270,12 @@
     "slug": "mcp-vs-skills-for-ai-agents",
     "en": {
       "title": "MCP vs. Skills for AI agents, clearly explained!",
-      "summary": "URL: https://x.com/akshay_pachaar/status/2029534926828388537",
+      "summary": "URL: https://x.com/akshaypachaar/status/2029534926828388537",
       "file": "19_mcp-vs-skills-for-ai-agents.cleaned.md"
     },
     "zh": {
       "title": "MCP vs. Skills for AI agents，一文讲透！",
-      "summary": "URL: https://x.com/akshay_pachaar/status/2029534926828388537",
+      "summary": "URL: https://x.com/akshaypachaar/status/2029534926828388537",
       "file": "19_mcp-vs-skills-for-ai-agents.cleaned.zh.md"
     }
   },
@@ -284,12 +284,12 @@
     "slug": "45-thoughts-about-agents-steve-newman",
     "en": {
       "title": "Recommend this \"45 Thoughts About Agents\"",
-      "summary": "URL: https://x.com/runes_leo/status/2029081154066723039",
+      "summary": "URL: https://x.com/runesleo/status/2029081154066723039",
       "file": "18_45-thoughts-about-agents-steve-newman.cleaned.md"
     },
     "zh": {
       "title": "推荐这篇「45 Thoughts About Agents」",
-      "summary": "URL: https://x.com/runes_leo/status/2029081154066723039",
+      "summary": "URL: https://x.com/runesleo/status/2029081154066723039",
       "file": "18_45-thoughts-about-agents-steve-newman.cleaned.zh.md"
     }
   },
@@ -298,12 +298,12 @@
     "slug": "codex-5-4-opus-4-6-gpt-5-3-gemini-3-1",
     "en": {
       "title": "Om Patel: codex 5.4 >>>> opus 4.6 >>>> gpt 5.3 >>>> gemini 3.1",
-      "summary": "URL: https://x.com/om_patel5/status/2029644536306143588",
+      "summary": "URL: https://x.com/ompatel5/status/2029644536306143588",
       "file": "17_codex-5-4-opus-4-6-gpt-5-3-gemini-3-1.cleaned.md"
     },
     "zh": {
       "title": "Om Patel: codex 5.4 >>>> opus 4.6 >>>> gpt 5.3 >>>> gemini 3.1",
-      "summary": "URL: https://x.com/om_patel5/status/2029644536306143588",
+      "summary": "URL: https://x.com/ompatel5/status/2029644536306143588",
       "file": "17_codex-5-4-opus-4-6-gpt-5-3-gemini-3-1.cleaned.zh.md"
     }
   },
@@ -312,12 +312,12 @@
     "slug": "how-id-become-a-quant-if-i-had-to-start-over-tomorrow",
     "en": {
       "title": "How I'd Become a Quant If I Had to Start Over Tomorrow",
-      "summary": "URL: https://x.com/gemchange_ltd/status/2028904166895112617",
+      "summary": "URL: https://x.com/gemchangeltd/status/2028904166895112617",
       "file": "16_how-id-become-a-quant-if-i-had-to-start-over-tomorrow.cleaned.md"
     },
     "zh": {
       "title": "如果明天我要重新开始，我会如何成为一名量化交易员",
-      "summary": "URL: https://x.com/gemchange_ltd/status/2028904166895112617",
+      "summary": "URL: https://x.com/gemchangeltd/status/2028904166895112617",
       "file": "16_how-id-become-a-quant-if-i-had-to-start-over-tomorrow.cleaned.zh.md"
     }
   },
@@ -354,12 +354,12 @@
     "slug": "investigating-how-codex-context-compaction-works",
     "en": {
       "title": "Investigating how Codex context compaction works",
-      "summary": "URL: https://x.com/kangwook_lee/status/2028955292025962534",
+      "summary": "URL: https://x.com/kangwooklee/status/2028955292025962534",
       "file": "13_investigating-how-codex-context-compaction-works.cleaned.md"
     },
     "zh": {
       "title": "探究 Codex 上下文压缩的工作原理",
-      "summary": "URL: https://x.com/kangwook_lee/status/2028955292025962534",
+      "summary": "URL: https://x.com/kangwooklee/status/2028955292025962534",
       "file": "13_investigating-how-codex-context-compaction-works.cleaned.zh.md"
     }
   },
@@ -368,12 +368,12 @@
     "slug": "the-ultimate-beginners-guide-to-claude",
     "en": {
       "title": "The Ultimate Beginner’s Guide to Claude (March 2026)",
-      "summary": "URL: https://x.com/aiedge_/status/2029233676111008061",
+      "summary": "URL: https://x.com/aiedge/status/2029233676111008061",
       "file": "12_the-ultimate-beginners-guide-to-claude.cleaned.md"
     },
     "zh": {
       "title": "Claude 终极新手指南（2026年3月）",
-      "summary": "URL: https://x.com/aiedge_/status/2029233676111008061",
+      "summary": "URL: https://x.com/aiedge/status/2029233676111008061",
       "file": "12_the-ultimate-beginners-guide-to-claude.cleaned.zh.md"
     }
   },
@@ -438,12 +438,12 @@
     "slug": "the-claude-native-law-firm",
     "en": {
       "title": "The Claude-Native Law Firm",
-      "summary": "[![Image 1: Image](./assets/the-claude-native-law-firm/image-01.jpg)](https://x.com/zackbshapiro/article/2027389987444957625/media/2027390569685618689...",
+      "summary": "A few months ago, the night before a client’s acquisition was set to close, buyer’s counsel sent a letter demanding major last-minute changes: new esc...",
       "file": "7_the-claude-native-law-firm.cleaned.md"
     },
     "zh": {
       "title": "Claude-Native 律师事务所",
-      "summary": "[![Image 1: Image](./assets/the-claude-native-law-firm/image-01.jpg)](https://x.com/zackbshapiro/article/2027389987444957625/media/2027390569685618689...",
+      "summary": "几个月前，在客户并购交易原定交割前一晚，买方律师突然发来函件，要求重构多个关键条款：新增托管条件、扩大赔偿责任 carve-out、并修改交割文件清单。潜台词很明确：不接受就撤。那是晚上 7 点。",
       "file": "7_the-claude-native-law-firm.cleaned.zh.md"
     }
   },
@@ -522,12 +522,12 @@
     "slug": "ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap",
     "en": {
       "title": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
-      "summary": "[![Image 1: Image](./assets/eth2030/image-01.jpg)](https://x.com/yq_acc/article/2026250003577209173/media/2026225729177047040)",
+      "summary": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
       "file": "1_ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap.cleaned.md"
     },
     "zh": {
       "title": "ETH2030：面向 2030+ 路线图的 Agentic Coding 以太坊客户端",
-      "summary": "[![Image 1: Image](./assets/eth2030/image-01.jpg)](https://x.com/yq_acc/article/2026250003577209173/media/2026225729177047040)",
+      "summary": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
       "file": "1_ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap.cleaned.zh.md"
     }
   }

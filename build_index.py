@@ -17,7 +17,7 @@ def extract_metadata(filepath):
     if match_title:
         title = match_title.group(1).strip()
     
-    # Extract Summary (first paragraph that is not a heading, quote, or image)
+    # Extract Summary (first paragraph that is not a heading, quote, image, or link wrapper)
     lines = content.split('\n')
     for line in lines:
         line = line.strip()
@@ -29,9 +29,16 @@ def extract_metadata(filepath):
             continue
         if line.startswith('!['):
             continue
+        if line.startswith('[!['): # Filter out image links like [![Image 1...
+            continue
         if line.startswith('**GitHub**') or line.startswith('**Stars**'):
             continue
-        summary = line[:150] + '...' if len(line) > 150 else line
+            
+        # Optional: strip simple markdown characters from summary for cleaner text
+        clean_line = re.sub(r'[*_~`]', '', line)
+        clean_line = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', clean_line) # remove link URLs but keep text
+        
+        summary = clean_line[:150] + '...' if len(clean_line) > 150 else clean_line
         break
 
     return title, summary
