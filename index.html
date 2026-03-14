@@ -290,9 +290,11 @@
         await sharedAudio.play();
         sharedAudio.pause();
         sharedAudio.currentTime = 0;
-        sharedAudio.muted = false;
       } catch (_) {
         // ignore; some browsers still unlock on direct user gesture without this
+      } finally {
+        // IMPORTANT: never leave shared audio muted, otherwise playback is silent
+        sharedAudio.muted = false;
       }
       ttsState.audioUnlocked = true;
     }
