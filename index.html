@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>External Brain</title>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Remote TTS endpoint (ElevenLabs via Cloudflare Worker)
+    window.TTS_API_ENDPOINT = "https://external-brain-tts.filda.workers.dev/tts";
+    window.ELEVENLABS_VOICE_ID = "agczkAUlHLowaNnL72Cc";
+  </script>
   <style>
     :root {
       --bg-color: #f5f5f7;
