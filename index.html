@@ -469,10 +469,10 @@
         }
 
         const data = await res.json();
-        if (!data.audio_url) {
-          throw new Error('TTS API response missing audio_url');
+        if (!data.audio_url && !data.audio_base64) {
+          throw new Error('TTS API response missing audio data');
         }
-        return data.audio_url;
+        return data;
       } finally {
         clearTimeout(timeout);
       }
@@ -540,14 +540,18 @@
         highlightCurrentSentence();
         updateFloatingMenuVisibility();
 
-        const audioUrl = await fetchRemoteSentenceAudio(text);
+        const remoteAudio = await fetchRemoteSentenceAudio(text);
 
         let retryCount = 0;
         const maxRetries = 5; // handle KV eventual consistency
         let safetyTimer = null;
 
         const playRemoteAudio = async () => {
-          const audio = new Audio(audioUrl);
+          const src = remoteAudio.audio_base64
+            ? `data:audio/mpeg;base64,${remoteAudio.audio_base64}`
+            : remoteAudio.audio_url;
+
+          const audio = new Audio(src);
           audio.preload = 'auto';
           ttsState.audioEl = audio;
 

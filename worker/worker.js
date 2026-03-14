@@ -33,7 +33,12 @@ async function handleTTS(request, env) {
 
     const existing = await env.TTS_CACHE.get(metaKey, 'json');
     if (existing?.audio_path) {
-      return json({ audio_url: `${originFromRequest(request)}/audio/${hash}`, cache_hit: true }, 200, env);
+      const cachedBase64 = await env.TTS_CACHE.get(audioKey);
+      return json({
+        audio_url: `${originFromRequest(request)}/audio/${hash}`,
+        audio_base64: cachedBase64 || null,
+        cache_hit: true
+      }, 200, env);
     }
 
     // Simple lock via KV (best-effort)
@@ -104,7 +109,11 @@ async function handleTTS(request, env) {
 
     await env.TTS_CACHE.delete(lockKey);
 
-    return json({ audio_url: `${originFromRequest(request)}/audio/${hash}`, cache_hit: false }, 200, env);
+    return json({
+      audio_url: `${originFromRequest(request)}/audio/${hash}`,
+      audio_base64: base64,
+      cache_hit: false
+    }, 200, env);
   } catch (e) {
     return json({ error: 'internal_error', detail: String(e) }, 500, env);
   }
