@@ -982,16 +982,8 @@
 
     window.speechSynthesis.onvoiceschanged = () => {};
 
-    // 页面状态变化时停止播放，避免后台/切页后继续出声
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stopTTS();
-    });
-    window.addEventListener('pagehide', stopTTS);
+    // 切换浏览器 tab 不停止播放；仅在真正离开页面时停止
     window.addEventListener('beforeunload', stopTTS);
-    window.addEventListener('blur', () => {
-      // 移动端切到其他 app 场景也能更快停掉
-      if (document.hidden) stopTTS();
-    });
 
     init();
   </script>
