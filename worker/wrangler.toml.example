@@ -4,7 +4,8 @@ compatibility_date = "2026-03-14"
 
 # Update with your website domain for CORS
 [vars]
-ALLOWED_ORIGIN = "https://kapy9250.github.io"
+# Comma-separated allowlist supported, first value is fallback
+ALLOWED_ORIGIN = "https://blog.kapy.ca,https://kapy9250.github.io"
 AUDIO_BASE_URL = "https://kapy9250.github.io/external-brain/audio"
 OPENAI_TTS_MODEL = "gpt-4o-mini-tts"
 OPENAI_TTS_VOICE = "alloy"

@@ -3,7 +3,7 @@ export default {
     const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders(env) });
+      return new Response(null, { headers: corsHeaders(env, request) });
     }
 
     if (request.method === 'POST' && url.pathname === '/tts') {
@@ -11,10 +11,10 @@ export default {
     }
 
     if (request.method === 'GET' && url.pathname.startsWith('/audio/')) {
-      return handleAudio(url.pathname.replace('/audio/', ''), env);
+      return handleAudio(url.pathname.replace('/audio/', ''), env, request);
     }
 
-    return json({ error: 'Not found' }, 404, env);
+    return json({ error: 'Not found' }, 404, env, request);
   }
 };
 
@@ -22,7 +22,7 @@ async function handleTTS(request, env) {
   try {
     const { text = '', lang = 'zh', voice_id = '', format = 'mp3', provider = 'openai' } = await request.json();
     const normalized = normalizeText(text);
-    if (!normalized) return json({ error: 'text is required' }, 400, env);
+    if (!normalized) return json({ error: 'text is required' }, 400, env, request);
 
     const ttsVoice = (voice_id || env.OPENAI_TTS_VOICE || 'alloy');
     const ttsModel = env.OPENAI_TTS_MODEL || 'gpt-4o-mini-tts';
@@ -38,7 +38,7 @@ async function handleTTS(request, env) {
         audio_url: `${originFromRequest(request)}/audio/${hash}`,
         audio_base64: cachedBase64 || null,
         cache_hit: true
-      }, 200, env);
+      }, 200, env, request);
     }
 
     // Simple lock via KV (best-effort)
@@ -49,7 +49,7 @@ async function handleTTS(request, env) {
       await sleep(600);
       const retryMeta = await env.TTS_CACHE.get(metaKey, 'json');
       if (retryMeta?.audio_path) {
-        return json({ audio_url: `${originFromRequest(request)}/audio/${hash}`, cache_hit: true }, 200, env);
+        return json({ audio_url: `${originFromRequest(request)}/audio/${hash}`, cache_hit: true }, 200, env, request);
       }
     }
     await env.TTS_CACHE.put(lockKey, '1', { expirationTtl: 60 });
@@ -95,7 +95,7 @@ async function handleTTS(request, env) {
     if (!ttsRes.ok) {
       const errText = await ttsRes.text();
       await env.TTS_CACHE.delete(lockKey);
-      return json({ error: `${provider}_tts_failed`, detail: errText }, 502, env);
+      return json({ error: `${provider}_tts_failed`, detail: errText }, 502, env, request);
     }
 
     const audioBuffer = await ttsRes.arrayBuffer();
@@ -113,22 +113,22 @@ async function handleTTS(request, env) {
       audio_url: `${originFromRequest(request)}/audio/${hash}`,
       audio_base64: base64,
       cache_hit: false
-    }, 200, env);
+    }, 200, env, request);
   } catch (e) {
-    return json({ error: 'internal_error', detail: String(e) }, 500, env);
+    return json({ error: 'internal_error', detail: String(e) }, 500, env, request);
   }
 }
 
-async function handleAudio(hash, env) {
-  if (!hash) return new Response('Not found', { status: 404, headers: corsHeaders(env) });
+async function handleAudio(hash, env, request) {
+  if (!hash) return new Response('Not found', { status: 404, headers: corsHeaders(env, request) });
   const base64 = await env.TTS_CACHE.get(`audio:${hash}`);
-  if (!base64) return new Response('Not found', { status: 404, headers: corsHeaders(env) });
+  if (!base64) return new Response('Not found', { status: 404, headers: corsHeaders(env, request) });
 
   const bytes = base64ToUint8Array(base64);
   return new Response(bytes, {
     status: 200,
     headers: {
-      ...corsHeaders(env),
+      ...corsHeaders(env, request),
       'content-type': 'audio/mpeg',
       'cache-control': 'public, max-age=31536000, immutable'
     }
@@ -139,19 +139,32 @@ function normalizeText(input) {
   return (input || '').replace(/\s+/g, ' ').trim();
 }
 
-function json(payload, status, env) {
+function json(payload, status, env, request = null) {
   return new Response(JSON.stringify(payload), {
     status,
     headers: {
-      ...corsHeaders(env),
+      ...corsHeaders(env, request),
       'content-type': 'application/json; charset=utf-8'
     }
   });
 }
 
-function corsHeaders(env) {
+function corsHeaders(env, request = null) {
+  const raw = (env.ALLOWED_ORIGIN || '*').trim();
+
+  let allowOrigin = '*';
+  if (raw !== '*') {
+    const allowList = raw.split(',').map(s => s.trim()).filter(Boolean);
+    const reqOrigin = request?.headers?.get('origin') || '';
+    if (allowList.includes(reqOrigin)) {
+      allowOrigin = reqOrigin;
+    } else {
+      allowOrigin = allowList[0] || '*';
+    }
+  }
+
   return {
-    'access-control-allow-origin': env.ALLOWED_ORIGIN || '*',
+    'access-control-allow-origin': allowOrigin,
     'access-control-allow-methods': 'GET,POST,OPTIONS',
     'access-control-allow-headers': 'content-type'
   };
