@@ -409,10 +409,35 @@
     function getBestVoiceForLang(lang) {
       const voices = window.speechSynthesis.getVoices();
       if (!voices.length) return null;
+
+      const lower = (s) => (s || '').toLowerCase();
+      const isZh = (v) => lower(v.lang).includes('zh');
+
       if (lang === 'zh') {
-        return voices.find(v => v.lang.toLowerCase().includes('zh')) || voices[0];
+        const zhVoices = voices.filter(isZh);
+        if (!zhVoices.length) return voices[0] || null;
+
+        // iOS / Apple preferred ordering
+        const siriZh = zhVoices.find(v => lower(v.name).includes('siri'));
+        if (siriZh) return siriZh;
+
+        const tingTing = zhVoices.find(v => {
+          const n = lower(v.name);
+          return n.includes('ting-ting') || n.includes('tingting');
+        });
+        if (tingTing) return tingTing;
+
+        // Prefer enhanced/premium/neural hints if available
+        const premiumZh = zhVoices.find(v => {
+          const n = lower(v.name);
+          return n.includes('enhanced') || n.includes('premium') || n.includes('neural');
+        });
+        if (premiumZh) return premiumZh;
+
+        return zhVoices[0];
       }
-      return voices.find(v => v.lang.toLowerCase().includes('en')) || voices[0];
+
+      return voices.find(v => lower(v.lang).includes('en')) || voices[0] || null;
     }
 
     async function fetchRemoteSentenceAudio(text) {
