@@ -14,17 +14,16 @@ export default {
       return handleAudio(url.pathname.replace('/audio/', ''), env, request);
     }
 
-    // manual trigger for persistence (optional)
+    // legacy endpoint retained for compatibility
     if (request.method === 'POST' && url.pathname === '/persist') {
-      const result = await persistPendingToRepo(env, 30);
-      return json(result, 200, env, request);
+      return json({ ok: true, skipped: true, reason: 'R2 mode: no repo persistence task' }, 200, env, request);
     }
 
     return json({ error: 'Not found' }, 404, env, request);
   },
 
-  async scheduled(_event, env, _ctx) {
-    await persistPendingToRepo(env, 30);
+  async scheduled(_event, _env, _ctx) {
+    // no-op in R2 mode
   }
 };
 
@@ -39,14 +38,12 @@ async function handleTTS(request, env) {
 
     const hash = await sha256Hex(`${provider}|${ttsVoice}|${lang}|${format}|${normalized}`);
     const metaKey = `meta:${hash}`;
-    const audioKey = `audio:${hash}`;
 
     const existing = await env.TTS_CACHE.get(metaKey, 'json');
     if (existing?.audio_path) {
-      const cachedBase64 = await env.TTS_CACHE.get(audioKey);
       return json({
         audio_url: `${originFromRequest(request)}/audio/${hash}`,
-        audio_base64: cachedBase64 || null,
+        audio_base64: null,
         cache_hit: true
       }, 200, env, request);
     }
@@ -111,15 +108,18 @@ async function handleTTS(request, env) {
     const audioBuffer = await ttsRes.arrayBuffer();
     const base64 = arrayBufferToBase64(audioBuffer);
 
-    await env.TTS_CACHE.put(audioKey, base64, { expirationTtl: 60 * 60 * 24 * 30 });
+    // Store audio body in R2 (binary), metadata in KV only
+    const r2Key = `audio/${hash}.mp3`;
+    await env.AUDIO_BUCKET.put(r2Key, audioBuffer, {
+      httpMetadata: {
+        contentType: 'audio/mpeg',
+        cacheControl: 'public, max-age=31536000, immutable'
+      }
+    });
+
     await env.TTS_CACHE.put(metaKey, JSON.stringify({
       audio_path: `/audio/${hash}`,
-      created_at: Date.now()
-    }), { expirationTtl: 60 * 60 * 24 * 30 });
-
-    // queue for periodic persistence to GitHub repo
-    await env.TTS_CACHE.put(`pending:${hash}`, JSON.stringify({
-      hash,
+      r2_key: r2Key,
       created_at: Date.now()
     }), { expirationTtl: 60 * 60 * 24 * 30 });
 
@@ -137,17 +137,18 @@ async function handleTTS(request, env) {
 
 async function handleAudio(hash, env, request) {
   if (!hash) return new Response('Not found', { status: 404, headers: corsHeaders(env, request) });
-  const base64 = await env.TTS_CACHE.get(`audio:${hash}`);
-  if (!base64) return new Response('Not found', { status: 404, headers: corsHeaders(env, request) });
 
-  const bytes = base64ToUint8Array(base64);
-  return new Response(bytes, {
+  const r2Key = `audio/${hash}.mp3`;
+  const obj = await env.AUDIO_BUCKET.get(r2Key);
+  if (!obj) return new Response('Not found', { status: 404, headers: corsHeaders(env, request) });
+
+  const headers = new Headers(corsHeaders(env, request));
+  headers.set('content-type', obj.httpMetadata?.contentType || 'audio/mpeg');
+  headers.set('cache-control', obj.httpMetadata?.cacheControl || 'public, max-age=31536000, immutable');
+
+  return new Response(obj.body, {
     status: 200,
-    headers: {
-      ...corsHeaders(env, request),
-      'content-type': 'audio/mpeg',
-      'cache-control': 'public, max-age=31536000, immutable'
-    }
+    headers
   });
 }
 
@@ -215,84 +216,6 @@ function base64ToUint8Array(base64) {
   const bytes = new Uint8Array(len);
   for (let i = 0; i < len; i++) bytes[i] = binary.charCodeAt(i);
   return bytes;
-}
-
-async function persistPendingToRepo(env, limit = 30) {
-  const owner = env.GH_OWNER;
-  const repo = env.GH_REPO;
-  const branch = env.GH_BRANCH || 'main';
-  const token = env.GH_PAT;
-
-  if (!owner || !repo || !token) {
-    return { ok: false, skipped: true, reason: 'missing GH_OWNER/GH_REPO/GH_PAT' };
-  }
-
-  const listed = await env.TTS_CACHE.list({ prefix: 'pending:', limit });
-  let processed = 0;
-  let persisted = 0;
-  const errors = [];
-
-  for (const k of listed.keys || []) {
-    processed += 1;
-    const pendingKey = k.name;
-    const hash = pendingKey.replace('pending:', '');
-    const audioKey = `audio:${hash}`;
-    const base64 = await env.TTS_CACHE.get(audioKey);
-
-    if (!base64) {
-      await env.TTS_CACHE.delete(pendingKey);
-      continue;
-    }
-
-    const path = `audio-cache/${hash}.mp3`;
-
-    try {
-      const existsRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`, {
-        headers: {
-          'authorization': `Bearer ${token}`,
-          'accept': 'application/vnd.github+json',
-          'user-agent': 'external-brain-tts-worker'
-        }
-      });
-
-      if (existsRes.status === 404) {
-        const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
-          method: 'PUT',
-          headers: {
-            'authorization': `Bearer ${token}`,
-            'accept': 'application/vnd.github+json',
-            'content-type': 'application/json',
-            'user-agent': 'external-brain-tts-worker'
-          },
-          body: JSON.stringify({
-            message: `chore(tts-cache): persist ${hash}`,
-            content: base64,
-            branch
-          })
-        });
-
-        if (!putRes.ok) {
-          const txt = await putRes.text();
-          errors.push({ hash, status: putRes.status, detail: txt.slice(0, 300) });
-          continue;
-        }
-      }
-
-      // either existed or newly uploaded
-      await env.TTS_CACHE.delete(pendingKey);
-      persisted += 1;
-    } catch (e) {
-      errors.push({ hash, detail: String(e).slice(0, 300) });
-    }
-  }
-
-  return {
-    ok: true,
-    processed,
-    persisted,
-    remaining: (listed.keys || []).length >= limit,
-    errors
-  };
 }
 
 function sleep(ms) {

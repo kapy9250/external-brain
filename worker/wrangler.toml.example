@@ -2,29 +2,18 @@ name = "external-brain-tts"
 main = "worker.js"
 compatibility_date = "2026-03-14"
 
-# Update with your website domain for CORS
 [vars]
 # Comma-separated allowlist supported, first value is fallback
 ALLOWED_ORIGIN = "https://blog.kapy.ca,https://kapy9250.github.io"
-AUDIO_BASE_URL = "https://kapy9250.github.io/external-brain/audio"
 OPENAI_TTS_MODEL = "gpt-4o-mini-tts"
 OPENAI_TTS_VOICE = "alloy"
 
-# Periodic persistence to GitHub repo
-GH_OWNER = "kapy9250"
-GH_REPO = "external-brain"
-GH_BRANCH = "main"
-
-[triggers]
-# every hour
-crons = ["0 * * * *"]
-
-# KV for metadata cache
+# KV stores metadata only (hash -> r2 key/url/status)
 [[kv_namespaces]]
 binding = "TTS_CACHE"
 id = "YOUR_KV_NAMESPACE_ID"
 
-# Optional: R2 for audio storage (recommended for scale)
-# [[r2_buckets]]
-# binding = "AUDIO_BUCKET"
-# bucket_name = "external-brain-tts"
+# R2 stores audio binary bodies
+[[r2_buckets]]
+binding = "AUDIO_BUCKET"
+bucket_name = "external-brain-tts-audio"

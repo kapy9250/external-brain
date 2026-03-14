@@ -1,20 +1,24 @@
-# TTS Worker (OpenAI default, cache-first)
+# TTS Worker (OpenAI + R2, KV metadata-only)
 
 This Cloudflare Worker provides secure TTS generation without exposing API keys in frontend.
 
-Default provider is OpenAI TTS (`provider: "openai"`). ElevenLabs remains optional.
+## Architecture
+
+- **KV (`TTS_CACHE`)** stores metadata only (`meta:<hash>`)
+- **R2 (`AUDIO_BUCKET`)** stores audio binary (`audio/<hash>.mp3`)
+- Frontend calls `POST /tts`, then plays `audio_url` (and optional `audio_base64` for immediate first playback)
 
 ## Features
 
 - On-demand generation (no request, no cost)
 - Shared cache by content hash
 - Same text + params generated once and reused
-- Cache-first read path (KV first)
-- Periodic persistence from KV to GitHub repo (`audio-cache/*.mp3`) via cron
+- Cache-first read path (metadata KV -> audio from R2)
+- No GitHub repo persistence job required
 
 ## API
 
-`POST /tts`
+### `POST /tts`
 
 Body:
 
@@ -22,8 +26,9 @@ Body:
 {
   "text": "你好，世界",
   "lang": "zh",
-  "voice_id": "agczkAUlHLowaNnL72Cc",
-  "format": "mp3_44100_128"
+  "provider": "openai",
+  "voice_id": "alloy",
+  "format": "mp3"
 }
 ```
 
@@ -31,30 +36,33 @@ Response:
 
 ```json
 {
-  "audio_url": "https://your-cdn-domain/audio/abcd1234.mp3",
+  "audio_url": "https://your-worker-domain/audio/<hash>",
   "audio_base64": "...",
   "cache_hit": true
 }
 ```
 
-Manual persistence trigger (optional):
+### `GET /audio/<hash>`
 
-`POST /persist`
+Returns audio bytes from R2.
 
 ## Deploy
 
 1. Install Wrangler
-2. Configure `wrangler.toml` (see `wrangler.toml.example`)
-3. Set secrets:
+2. Configure `wrangler.toml` (copy from `wrangler.toml.example`)
+3. Create R2 bucket (once):
+
+```bash
+wrangler r2 bucket create external-brain-tts-audio
+```
+
+4. Set secret:
 
 ```bash
 wrangler secret put OPENAI_API_KEY
-wrangler secret put GH_PAT
 ```
 
-> `GH_PAT` needs repo write permission to persist `audio-cache/*.mp3`.
-
-4. Deploy:
+5. Deploy:
 
 ```bash
 wrangler deploy
@@ -67,7 +75,7 @@ Set in `index.html` before script execution:
 ```html
 <script>
   window.TTS_API_ENDPOINT = "https://your-worker-domain/tts";
-  window.ELEVENLABS_VOICE_ID = "agczkAUlHLowaNnL72Cc";
+  window.OPENAI_TTS_VOICE = "alloy";
 </script>
 ```
 
