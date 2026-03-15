@@ -814,11 +814,28 @@
               }
             };
 
-            audio.onended = async () => {
+            let advanced = false;
+            const advanceToNextSentence = async () => {
+              if (advanced) return;
+              advanced = true;
               clearSafety();
               if (!isPlaybackActive(token)) return;
               ttsState.currentIndex += 1;
               await speakCurrentSentenceRemote();
+            };
+
+            audio.onended = async () => {
+              await advanceToNextSentence();
+            };
+
+            // iOS/部分移动浏览器偶发 ended 不触发：接近尾部时主动推进
+            audio.ontimeupdate = async () => {
+              if (advanced) return;
+              const d = audio.duration;
+              if (!Number.isFinite(d) || d <= 0) return;
+              if (audio.currentTime >= d - 0.2) {
+                await advanceToNextSentence();
+              }
             };
 
             audio.onerror = () => {
