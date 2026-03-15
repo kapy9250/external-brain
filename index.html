@@ -825,11 +825,15 @@
               clearSafety();
             };
 
-            // 防卡死保护：单句超过 25 秒自动回退本地
+            // 防卡死保护：按句长动态超时，避免长句被误判为卡死
+            const estimatedMs = currentLang === 'zh'
+              ? (text.length * 450 + 10000)
+              : ((text.split(/\s+/).filter(Boolean).length * 700) + 10000);
+            const timeoutMs = Math.max(30000, Math.min(120000, estimatedMs));
             safetyTimer = setTimeout(() => {
               if (!isPlaybackActive(token)) return;
-              switchToWebSpeechFromRemote('remote sentence timeout >25s');
-            }, 25000);
+              switchToWebSpeechFromRemote(`remote sentence timeout >${Math.round(timeoutMs / 1000)}s`);
+            }, timeoutMs);
 
             try {
               audio.src = src;
