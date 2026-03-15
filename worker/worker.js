@@ -41,11 +41,17 @@ async function handleTTS(request, env) {
 
     const existing = await env.TTS_CACHE.get(metaKey, 'json');
     if (existing?.audio_path) {
-      return json({
-        audio_url: `${originFromRequest(request)}/audio/${hash}`,
-        audio_base64: null,
-        cache_hit: true
-      }, 200, env, request);
+      const existingR2Key = existing?.r2_key || `audio/${hash}.mp3`;
+      const existingObj = await env.AUDIO_BUCKET.head(existingR2Key);
+      if (existingObj) {
+        return json({
+          audio_url: `${originFromRequest(request)}/audio/${hash}`,
+          audio_base64: null,
+          cache_hit: true
+        }, 200, env, request);
+      }
+      // stale metadata: KV says hit but object missing in R2 -> self-heal by forcing regenerate
+      await env.TTS_CACHE.delete(metaKey);
     }
 
     // Simple lock via KV (best-effort)
@@ -56,7 +62,12 @@ async function handleTTS(request, env) {
       await sleep(600);
       const retryMeta = await env.TTS_CACHE.get(metaKey, 'json');
       if (retryMeta?.audio_path) {
-        return json({ audio_url: `${originFromRequest(request)}/audio/${hash}`, cache_hit: true }, 200, env, request);
+        const retryR2Key = retryMeta?.r2_key || `audio/${hash}.mp3`;
+        const retryObj = await env.AUDIO_BUCKET.head(retryR2Key);
+        if (retryObj) {
+          return json({ audio_url: `${originFromRequest(request)}/audio/${hash}`, cache_hit: true }, 200, env, request);
+        }
+        await env.TTS_CACHE.delete(metaKey);
       }
     }
     await env.TTS_CACHE.put(lockKey, '1', { expirationTtl: 60 });
