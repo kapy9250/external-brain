@@ -303,6 +303,27 @@
       return ttsState.isPlaying && !ttsState.isPaused && expandedId === ttsState.articleId && token === ttsState.sessionToken;
     }
 
+    function switchToWebSpeechFromRemote(reason = '') {
+      try {
+        sharedAudio.pause();
+        sharedAudio.removeAttribute('src');
+        sharedAudio.load();
+      } catch {}
+      ttsState.audioEl = null;
+
+      // Cancel any in-flight remote callbacks for current session
+      ttsState.sessionToken += 1;
+
+      // Make sure we don't overlap with existing local synthesis either
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch {}
+      }
+
+      activeTtsMode = 'webspeech';
+      if (reason) console.warn('[TTS] fallback to webspeech:', reason);
+      speakCurrentSentenceWebSpeech();
+    }
+
     function clearSleepTimer() {
       if (sleepState.timerId) {
         clearTimeout(sleepState.timerId);
@@ -799,9 +820,7 @@
             // 防卡死保护：单句超过 25 秒自动回退本地
             safetyTimer = setTimeout(() => {
               if (!isPlaybackActive(token)) return;
-              try { audio.pause(); } catch {}
-              activeTtsMode = 'webspeech';
-              speakCurrentSentence();
+              switchToWebSpeechFromRemote('remote sentence timeout >25s');
             }, 25000);
 
             try {
@@ -826,8 +845,7 @@
               return;
             }
             console.error(lastPlayError || new Error('Audio play failed for all sources'));
-            activeTtsMode = 'webspeech';
-            speakCurrentSentence();
+            switchToWebSpeechFromRemote('audio.play failed for all sources');
           }
         };
 
@@ -835,9 +853,8 @@
       } catch (err) {
         console.error(err);
         if (!isPlaybackActive(token)) return;
-        // remote 失败：自动回退本地，并从当前句继续
-        activeTtsMode = 'webspeech';
-        speakCurrentSentence();
+        // remote 失败：自动回退本地，并从当前句继续（避免双音轨）
+        switchToWebSpeechFromRemote(err?.message || 'remote fetch/playback error');
       }
     }
 
