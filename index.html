@@ -163,6 +163,35 @@
     }
     .floating-btn i { font-size: 18px; line-height: 1; }
 
+    .speed-panel {
+      position: fixed;
+      right: 64px;
+      bottom: 122px;
+      display: none;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      padding: 8px;
+      width: 190px;
+      background: var(--card-bg);
+      border: 1px solid rgba(127,127,127,.28);
+      border-radius: 10px;
+      z-index: 1000;
+    }
+    .speed-panel.show { display: grid; }
+    .speed-opt {
+      border: 1px solid rgba(127,127,127,.28);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text-color);
+      font-size: 12px;
+      padding: 6px 0;
+      cursor: pointer;
+    }
+    .speed-opt.active {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
     .sleep-panel {
       position: fixed;
       right: 64px;
@@ -212,11 +241,20 @@
 
   <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
     <button id="btnPlayPause" class="floating-btn" aria-label="播放或暂停" title="播放/暂停"><i class="bi bi-play-fill"></i></button>
+    <button id="btnSpeed" class="floating-btn" aria-label="播放速度" title="播放速度 1.25x"><i class="bi bi-speedometer2"></i></button>
     <button id="btnSleep" class="floating-btn" aria-label="定时关闭" title="定时关闭"><i class="bi bi-stopwatch"></i></button>
     <button id="btnShare" class="floating-btn" aria-label="分享当前文章" title="分享当前文章"><i class="bi bi-share"></i></button>
     <button id="btnPrev" class="floating-btn" aria-label="上一篇" title="上一篇"><i class="bi bi-chevron-up"></i></button>
     <button id="btnNext" class="floating-btn" aria-label="下一篇" title="下一篇"><i class="bi bi-chevron-down"></i></button>
     <button id="btnTop" class="floating-btn" aria-label="返回顶部" title="返回顶部"><i class="bi bi-arrow-up"></i></button>
+  </div>
+
+  <div id="speedPanel" class="speed-panel" aria-label="播放速度面板">
+    <button class="speed-opt" data-speed="0.85">0.85x</button>
+    <button class="speed-opt" data-speed="1">1x</button>
+    <button class="speed-opt active" data-speed="1.25">1.25x</button>
+    <button class="speed-opt" data-speed="1.5">1.5x</button>
+    <button class="speed-opt" data-speed="2">2x</button>
   </div>
 
   <div id="sleepPanel" class="sleep-panel" aria-label="定时关闭面板">
@@ -241,11 +279,13 @@
     const loader = document.getElementById('loader');
     const floatingMenu = document.getElementById('floatingMenu');
     const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnSpeed = document.getElementById('btnSpeed');
     const btnSleep = document.getElementById('btnSleep');
     const btnShare = document.getElementById('btnShare');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
     const btnTop = document.getElementById('btnTop');
+    const speedPanel = document.getElementById('speedPanel');
     const sleepPanel = document.getElementById('sleepPanel');
 
     // Single shared audio element for better mobile/iOS compatibility
@@ -256,7 +296,8 @@
 
     const TTS_API_ENDPOINT = window.TTS_API_ENDPOINT || '';
     const OPENAI_TTS_VOICE = window.OPENAI_TTS_VOICE || 'alloy';
-    const TTS_PLAYBACK_RATE = 1.25;
+    let ttsPlaybackRate = Number(localStorage.getItem('ttsPlaybackRate') || '1.25');
+    if (![0.85, 1, 1.25, 1.5, 2].includes(ttsPlaybackRate)) ttsPlaybackRate = 1.25;
     // 默认优先 remote(OpenAI Worker)，失败后自动回退 webspeech
     let activeTtsMode = TTS_API_ENDPOINT ? 'remote' : 'webspeech';
 
@@ -351,6 +392,22 @@
       btnSleep.innerHTML = '<i class="bi bi-stopwatch-fill"></i>';
     }
 
+    function updateSpeedUI() {
+      btnSpeed.title = `播放速度 ${ttsPlaybackRate}x`;
+      sharedAudio.playbackRate = ttsPlaybackRate;
+      speedPanel.querySelectorAll('.speed-opt').forEach(btn => {
+        const s = Number(btn.dataset.speed || '1.25');
+        btn.classList.toggle('active', s === ttsPlaybackRate);
+      });
+    }
+
+    function setPlaybackRate(speed) {
+      if (![0.85, 1, 1.25, 1.5, 2].includes(speed)) return;
+      ttsPlaybackRate = speed;
+      localStorage.setItem('ttsPlaybackRate', String(speed));
+      updateSpeedUI();
+    }
+
     async function init() {
       try {
         const res = await fetch('./articles.json');
@@ -358,6 +415,7 @@
         renderNextPage();
         setupObserver();
         setupFloatingMenuActions();
+        updateSpeedUI();
         await openFromDeepLink();
       } catch (e) {
         loader.innerText = 'Failed to load articles.';
@@ -723,7 +781,7 @@
       utterance.lang = currentLang === 'zh' ? 'zh-CN' : 'en-US';
       const voice = getBestVoiceForLang(currentLang);
       if (voice) utterance.voice = voice;
-      utterance.rate = TTS_PLAYBACK_RATE;
+      utterance.rate = ttsPlaybackRate;
       utterance.pitch = 1.0;
 
       utterance.onstart = () => {
@@ -804,7 +862,7 @@
 
           for (const src of sources) {
             const audio = sharedAudio;
-            audio.playbackRate = TTS_PLAYBACK_RATE;
+            audio.playbackRate = ttsPlaybackRate;
             ttsState.audioEl = audio;
 
             const clearSafety = () => {
@@ -994,8 +1052,22 @@
     function setupFloatingMenuActions() {
       btnPlayPause.addEventListener('click', togglePlayPause);
 
+      btnSpeed.addEventListener('click', () => {
+        speedPanel.classList.toggle('show');
+        sleepPanel.classList.remove('show');
+      });
+
+      speedPanel.querySelectorAll('.speed-opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const s = Number(btn.dataset.speed || '1.25');
+          setPlaybackRate(s);
+          speedPanel.classList.remove('show');
+        });
+      });
+
       btnSleep.addEventListener('click', () => {
         sleepPanel.classList.toggle('show');
+        speedPanel.classList.remove('show');
       });
 
       sleepPanel.querySelectorAll('.sleep-opt').forEach(btn => {
@@ -1029,9 +1101,17 @@
       });
 
       document.addEventListener('click', (e) => {
-        if (!sleepPanel.classList.contains('show')) return;
-        if (sleepPanel.contains(e.target) || btnSleep.contains(e.target)) return;
-        sleepPanel.classList.remove('show');
+        if (speedPanel.classList.contains('show')) {
+          if (!(speedPanel.contains(e.target) || btnSpeed.contains(e.target))) {
+            speedPanel.classList.remove('show');
+          }
+        }
+
+        if (sleepPanel.classList.contains('show')) {
+          if (!(sleepPanel.contains(e.target) || btnSleep.contains(e.target))) {
+            sleepPanel.classList.remove('show');
+          }
+        }
       });
 
       btnPrev.addEventListener('click', async () => {
