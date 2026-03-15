@@ -268,9 +268,10 @@
       isPlaying: false,
       utterance: null,
       audioEl: null,
-      bufferMap: new Map(),   // index -> remoteAudio payload
-      inflightMap: new Map(), // index -> Promise
-      prefetchAheadCount: 3,
+      bufferMap: new Map(),   // chunkStart -> remoteAudio payload
+      inflightMap: new Map(), // chunkStart -> Promise
+      chunkSize: 5,
+      prefetchAheadCount: 2, // number of chunks to prefetch
       sessionToken: 0,
       audioUnlocked: false
     };
@@ -645,41 +646,60 @@
       }
     }
 
+    function getChunkStart(index) {
+      return Math.max(0, index);
+    }
+
+    function buildChunkText(startIndex) {
+      const size = ttsState.chunkSize || 5;
+      const end = Math.min(ttsState.sentences.length, startIndex + size);
+      const parts = [];
+      for (let i = startIndex; i < end; i++) {
+        const t = (ttsState.sentences[i]?.textContent || '').trim();
+        if (t) parts.push(t);
+      }
+      return {
+        text: parts.join(' '),
+        endIndexExclusive: end
+      };
+    }
+
     async function ensureRemoteAudioForIndex(index) {
-      if (ttsState.bufferMap.has(index)) {
-        return ttsState.bufferMap.get(index);
+      const chunkStart = getChunkStart(index);
+      if (ttsState.bufferMap.has(chunkStart)) {
+        return ttsState.bufferMap.get(chunkStart);
       }
 
-      if (ttsState.inflightMap.has(index)) {
-        return await ttsState.inflightMap.get(index);
+      if (ttsState.inflightMap.has(chunkStart)) {
+        return await ttsState.inflightMap.get(chunkStart);
       }
 
-      const span = ttsState.sentences[index];
-      if (!span) return null;
-      const text = span.textContent.trim();
+      const { text, endIndexExclusive } = buildChunkText(chunkStart);
       if (!text) return null;
 
       const p = fetchRemoteSentenceAudio(text)
         .then((audio) => {
-          ttsState.bufferMap.set(index, audio);
-          return audio;
+          const payload = { ...audio, chunkStart, chunkEndExclusive: endIndexExclusive };
+          ttsState.bufferMap.set(chunkStart, payload);
+          return payload;
         })
         .finally(() => {
-          ttsState.inflightMap.delete(index);
+          ttsState.inflightMap.delete(chunkStart);
         });
 
-      ttsState.inflightMap.set(index, p);
+      ttsState.inflightMap.set(chunkStart, p);
       return await p;
     }
 
     function prefetchRemoteAhead(fromIndex) {
       if (activeTtsMode !== 'remote') return;
-      const end = Math.min(ttsState.sentences.length - 1, fromIndex + ttsState.prefetchAheadCount);
-      for (let i = fromIndex; i <= end; i++) {
-        if (i < 0) continue;
-        if (ttsState.bufferMap.has(i) || ttsState.inflightMap.has(i)) continue;
-        // fire and forget
-        ensureRemoteAudioForIndex(i).catch(() => {});
+      const size = ttsState.chunkSize || 5;
+      const baseChunk = getChunkStart(fromIndex);
+      for (let step = 0; step <= ttsState.prefetchAheadCount; step++) {
+        const chunkStart = baseChunk + step * size;
+        if (chunkStart >= ttsState.sentences.length) break;
+        if (ttsState.bufferMap.has(chunkStart) || ttsState.inflightMap.has(chunkStart)) continue;
+        ensureRemoteAudioForIndex(chunkStart).catch(() => {});
       }
     }
 
@@ -747,10 +767,10 @@
         highlightCurrentSentence();
         updateFloatingMenuVisibility();
 
-        // 当前句优先从缓冲取，没有则即时取
+        // 当前块优先从缓冲取，没有则即时取
         const remoteAudio = await ensureRemoteAudioForIndex(ttsState.currentIndex);
-        // 同时预取后续几句，减少句间停顿
-        prefetchRemoteAhead(ttsState.currentIndex + 1);
+        // 同时预取后续块，减少句间停顿
+        prefetchRemoteAhead(ttsState.currentIndex + (ttsState.chunkSize || 5));
 
         let retryCount = 0;
         const maxRetries = 5; // handle KV eventual consistency
@@ -788,7 +808,10 @@
             audio.onended = async () => {
               clearSafety();
               if (!isPlaybackActive(token)) return;
-              ttsState.currentIndex += 1;
+              const nextIndex = (remoteAudio && Number.isFinite(remoteAudio.chunkEndExclusive))
+                ? remoteAudio.chunkEndExclusive
+                : (ttsState.currentIndex + (ttsState.chunkSize || 5));
+              ttsState.currentIndex = nextIndex;
               await speakCurrentSentenceRemote();
             };
 
