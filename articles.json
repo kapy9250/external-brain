@@ -1,5 +1,32 @@
 [
   {
+    "id": 39,
+    "slug": "self-improving-skills-for-agents",
+    "generated_at": "2026-03-15 14:02 UTC",
+    "en": {
+      "title": "“Not just agents with skills, but agents with skills that can improve over time.”",
+      "summary": "Agent skills are here to stay, but a core problem remains unsolved: skills are often static while the environment keeps changing.",
+      "first_paragraph": "Agent skills are here to stay, but a core problem remains unsolved: skills are often static while the environment keeps changing.",
+      "meta": {
+        "author": "tricalt",
+        "source_url": "https://x.com/tricalt/article/2032179887277060476/media/2032166214189916161",
+        "published_at": "2026-03-12 19:40 UTC"
+      },
+      "file": "39_self-improving-skills-for-agents.cleaned.md"
+    },
+    "zh": {
+      "title": "“我们需要的不只是有技能的 agent，而是技能可以随着时间持续改进的 agent。”",
+      "summary": "Agent 技能会长期存在，但有一个核心问题一直没被真正解决：技能通常是静态的，而环境是持续变化的。",
+      "first_paragraph": "Agent 技能会长期存在，但有一个核心问题一直没被真正解决：技能通常是静态的，而环境是持续变化的。",
+      "meta": {
+        "author": "tricalt",
+        "source_url": "https://x.com/tricalt/article/2032179887277060476/media/2032166214189916161",
+        "published_at": "2026-03-12 19:40 UTC"
+      },
+      "file": "39_self-improving-skills-for-agents.cleaned.zh.md"
+    }
+  },
+  {
     "id": 38,
     "slug": "the-verification-economy",
     "generated_at": "2026-03-14 13:46 UTC",
