@@ -273,9 +273,7 @@
       chunkSize: 5,
       prefetchAheadCount: 2, // number of chunks to prefetch
       sessionToken: 0,
-      audioUnlocked: false,
-      assumeAllCached: false,
-      cacheProbeDone: false
+      audioUnlocked: false
     };
 
     const sleepState = {
@@ -666,53 +664,6 @@
       };
     }
 
-    function normalizeTtsText(text) {
-      return (text || '').replace(/\s+/g, ' ').trim();
-    }
-
-    async function sha256Hex(input) {
-      const enc = new TextEncoder();
-      const buf = await crypto.subtle.digest('SHA-256', enc.encode(input));
-      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    async function predictRemoteAudioUrl(text) {
-      if (!TTS_API_ENDPOINT) return '';
-      const endpoint = new URL(TTS_API_ENDPOINT);
-      const base = `${endpoint.protocol}//${endpoint.host}`;
-      const norm = normalizeTtsText(text);
-      const hashInput = `openai|${OPENAI_TTS_VOICE}|${currentLang}|mp3|${norm}`;
-      const hash = await sha256Hex(hashInput);
-      return `${base}/audio/${hash}`;
-    }
-
-    async function probeAllCachedMode(startIndex) {
-      if (activeTtsMode !== 'remote' || ttsState.cacheProbeDone) return;
-      ttsState.cacheProbeDone = true;
-
-      const starts = [startIndex, startIndex + (ttsState.chunkSize || 5)]
-        .filter(i => i >= 0 && i < ttsState.sentences.length)
-        .map(i => getChunkStart(i));
-
-      if (!starts.length) return;
-
-      let allHit = true;
-      for (const chunkStart of starts) {
-        const { text, endIndexExclusive } = buildChunkText(chunkStart);
-        if (!text) continue;
-        try {
-          const audio = await fetchRemoteSentenceAudio(text);
-          const payload = { ...audio, chunkStart, chunkEndExclusive: endIndexExclusive };
-          ttsState.bufferMap.set(chunkStart, payload);
-          if (!audio.cache_hit) allHit = false;
-        } catch {
-          allHit = false;
-        }
-      }
-
-      ttsState.assumeAllCached = allHit;
-    }
-
     async function ensureRemoteAudioForIndex(index) {
       const chunkStart = getChunkStart(index);
       if (ttsState.bufferMap.has(chunkStart)) {
@@ -725,21 +676,6 @@
 
       const { text, endIndexExclusive } = buildChunkText(chunkStart);
       if (!text) return null;
-
-      // In all-cached mode, skip /tts kv checks and go directly to predictable /audio URL
-      if (ttsState.assumeAllCached) {
-        const predictedUrl = await predictRemoteAudioUrl(text);
-        const payload = {
-          audio_url: predictedUrl,
-          audio_base64: null,
-          cache_hit: true,
-          predicted: true,
-          chunkStart,
-          chunkEndExclusive: endIndexExclusive
-        };
-        ttsState.bufferMap.set(chunkStart, payload);
-        return payload;
-      }
 
       const p = fetchRemoteSentenceAudio(text)
         .then((audio) => {
@@ -905,13 +841,6 @@
 
           if (!played) {
             if (!isPlaybackActive(token)) return;
-
-            // predicted direct-audio failed => disable all-cached shortcut and retry via /tts
-            if (remoteAudio?.predicted) {
-              ttsState.assumeAllCached = false;
-              ttsState.bufferMap.delete(remoteAudio.chunkStart);
-            }
-
             if (retryCount < maxRetries) {
               retryCount += 1;
               setTimeout(() => {
@@ -967,11 +896,8 @@
       ttsState.isPaused = false;
       ttsState.bufferMap.clear();
       ttsState.inflightMap.clear();
-      ttsState.assumeAllCached = false;
-      ttsState.cacheProbeDone = false;
 
       if (activeTtsMode === 'remote') {
-        await probeAllCachedMode(ttsState.currentIndex);
         prefetchRemoteAhead(ttsState.currentIndex);
       }
 
