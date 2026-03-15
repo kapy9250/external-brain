@@ -392,12 +392,20 @@
       btnSleep.innerHTML = '<i class="bi bi-stopwatch-fill"></i>';
     }
 
-    function updateSpeedUI() {
-      btnSpeed.title = `播放速度 ${ttsPlaybackRate}x`;
-      sharedAudio.playbackRate = ttsPlaybackRate;
+    function applyPlaybackRateToAudio(audioEl = sharedAudio) {
+      if (!audioEl) return;
+      try {
+        audioEl.defaultPlaybackRate = ttsPlaybackRate;
+        audioEl.playbackRate = ttsPlaybackRate;
+      } catch {}
+    }
+
+    function updateSpeedUI(actualRate = ttsPlaybackRate) {
+      const shownRate = Number(actualRate || ttsPlaybackRate);
+      btnSpeed.title = `播放速度 ${shownRate}x`;
       speedPanel.querySelectorAll('.speed-opt').forEach(btn => {
         const s = Number(btn.dataset.speed || '1.25');
-        btn.classList.toggle('active', s === ttsPlaybackRate);
+        btn.classList.toggle('active', Math.abs(s - shownRate) < 0.001);
       });
     }
 
@@ -405,7 +413,8 @@
       if (![0.85, 1, 1.25, 1.5, 2].includes(speed)) return;
       ttsPlaybackRate = speed;
       localStorage.setItem('ttsPlaybackRate', String(speed));
-      updateSpeedUI();
+      applyPlaybackRateToAudio(sharedAudio);
+      updateSpeedUI(sharedAudio.playbackRate || ttsPlaybackRate);
     }
 
     async function init() {
@@ -415,7 +424,8 @@
         renderNextPage();
         setupObserver();
         setupFloatingMenuActions();
-        updateSpeedUI();
+        applyPlaybackRateToAudio(sharedAudio);
+        updateSpeedUI(sharedAudio.playbackRate || ttsPlaybackRate);
         await openFromDeepLink();
       } catch (e) {
         loader.innerText = 'Failed to load articles.';
@@ -862,7 +872,7 @@
 
           for (const src of sources) {
             const audio = sharedAudio;
-            audio.playbackRate = ttsPlaybackRate;
+            applyPlaybackRateToAudio(audio);
             ttsState.audioEl = audio;
 
             const clearSafety = () => {
@@ -894,6 +904,20 @@
               if (audio.currentTime >= d - 0.2) {
                 await advanceToNextSentence();
               }
+            };
+
+            audio.onloadedmetadata = () => {
+              applyPlaybackRateToAudio(audio);
+              updateSpeedUI(audio.playbackRate || ttsPlaybackRate);
+            };
+
+            audio.onplay = () => {
+              applyPlaybackRateToAudio(audio);
+              updateSpeedUI(audio.playbackRate || ttsPlaybackRate);
+            };
+
+            audio.onratechange = () => {
+              updateSpeedUI(audio.playbackRate || ttsPlaybackRate);
             };
 
             audio.onerror = () => {
@@ -1053,6 +1077,7 @@
       btnPlayPause.addEventListener('click', togglePlayPause);
 
       btnSpeed.addEventListener('click', () => {
+        updateSpeedUI(sharedAudio.playbackRate || ttsPlaybackRate);
         speedPanel.classList.toggle('show');
         sleepPanel.classList.remove('show');
       });
