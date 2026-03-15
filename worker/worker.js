@@ -10,7 +10,7 @@ export default {
       return handleTTS(request, env);
     }
 
-    if (request.method === 'GET' && url.pathname.startsWith('/audio/')) {
+    if ((request.method === 'GET' || request.method === 'HEAD') && url.pathname.startsWith('/audio/')) {
       return handleAudio(url.pathname.replace('/audio/', ''), env, request);
     }
 
@@ -157,7 +157,7 @@ async function handleAudio(hash, env, request) {
   headers.set('content-type', obj.httpMetadata?.contentType || 'audio/mpeg');
   headers.set('cache-control', obj.httpMetadata?.cacheControl || 'public, max-age=31536000, immutable');
 
-  return new Response(obj.body, {
+  return new Response(request.method === 'HEAD' ? null : obj.body, {
     status: 200,
     headers
   });
