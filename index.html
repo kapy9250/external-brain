@@ -789,8 +789,14 @@
 
           // Mobile-friendly: prefer URL first (iOS/Android more reliable), then base64 fallback
           const sources = [];
-          if (remoteAudio.audio_url) sources.push(remoteAudio.audio_url);
-          if (remoteAudio.audio_base64) sources.push(`data:audio/mpeg;base64,${remoteAudio.audio_base64}`);
+          const b64src = remoteAudio.audio_base64 ? `data:audio/mpeg;base64,${remoteAudio.audio_base64}` : null;
+          if (remoteAudio.prefer_base64_first && b64src) {
+            sources.push(b64src);
+            if (remoteAudio.audio_url) sources.push(remoteAudio.audio_url);
+          } else {
+            if (remoteAudio.audio_url) sources.push(remoteAudio.audio_url);
+            if (b64src) sources.push(b64src);
+          }
           if (!sources.length) throw new Error('No playable audio source');
 
           let played = false;
@@ -846,6 +852,8 @@
               try {
                 const regenerated = await fetchRemoteSentenceAudio(text, { skipCacheLookup: true });
                 if (regenerated?.audio_url || regenerated?.audio_base64) {
+                  // mark this payload to prefer base64 first (avoid stale/slow URL path)
+                  regenerated.prefer_base64_first = true;
                   remoteAudio = regenerated;
                   ttsState.bufferMap.set(ttsState.currentIndex, regenerated);
                   retryCount = 0;
