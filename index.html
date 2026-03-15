@@ -272,8 +272,7 @@
       inflightMap: new Map(), // index -> Promise
       prefetchAheadCount: 3,
       sessionToken: 0,
-      audioUnlocked: false,
-      articlePolicies: new Map()
+      audioUnlocked: false
     };
 
     const sleepState = {
@@ -298,47 +297,6 @@
         sharedAudio.muted = false;
       }
       ttsState.audioUnlocked = true;
-    }
-
-    function getPolicy(articleId) {
-      if (!ttsState.articlePolicies.has(articleId)) {
-        ttsState.articlePolicies.set(articleId, {
-          mode: 'UNKNOWN', // UNKNOWN | HOT_GENERATING | FULL_CACHED
-          consecutiveMiss: 0,
-          generatedUntil: -1
-        });
-      }
-      return ttsState.articlePolicies.get(articleId);
-    }
-
-    async function sha256Hex(input) {
-      const enc = new TextEncoder();
-      const hash = await crypto.subtle.digest('SHA-256', enc.encode(input));
-      return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    function normalizeTextForHash(text) {
-      return (text || '').replace(/\s+/g, ' ').trim();
-    }
-
-    async function predictAudioUrl(text) {
-      if (!TTS_API_ENDPOINT) return '';
-      const endpoint = new URL(TTS_API_ENDPOINT);
-      const origin = `${endpoint.protocol}//${endpoint.host}`;
-      const normalized = normalizeTextForHash(text);
-      const key = `openai|${OPENAI_TTS_VOICE}|${currentLang}|mp3|${normalized}`;
-      const hash = await sha256Hex(key);
-      return `${origin}/audio/${hash}`;
-    }
-
-    async function checkAudioExists(url) {
-      if (!url) return false;
-      try {
-        const res = await fetch(url, { method: 'HEAD' });
-        return res.ok;
-      } catch {
-        return false;
-      }
     }
 
     function isPlaybackActive(token) {
@@ -655,7 +613,7 @@
       return voices.find(v => lower(v.lang).includes('en')) || voices[0] || null;
     }
 
-    async function fetchRemoteSentenceAudio(text, options = {}) {
+    async function fetchRemoteSentenceAudio(text) {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 12000); // 12s hard timeout
 
@@ -669,15 +627,12 @@
             lang: currentLang,
             provider: 'openai',
             voice_id: OPENAI_TTS_VOICE,
-            format: 'mp3',
-            skip_cache_lookup: !!options.skipCacheLookup
+            format: 'mp3'
           })
         });
 
         if (!res.ok) {
-          const err = new Error(`TTS API failed: ${res.status}`);
-          err.status = res.status;
-          throw err;
+          throw new Error(`TTS API failed: ${res.status}`);
         }
 
         const data = await res.json();
@@ -704,67 +659,14 @@
       const text = span.textContent.trim();
       if (!text) return null;
 
-      const policy = getPolicy(ttsState.articleId);
-      const isLast = index >= ttsState.sentences.length - 1;
-
-      const p = (async () => {
-        // If article already known fully cached, skip /tts and stream direct audio URL
-        if (policy.mode === 'FULL_CACHED' && index <= policy.generatedUntil) {
-          const directUrl = await predictAudioUrl(text);
-          return { audio_url: directUrl, audio_base64: null, cache_hit: true };
-        }
-
-        // Hot generating mode: avoid KV lookups, generate directly
-        if (policy.mode === 'HOT_GENERATING') {
-          if (index <= policy.generatedUntil) {
-            const directUrl = await predictAudioUrl(text);
-            return { audio_url: directUrl, audio_base64: null, cache_hit: true };
-          }
-
-          const generated = await fetchRemoteSentenceAudio(text, { skipCacheLookup: true });
-          policy.generatedUntil = Math.max(policy.generatedUntil, index);
-          if (isLast) {
-            policy.mode = 'FULL_CACHED';
-          }
-          return generated;
-        }
-
-        // UNKNOWN mode: probe direct audio first (no KV)
-        const directUrl = await predictAudioUrl(text);
-        const exists = await checkAudioExists(directUrl);
-
-        if (exists) {
-          policy.consecutiveMiss = 0;
-          policy.generatedUntil = Math.max(policy.generatedUntil, index);
-          if (isLast) policy.mode = 'FULL_CACHED';
-          return { audio_url: directUrl, audio_base64: null, cache_hit: true };
-        }
-
-        // direct miss: count misses and escalate
-        policy.consecutiveMiss += 1;
-        if (policy.consecutiveMiss >= 3) {
-          policy.mode = 'HOT_GENERATING';
-          const generated = await fetchRemoteSentenceAudio(text, { skipCacheLookup: true });
-          policy.generatedUntil = Math.max(policy.generatedUntil, index);
-          if (isLast) policy.mode = 'FULL_CACHED';
-          return generated;
-        }
-
-        // fallback to normal /tts (with KV check)
-        const audio = await fetchRemoteSentenceAudio(text);
-        if (audio.cache_hit) {
-          policy.generatedUntil = Math.max(policy.generatedUntil, index);
-          if (isLast) policy.mode = 'FULL_CACHED';
-        }
-        return audio;
-      })()
-      .then((audio) => {
-        ttsState.bufferMap.set(index, audio);
-        return audio;
-      })
-      .finally(() => {
-        ttsState.inflightMap.delete(index);
-      });
+      const p = fetchRemoteSentenceAudio(text)
+        .then((audio) => {
+          ttsState.bufferMap.set(index, audio);
+          return audio;
+        })
+        .finally(() => {
+          ttsState.inflightMap.delete(index);
+        });
 
       ttsState.inflightMap.set(index, p);
       return await p;
@@ -916,15 +818,6 @@
 
           if (!played) {
             if (!isPlaybackActive(token)) return;
-
-            // If we expected cached audio but playback failed, fallback to normal /tts recheck once
-            const policy = getPolicy(ttsState.articleId);
-            if (policy.mode === 'FULL_CACHED' || policy.mode === 'HOT_GENERATING') {
-              policy.mode = 'UNKNOWN';
-              policy.consecutiveMiss = 0;
-              ttsState.bufferMap.delete(ttsState.currentIndex);
-            }
-
             if (retryCount < maxRetries) {
               retryCount += 1;
               setTimeout(() => {
@@ -974,7 +867,6 @@
       window.speechSynthesis.cancel();
       ttsState.sessionToken += 1;
       ttsState.articleId = articleId;
-      getPolicy(articleId); // init per-article adaptive cache policy
       ttsState.sentences = spans;
       ttsState.currentIndex = Math.min(Math.max(startIndex, 0), spans.length - 1);
       ttsState.isPlaying = true;
