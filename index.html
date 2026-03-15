@@ -634,7 +634,7 @@
       return voices.find(v => lower(v.lang).includes('en')) || voices[0] || null;
     }
 
-    async function fetchRemoteSentenceAudio(text) {
+    async function fetchRemoteSentenceAudio(text, options = {}) {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 12000); // 12s hard timeout
 
@@ -648,7 +648,8 @@
             lang: currentLang,
             provider: 'openai',
             voice_id: OPENAI_TTS_VOICE,
-            format: 'mp3'
+            format: 'mp3',
+            skip_cache_lookup: !!options.skipCacheLookup
           })
         });
 
@@ -769,10 +770,11 @@
         updateFloatingMenuVisibility();
 
         // 当前句优先从缓冲取，没有则即时取
-        const remoteAudio = await ensureRemoteAudioForIndex(ttsState.currentIndex);
+        let remoteAudio = await ensureRemoteAudioForIndex(ttsState.currentIndex);
         // 同时预取后续几句，减少句间停顿
         prefetchRemoteAhead(ttsState.currentIndex + 1);
 
+        let retriedWithForceRegen = false;
         let retryCount = 0;
         const maxRetries = 5; // handle KV eventual consistency
         let safetyTimer = null;
@@ -837,6 +839,24 @@
 
           if (!played) {
             if (!isPlaybackActive(token)) return;
+
+            // Self-heal stale cache: force regenerate once, then retry playback immediately
+            if (!retriedWithForceRegen) {
+              retriedWithForceRegen = true;
+              try {
+                const regenerated = await fetchRemoteSentenceAudio(text, { skipCacheLookup: true });
+                if (regenerated?.audio_url || regenerated?.audio_base64) {
+                  remoteAudio = regenerated;
+                  ttsState.bufferMap.set(ttsState.currentIndex, regenerated);
+                  retryCount = 0;
+                  await playRemoteAudio();
+                  return;
+                }
+              } catch (e) {
+                console.warn('[TTS] force regen failed', e);
+              }
+            }
+
             if (retryCount < maxRetries) {
               retryCount += 1;
               setTimeout(() => {

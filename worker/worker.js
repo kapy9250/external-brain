@@ -29,7 +29,7 @@ export default {
 
 async function handleTTS(request, env) {
   try {
-    const { text = '', lang = 'zh', voice_id = '', format = 'mp3', provider = 'openai' } = await request.json();
+    const { text = '', lang = 'zh', voice_id = '', format = 'mp3', provider = 'openai', skip_cache_lookup = false } = await request.json();
     const normalized = normalizeText(text);
     if (!normalized) return json({ error: 'text is required' }, 400, env, request);
 
@@ -39,7 +39,7 @@ async function handleTTS(request, env) {
     const hash = await sha256Hex(`${provider}|${ttsVoice}|${lang}|${format}|${normalized}`);
     const metaKey = `meta:${hash}`;
 
-    const existing = await env.TTS_CACHE.get(metaKey, 'json');
+    const existing = skip_cache_lookup ? null : await env.TTS_CACHE.get(metaKey, 'json');
     if (existing?.audio_path) {
       const existingR2Key = existing?.r2_key || `audio/${hash}.mp3`;
       const existingObj = await env.AUDIO_BUCKET.head(existingR2Key);
