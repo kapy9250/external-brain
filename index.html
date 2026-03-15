@@ -241,8 +241,8 @@
 
   <div id="floatingMenu" class="floating-menu" aria-label="阅读悬浮菜单">
     <button id="btnPlayPause" class="floating-btn" aria-label="播放或暂停" title="播放/暂停"><i class="bi bi-play-fill"></i></button>
-    <button id="btnSpeed" class="floating-btn" aria-label="播放速度" title="播放速度 1.25x"><i class="bi bi-speedometer2"></i></button>
-    <button id="btnSleep" class="floating-btn" aria-label="定时关闭" title="定时关闭"><i class="bi bi-stopwatch"></i></button>
+    <button id="btnSpeed" class="floating-btn" aria-label="播放速度" title="播放速度 1.25x" style="display:none;"><i class="bi bi-speedometer2"></i></button>
+    <button id="btnSleep" class="floating-btn" aria-label="定时关闭" title="定时关闭" style="display:none;"><i class="bi bi-stopwatch"></i></button>
     <button id="btnShare" class="floating-btn" aria-label="分享当前文章" title="分享当前文章"><i class="bi bi-share"></i></button>
     <button id="btnPrev" class="floating-btn" aria-label="上一篇" title="上一篇"><i class="bi bi-chevron-up"></i></button>
     <button id="btnNext" class="floating-btn" aria-label="下一篇" title="下一篇"><i class="bi bi-chevron-down"></i></button>
@@ -519,6 +519,14 @@
       btnPlayPause.innerHTML = ttsState.isPlaying && !ttsState.isPaused
         ? '<i class="bi bi-pause-fill"></i>'
         : '<i class="bi bi-play-fill"></i>';
+
+      const showPlaybackExtras = !!ttsState.isPlaying;
+      btnSpeed.style.display = showPlaybackExtras ? 'inline-flex' : 'none';
+      btnSleep.style.display = showPlaybackExtras ? 'inline-flex' : 'none';
+      if (!showPlaybackExtras) {
+        speedPanel.classList.remove('show');
+        sleepPanel.classList.remove('show');
+      }
     }
 
     function stopTTS() {
