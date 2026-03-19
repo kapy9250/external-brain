@@ -2,7 +2,7 @@
   {
     "id": 47,
     "slug": "how-we-use-skills",
-    "generated_at": "2026-03-19 15:43 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "Lessons from Building Claude Code: How We Use Skills",
       "summary": "Skills have become one of the most used extension points in Claude Code. They’re flexible, easy to make, and simple to distribute.",
@@ -15,21 +15,21 @@
       "file": "47_how-we-use-skills.cleaned.md"
     },
     "zh": {
-      "title": "Lessons from Building Claude Code: How We Use Skills",
-      "summary": "Skills have become one of the most used extension points in Claude Code. They’re flexible, easy to make, and simple to distribute.",
-      "first_paragraph": "Skills have become one of the most used extension points in Claude Code. They’re flexible, easy to make, and simple to distribute.",
+      "title": "构建 Claude Code 的经验教训：我们如何使用 Skills",
+      "summary": "Skills 已经成为 Claude Code 中最常用的扩展点之一。它们灵活、易于制作，且分发简单。",
+      "first_paragraph": "Skills 已经成为 Claude Code 中最常用的扩展点之一。它们灵活、易于制作，且分发简单。",
       "meta": {
         "author": "trq212",
         "source_url": "https://x.com/trq212/article/2033949937936085378/media/2033778969078861826",
         "published_at": "2026-03-17 16:53 UTC"
       },
-      "file": "47_how-we-use-skills.cleaned.md"
+      "file": "47_how-we-use-skills.cleaned.zh.md"
     }
   },
   {
     "id": 46,
     "slug": "seeing-like-an-agent",
-    "generated_at": "2026-03-19 15:41 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "Lessons from Building Claude Code: Seeing like an Agent",
       "summary": "One of the hardest parts of building an agent harness is constructing its action space.",
@@ -56,7 +56,7 @@
   {
     "id": 45,
     "slug": "prompt-caching-is-everything",
-    "generated_at": "2026-03-19 15:31 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "Lessons from Building Claude Code: Prompt Caching Is Everything",
       "summary": "It is often said in engineering that \"Cache Rules Everything Around Me\", and the same rule holds for agents.",
@@ -83,7 +83,7 @@
   {
     "id": 43,
     "slug": "open-swe",
-    "generated_at": "2026-03-18 07:21 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "Open SWE: An Open-Source Framework for Internal Coding Agents",
       "summary": "Over the past year, we've observed several engineering organizations building internal coding agents that operate alongside their development teams. S...",
@@ -110,7 +110,7 @@
   {
     "id": 42,
     "slug": "5-agent-skill-design-patterns",
-    "generated_at": "2026-03-18 07:16 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "5 Agent Skill design patterns every ADK developer should know",
       "summary": "When it comes to SKILL.md, developers tend to fixate on the format—getting the YAML right, structuring directories, and following the spec. But with m...",
@@ -137,7 +137,7 @@
   {
     "id": 41,
     "slug": "autoresearch-claude-skills",
-    "generated_at": "2026-03-17 19:33 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "How to 10x your Claude Skills (using Karpathy's autoresearch method)",
       "summary": "Your Claude skills probably fail 30% of the time and you don't even notice.",
@@ -164,7 +164,7 @@
   {
     "id": 40,
     "slug": "anatomy-of-an-agent-harness",
-    "generated_at": "2026-03-17 13:03 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "The Anatomy of an Agent Harness",
       "summary": "TLDR: Agent = Model + Harness. Harness engineering is how we build systems around models to turn them into work engines. The model contains the intell...",
@@ -191,7 +191,7 @@
   {
     "id": 39,
     "slug": "self-improving-skills-for-agents",
-    "generated_at": "2026-03-15 14:02 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "“Not just agents with skills, but agents with skills that can improve over time.”",
       "summary": "Agent skills are here to stay, but a core problem remains unsolved: skills are often static while the environment keeps changing.",
@@ -218,7 +218,7 @@
   {
     "id": 38,
     "slug": "the-verification-economy",
-    "generated_at": "2026-03-14 13:46 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "the verification economy: we solved generation. now what?",
       "summary": "for two years the conversation on AI disrupting software engineering followed the same storyline: models were getting smarter, benchmarks were climbin...",
@@ -245,7 +245,7 @@
   {
     "id": 37,
     "slug": "how-to-build-a-world-class-sales-team",
-    "generated_at": "2026-03-14 13:42 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "Your product won’t sell itself: How to build a world-class sales team",
       "summary": "Founders obsess over product details: features, UX, performance, reliability, and documentation. Now imagine applying that same intensity to sales and...",
@@ -272,7 +272,7 @@
   {
     "id": 36,
     "slug": "english-language-arts-10-12-learnalberta",
-    "generated_at": "2026-03-13 17:11 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "English Language Arts (10–12)",
       "summary": "There are two basic aims of senior high school English language arts. One aim is to encourage, in students, an understanding and appreciation of the s...",
@@ -299,7 +299,7 @@
   {
     "id": 35,
     "slug": "discovery-of-e",
-    "generated_at": "2026-03-12 16:30 UTC",
+    "generated_at": "2026-03-19 15:57 UTC",
     "en": {
       "title": "From $1 to 2.71828: The Discovery of e",
       "summary": "In mathematics, one of the most important numbers is e which is called Euler's number, and is approaximately equal to 2.71828. This number can be foun...",
@@ -326,7 +326,7 @@
   {
     "id": 34,
     "slug": "openai-codex-best-practices",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-12 15:15 UTC",
     "en": {
       "title": "Best practices",
       "summary": "Getting started with Codex and proven practices for better results",
@@ -353,7 +353,7 @@
   {
     "id": 33,
     "slug": "coding-agents-reshape-epd",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-10 18:42 UTC",
     "en": {
       "title": "How Coding Agents Are Reshaping Engineering, Product and Design",
       "summary": "EPD (Engineering, Product, and Design) at a software company is about creating good software. Separate roles exist, but the end goal is functional sof...",
@@ -380,7 +380,7 @@
   {
     "id": 32,
     "slug": "harness-engineering-cybernetics",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-10 18:38 UTC",
     "en": {
       "title": "Harness Engineering Is Cybernetics",
       "summary": "Reading OpenAI's Agent SDK, I kept having a feeling I couldn't place. Then it clicked: I'd seen this pattern before. Not once — three times.",
@@ -407,7 +407,7 @@
   {
     "id": 31,
     "slug": "claude-shannon-creative-thinking",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-09 01:47 UTC",
     "en": {
       "title": "Claude Shannon: Creative Thinking",
       "summary": "This document is a record of a speech on \"Creative Thinking\" given by Claude Shannon at Bell Labs on March 20, 1952.",
@@ -434,7 +434,7 @@
   {
     "id": 30,
     "slug": "karpathy-autoresearch",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-08 15:19 UTC",
     "en": {
       "title": "Andrej Karpathy on X: autoresearch",
       "summary": "I packaged up the \"autoresearch\" project into a new self-contained minimal repo if people would like to play over the weekend. It's basically nanochat...",
@@ -461,7 +461,7 @@
   {
     "id": 29,
     "slug": "agentic-code-reasoning-2603-01896",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-08 04:03 UTC",
     "en": {
       "title": "Agentic Code Reasoning",
       "summary": "===============",
@@ -488,7 +488,7 @@
   {
     "id": 28,
     "slug": "anthropic-labor-market-impacts-of-ai",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-08 03:16 UTC",
     "en": {
       "title": "Labor market impacts of AI: A new measure and early evidence",
       "summary": "We introduce a new measure of AI displacement risk, observed exposure, that combines theoretical LLM capability and real-world usage data, weighting a...",
@@ -515,7 +515,7 @@
   {
     "id": 27,
     "slug": "openclaw-memory-masterclass",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-08 02:58 UTC",
     "en": {
       "title": "OpenClaw Memory Masterclass: The complete guide to agent memory that survives",
       "summary": "March 5th, 2026",
@@ -542,7 +542,7 @@
   {
     "id": 26,
     "slug": "jimprosser-chief-of-staff-claude-code",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-07 23:46 UTC",
     "en": {
       "title": "My chief of staff, Claude Code",
       "summary": "The dream of modern personalized technology has always been some kind of perfect digital assistant—a chief of staff that triages your inbox, organizes...",
@@ -569,7 +569,7 @@
   {
     "id": 25,
     "slug": "45-thoughts-about-agents",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-07 22:42 UTC",
     "en": {
       "title": "Title: 45 Thoughts About Agents",
       "summary": "URL Source: https://secondthoughts.ai/p/45-thoughts-about-agents",
@@ -596,7 +596,7 @@
   {
     "id": 24,
     "slug": "white-papers-on-surveillance-and-tracking",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-07 22:08 UTC",
     "en": {
       "title": "White Papers on Surveillance and Tracking",
       "summary": "Source: Sara Konecny (@signal2prompt)",
@@ -623,7 +623,7 @@
   {
     "id": 23,
     "slug": "how-to-set-up-claude-cowork",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-07 17:38 UTC",
     "en": {
       "title": "How to set up Claude Cowork (to level up from ChatGPT)",
       "summary": "Author: Ruben Hassid",
@@ -650,7 +650,7 @@
   {
     "id": 22,
     "slug": "when-we-stand-at-the-beginning-of-a-transformation",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-07 17:32 UTC",
     "en": {
       "title": "When We Stand at the Beginning of a Transformation",
       "summary": "Original article by Jiayuan (JY) Zhang",
@@ -677,7 +677,7 @@
   {
     "id": 21,
     "slug": "chinese-open-source-a-definitive-history",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-07 15:20 UTC",
     "en": {
       "title": "Chinese Open Source: A Definitive History",
       "summary": "URL: https://x.com/kevinsxu/status/2029961571296743585",
@@ -704,7 +704,7 @@
   {
     "id": 20,
     "slug": "mits-quant-course-decoded-for-every-prediction-market-trader",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-07 15:09 UTC",
     "en": {
       "title": "MIT's Quant Course Decoded for Every Prediction Market Trader",
       "summary": "URL: https://x.com/rohonchain/status/2028489070394171427",
@@ -731,7 +731,7 @@
   {
     "id": 19,
     "slug": "mcp-vs-skills-for-ai-agents",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-06 17:41 UTC",
     "en": {
       "title": "MCP vs. Skills for AI agents, clearly explained!",
       "summary": "URL: https://x.com/akshaypachaar/status/2029534926828388537",
@@ -758,7 +758,7 @@
   {
     "id": 18,
     "slug": "45-thoughts-about-agents-steve-newman",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-06 17:37 UTC",
     "en": {
       "title": "Recommend this \"45 Thoughts About Agents\"",
       "summary": "URL: https://x.com/runesleo/status/2029081154066723039",
@@ -785,7 +785,7 @@
   {
     "id": 17,
     "slug": "codex-5-4-opus-4-6-gpt-5-3-gemini-3-1",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-06 17:36 UTC",
     "en": {
       "title": "Om Patel: codex 5.4 >>>> opus 4.6 >>>> gpt 5.3 >>>> gemini 3.1",
       "summary": "URL: https://x.com/ompatel5/status/2029644536306143588",
@@ -812,7 +812,7 @@
   {
     "id": 16,
     "slug": "how-id-become-a-quant-if-i-had-to-start-over-tomorrow",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-06 18:48 UTC",
     "en": {
       "title": "How I'd Become a Quant If I Had to Start Over Tomorrow",
       "summary": "URL: https://x.com/gemchangeltd/status/2028904166895112617",
@@ -839,7 +839,7 @@
   {
     "id": 15,
     "slug": "gitnexus-interactive-knowledge-graph",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-05 18:33 UTC",
     "en": {
       "title": "GitNexus: Turn Any GitHub Repo into an Interactive Knowledge Graph",
       "summary": "URL: https://x.com/MillieMarconnni/status/2028436636841996451",
@@ -866,7 +866,7 @@
   {
     "id": 14,
     "slug": "the-only-guide-to-google-workspace-ai-agents-youll-ever-need",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-05 14:23 UTC",
     "en": {
       "title": "The Only Guide to Google Workspace AI Agents You'll Ever Need",
       "summary": "URL: https://x.com/sharbel/status/2029494091336032686",
@@ -893,7 +893,7 @@
   {
     "id": 13,
     "slug": "investigating-how-codex-context-compaction-works",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-05 14:12 UTC",
     "en": {
       "title": "Investigating how Codex context compaction works",
       "summary": "URL: https://x.com/kangwooklee/status/2028955292025962534",
@@ -920,7 +920,7 @@
   {
     "id": 12,
     "slug": "the-ultimate-beginners-guide-to-claude",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-05 13:24 UTC",
     "en": {
       "title": "The Ultimate Beginner’s Guide to Claude (March 2026)",
       "summary": "URL: https://x.com/aiedge/status/2029233676111008061",
@@ -947,7 +947,7 @@
   {
     "id": 11,
     "slug": "how-to-be-a-world-class-agentic-engineer",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-05 13:03 UTC",
     "en": {
       "title": "How To Be A World-Class Agentic Engineer",
       "summary": "URL: https://x.com/systematicls/status/2028814227004395561",
@@ -974,7 +974,7 @@
   {
     "id": 10,
     "slug": "17-best-practices-that-make-claude-cowork-100x-more-powerful",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-03 02:17 UTC",
     "en": {
       "title": "[Skill Name]",
       "summary": "In seven weeks, I’ve run over 400 Cowork sessions. I’ve tested every plugin, every connector, every slash command. I’ve broken it in ways Anthropic pr...",
@@ -1001,7 +1001,7 @@
   {
     "id": 9,
     "slug": "best-practices-for-claude-code-100x-powerful",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-03-01 07:36 UTC",
     "en": {
       "title": "welcome back guys",
       "summary": "last time i wrote a full breakdown of \"Transformer Architecture\" and the response was honestly insane",
@@ -1028,7 +1028,7 @@
   {
     "id": 8,
     "slug": "lessons-from-building-claude-code-prompt-caching-is-everything",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-28 22:46 UTC",
     "en": {
       "title": "It is often said in engineering that “Cache Rules Everything Around Me,” and the same rule holds for agents.",
       "summary": "Long-running agent products like Claude Code are economically feasible because of prompt caching: reusing prior computation to reduce both latency and...",
@@ -1055,7 +1055,7 @@
   {
     "id": 7,
     "slug": "the-claude-native-law-firm",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-28 22:35 UTC",
     "en": {
       "title": "The Claude-Native Law Firm",
       "summary": "A few months ago, the night before a client’s acquisition was set to close, buyer’s counsel sent a letter demanding major last-minute changes: new esc...",
@@ -1082,7 +1082,7 @@
   {
     "id": 6,
     "slug": "lessons-from-building-claude-code-seeing-like-an-agent",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-28 21:53 UTC",
     "en": {
       "title": "One of the hardest parts of building an agent harness is constructing its action space.",
       "summary": "Claude acts through Tool Calling, but there are a number of ways tools can be constructed in the Claude API with primitives like bash, skills and rece...",
@@ -1109,7 +1109,7 @@
   {
     "id": 5,
     "slug": "prompt-personalities-gpt5",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-26 05:37 UTC",
     "en": {
       "title": "Markdown Content:",
       "summary": "Similar to ChatGPT’s built-in personality presets, you can steer your Agent’s behavior by explicitly defining its personality in your prompt instructi...",
@@ -1136,7 +1136,7 @@
   {
     "id": 4,
     "slug": "context-personalization-openai-agents-sdk",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-26 05:33 UTC",
     "en": {
       "title": "Your openai key",
       "summary": "Jan 5, 2026",
@@ -1163,7 +1163,7 @@
   {
     "id": 3,
     "slug": "OpenClaw-Ebook-Final",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-25 14:10 UTC",
     "en": {
       "title": "OpenClaw Ebook - Final",
       "summary": "OpenClaw:  What  People",
@@ -1190,7 +1190,7 @@
   {
     "id": 2,
     "slug": "The-Self-Improving-AI-System-That-Built-Itself",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-25 13:47 UTC",
     "en": {
       "title": "The Self-Improving AI System That Built Itself",
       "summary": "I was trying to ship faster",
@@ -1217,7 +1217,7 @@
   {
     "id": 1,
     "slug": "ETH2030-Agentic-Coding-ETH-Client-2030-Roadmap",
-    "generated_at": "2026-03-12 16:27 UTC",
+    "generated_at": "2026-02-25 13:39 UTC",
     "en": {
       "title": "ETH2030: Agentic Coding ETH Client for 2030+ Roadmap",
       "summary": "Two weeks ago I made a bet with Vitalik that one person could agentic-code an Ethereum client targeting the entire 2030+ roadmap. Completed-roadmap Et...",
