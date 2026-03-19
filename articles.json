@@ -96,15 +96,15 @@
       "file": "43_open-swe.cleaned.md"
     },
     "zh": {
-      "title": "Open SWE: An Open-Source Framework for Internal Coding Agents",
-      "summary": "Over the past year, we've observed several engineering organizations building internal coding agents that operate alongside their development teams. S...",
-      "first_paragraph": "Over the past year, we've observed several engineering organizations building internal coding agents that operate alongside their development teams. Stripe developed theirs, Ramp built theirs, and Coinbase created theirs. These systems integrate into existing workflows (accessible through Slack, Linear, and GitHub) rather than requiring engineers to adopt new interfaces.",
+      "title": "Open SWE：用于内部编码 Agent 的开源框架",
+      "summary": "在过去的一年里，我们观察到几家工程组织构建了内部编码 Agent（Coding Agents）来与他们的开发团队协同工作。Stripe 开发了他们的系统，Ramp 构建了他们的系统，Coinbase 也创建了他们自己的系统。这些系统融入了现有的工作流（可通过 Slack、Linear 和 GitHu...",
+      "first_paragraph": "在过去的一年里，我们观察到几家工程组织构建了内部编码 Agent（Coding Agents）来与他们的开发团队协同工作。Stripe 开发了他们的系统，Ramp 构建了他们的系统，Coinbase 也创建了他们自己的系统。这些系统融入了现有的工作流（可通过 Slack、Linear 和 GitHub 访问），而不需要工程师去适应新的界面。",
       "meta": {
         "author": "LangChain",
         "source_url": "https://x.com/LangChain/article/2033959303766512006/media/2033956752568553474",
         "published_at": "2026-03-17 17:31 UTC"
       },
-      "file": "43_open-swe.cleaned.md"
+      "file": "43_open-swe.cleaned.zh.md"
     }
   },
   {
