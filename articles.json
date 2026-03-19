@@ -1,5 +1,194 @@
 [
   {
+    "id": 47,
+    "slug": "how-we-use-skills",
+    "generated_at": "2026-03-19 15:43 UTC",
+    "en": {
+      "title": "Lessons from Building Claude Code: How We Use Skills",
+      "summary": "Skills have become one of the most used extension points in Claude Code. They’re flexible, easy to make, and simple to distribute.",
+      "first_paragraph": "Skills have become one of the most used extension points in Claude Code. They’re flexible, easy to make, and simple to distribute.",
+      "meta": {
+        "author": "trq212",
+        "source_url": "https://x.com/trq212/article/2033949937936085378/media/2033778969078861826",
+        "published_at": "2026-03-17 16:53 UTC"
+      },
+      "file": "47_how-we-use-skills.cleaned.md"
+    },
+    "zh": {
+      "title": "Lessons from Building Claude Code: How We Use Skills",
+      "summary": "Skills have become one of the most used extension points in Claude Code. They’re flexible, easy to make, and simple to distribute.",
+      "first_paragraph": "Skills have become one of the most used extension points in Claude Code. They’re flexible, easy to make, and simple to distribute.",
+      "meta": {
+        "author": "trq212",
+        "source_url": "https://x.com/trq212/article/2033949937936085378/media/2033778969078861826",
+        "published_at": "2026-03-17 16:53 UTC"
+      },
+      "file": "47_how-we-use-skills.cleaned.md"
+    }
+  },
+  {
+    "id": 46,
+    "slug": "seeing-like-an-agent",
+    "generated_at": "2026-03-19 15:41 UTC",
+    "en": {
+      "title": "Lessons from Building Claude Code: Seeing like an Agent",
+      "summary": "One of the hardest parts of building an agent harness is constructing its action space.",
+      "first_paragraph": "One of the hardest parts of building an agent harness is constructing its action space.",
+      "meta": {
+        "author": "trq212",
+        "source_url": "https://x.com/trq212/article/2027463795355095314/media/2027448328863330304",
+        "published_at": "2026-02-27 19:20 UTC"
+      },
+      "file": "46_seeing-like-an-agent.cleaned.md"
+    },
+    "zh": {
+      "title": "构建 Claude Code 的经验教训：像 Agent 一样思考",
+      "summary": "构建 Agent 脚手架（harness）最困难的部分之一就是构建其动作空间（action space）。",
+      "first_paragraph": "构建 Agent 脚手架（harness）最困难的部分之一就是构建其动作空间（action space）。",
+      "meta": {
+        "author": "trq212",
+        "source_url": "https://x.com/trq212/article/2027463795355095314/media/2027448328863330304",
+        "published_at": "2026-02-27 19:20 UTC"
+      },
+      "file": "46_seeing-like-an-agent.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 45,
+    "slug": "prompt-caching-is-everything",
+    "generated_at": "2026-03-19 15:31 UTC",
+    "en": {
+      "title": "Lessons from Building Claude Code: Prompt Caching Is Everything",
+      "summary": "It is often said in engineering that \"Cache Rules Everything Around Me\", and the same rule holds for agents.",
+      "first_paragraph": "It is often said in engineering that \"Cache Rules Everything Around Me\", and the same rule holds for agents.",
+      "meta": {
+        "author": "trq212",
+        "source_url": "https://x.com/trq212/article/2024574133011673516/media/2024553977430646784",
+        "published_at": "2026-02-19 19:57 UTC"
+      },
+      "file": "45_prompt-caching-is-everything.cleaned.md"
+    },
+    "zh": {
+      "title": "构建 Claude Code 的经验教训：Prompt Caching 就是一切",
+      "summary": "在工程领域，常有一句话叫 \"Cache Rules Everything Around Me\"（缓存统治着我周围的一切），同样的规则也适用于 Agent。",
+      "first_paragraph": "在工程领域，常有一句话叫 \"Cache Rules Everything Around Me\"（缓存统治着我周围的一切），同样的规则也适用于 Agent。",
+      "meta": {
+        "author": "trq212",
+        "source_url": "https://x.com/trq212/article/2024574133011673516/media/2024553977430646784",
+        "published_at": "2026-02-19 19:57 UTC"
+      },
+      "file": "45_prompt-caching-is-everything.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 43,
+    "slug": "open-swe",
+    "generated_at": "2026-03-18 07:21 UTC",
+    "en": {
+      "title": "Open SWE: An Open-Source Framework for Internal Coding Agents",
+      "summary": "Over the past year, we've observed several engineering organizations building internal coding agents that operate alongside their development teams. S...",
+      "first_paragraph": "Over the past year, we've observed several engineering organizations building internal coding agents that operate alongside their development teams. Stripe developed theirs, Ramp built theirs, and Coinbase created theirs. These systems integrate into existing workflows (accessible through Slack, Linear, and GitHub) rather than requiring engineers to adopt new interfaces.",
+      "meta": {
+        "author": "LangChain",
+        "source_url": "https://x.com/LangChain/article/2033959303766512006/media/2033956752568553474",
+        "published_at": "2026-03-17 17:31 UTC"
+      },
+      "file": "43_open-swe.cleaned.md"
+    },
+    "zh": {
+      "title": "Open SWE: An Open-Source Framework for Internal Coding Agents",
+      "summary": "Over the past year, we've observed several engineering organizations building internal coding agents that operate alongside their development teams. S...",
+      "first_paragraph": "Over the past year, we've observed several engineering organizations building internal coding agents that operate alongside their development teams. Stripe developed theirs, Ramp built theirs, and Coinbase created theirs. These systems integrate into existing workflows (accessible through Slack, Linear, and GitHub) rather than requiring engineers to adopt new interfaces.",
+      "meta": {
+        "author": "LangChain",
+        "source_url": "https://x.com/LangChain/article/2033959303766512006/media/2033956752568553474",
+        "published_at": "2026-03-17 17:31 UTC"
+      },
+      "file": "43_open-swe.cleaned.md"
+    }
+  },
+  {
+    "id": 42,
+    "slug": "5-agent-skill-design-patterns",
+    "generated_at": "2026-03-18 07:16 UTC",
+    "en": {
+      "title": "5 Agent Skill design patterns every ADK developer should know",
+      "summary": "When it comes to SKILL.md, developers tend to fixate on the format—getting the YAML right, structuring directories, and following the spec. But with m...",
+      "first_paragraph": "When it comes to SKILL.md, developers tend to fixate on the format—getting the YAML right, structuring directories, and following the spec. But with more than 30 agent tools (like Claude Code, Gemini CLI, and Cursor) standardizing on the same layout, the formatting problem is practically obsolete.",
+      "meta": {
+        "author": "GoogleCloudTech",
+        "source_url": "https://x.com/GoogleCloudTech/article/2033953579824758855/media/2033942042057834502",
+        "published_at": "2026-03-17 17:08 UTC"
+      },
+      "file": "42_5-agent-skill-design-patterns.cleaned.md"
+    },
+    "zh": {
+      "title": "每个 ADK 开发者都应该知道的 5 种 Agent Skill 设计模式",
+      "summary": "当谈到 SKILL.md 时，开发者往往会执着于格式——把 YAML 写对、构建目录结构、遵循规范。但是，随着 30 多种 Agent 工具（如 Claude Code、Gemini CLI 和 Cursor）都在相同的布局上实现了标准化，格式问题实际上已经过时了。",
+      "first_paragraph": "当谈到 SKILL.md 时，开发者往往会执着于格式——把 YAML 写对、构建目录结构、遵循规范。但是，随着 30 多种 Agent 工具（如 Claude Code、Gemini CLI 和 Cursor）都在相同的布局上实现了标准化，格式问题实际上已经过时了。",
+      "meta": {
+        "author": "GoogleCloudTech",
+        "source_url": "https://x.com/GoogleCloudTech/article/2033953579824758855/media/2033942042057834502",
+        "published_at": "2026-03-17 17:08 UTC"
+      },
+      "file": "42_5-agent-skill-design-patterns.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 41,
+    "slug": "autoresearch-claude-skills",
+    "generated_at": "2026-03-17 19:33 UTC",
+    "en": {
+      "title": "How to 10x your Claude Skills (using Karpathy's autoresearch method)",
+      "summary": "Your Claude skills probably fail 30% of the time and you don't even notice.",
+      "first_paragraph": "Your Claude skills probably fail 30% of the time and you don't even notice.",
+      "meta": {
+        "author": "itsolelehmann",
+        "source_url": "https://x.com/itsolelehmann/article/2033919415771713715/media/2033908556034904064",
+        "published_at": "2026-03-17 14:52 UTC"
+      },
+      "file": "41_autoresearch-claude-skills.cleaned.md"
+    },
+    "zh": {
+      "title": "如何将你的 Claude Skills 提升 10 倍（使用 Karpathy 的 autoresearch 方法）",
+      "summary": "你的 Claude skills 可能有 30% 的概率会失败，而你甚至都没有注意到。",
+      "first_paragraph": "你的 Claude skills 可能有 30% 的概率会失败，而你甚至都没有注意到。",
+      "meta": {
+        "author": "itsolelehmann",
+        "source_url": "https://x.com/itsolelehmann/article/2033919415771713715/media/2033908556034904064",
+        "published_at": "2026-03-17 14:52 UTC"
+      },
+      "file": "41_autoresearch-claude-skills.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 40,
+    "slug": "anatomy-of-an-agent-harness",
+    "generated_at": "2026-03-17 13:03 UTC",
+    "en": {
+      "title": "The Anatomy of an Agent Harness",
+      "summary": "TLDR: Agent = Model + Harness. Harness engineering is how we build systems around models to turn them into work engines. The model contains the intell...",
+      "first_paragraph": "TLDR: Agent = Model + Harness. Harness engineering is how we build systems around models to turn them into work engines. The model contains the intelligence and the harness makes that intelligence useful. We define what a harness is and derive the core components today's and tomorrow's agents need.",
+      "meta": {
+        "author": "Vtrivedy10",
+        "source_url": "https://x.com/Vtrivedy10/article/2031408954517971368/media/2031389391680061440",
+        "published_at": "2026-03-10 16:36 UTC"
+      },
+      "file": "40_anatomy-of-an-agent-harness.cleaned.md"
+    },
+    "zh": {
+      "title": "Agent Harness 的剖析",
+      "summary": "太长不看 (TLDR)： Agent = Model + Harness (模型 + 治理框架/脚手架)。Harness engineering 是指我们如何围绕模型构建系统，从而将它们转化为工作引擎。模型包含智能，而 Harness 则让这些智能变得有用。我们定义了什么是 Harness，并推导出...",
+      "first_paragraph": "太长不看 (TLDR)： Agent = Model + Harness (模型 + 治理框架/脚手架)。Harness engineering 是指我们如何围绕模型构建系统，从而将它们转化为工作引擎。模型包含智能，而 Harness 则让这些智能变得有用。我们定义了什么是 Harness，并推导出了当今和未来 Agent 所需的核心组件。",
+      "meta": {
+        "author": "Vtrivedy10",
+        "source_url": "https://x.com/Vtrivedy10/article/2031408954517971368/media/2031389391680061440",
+        "published_at": "2026-03-10 16:36 UTC"
+      },
+      "file": "40_anatomy-of-an-agent-harness.cleaned.zh.md"
+    }
+  },
+  {
     "id": 39,
     "slug": "self-improving-skills-for-agents",
     "generated_at": "2026-03-15 14:02 UTC",
