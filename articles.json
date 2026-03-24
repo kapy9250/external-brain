@@ -1,5 +1,86 @@
 [
   {
+    "id": 52,
+    "slug": "om-patel-find-10k-mrr-startup-ideas",
+    "generated_at": "2026-03-24 16:43 UTC",
+    "en": {
+      "title": "Om Patel on X: \"How I Find $10K MRR Startup Ideas With a Single MCP \"",
+      "summary": "Every successful founder says the same thing: \"build something people want.\"",
+      "first_paragraph": "Every successful founder says the same thing: \"build something people want.\"",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "52_om-patel-find-10k-mrr-startup-ideas.cleaned.md"
+    },
+    "zh": {
+      "title": "Om Patel on X: \"我如何用一个 MCP 找到价值 1 万美元 MRR 的创业想法\"",
+      "summary": "每一个成功的创始人都说同样的话：“构建人们想要的东西。”",
+      "first_paragraph": "每一个成功的创始人都说同样的话：“构建人们想要的东西。”",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "52_om-patel-find-10k-mrr-startup-ideas.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 51,
+    "slug": "chris-lu-yc-w26",
+    "generated_at": "2026-03-24 16:29 UTC",
+    "en": {
+      "title": "Chris Lu on X: \"I analyzed all YC W26 companies: Here's what it tells us about the future.\"",
+      "summary": "I just analyzed all the companies in YC's W26 batch: every pitch, every sector, every founding team.",
+      "first_paragraph": "I just analyzed all the companies in YC's W26 batch: every pitch, every sector, every founding team.",
+      "meta": {
+        "author": "chris__lu",
+        "source_url": "https://x.com/chris__lu/article/2035789607824929033/media/2035755874241892352",
+        "published_at": "2026-03-22 18:44 UTC"
+      },
+      "file": "51_chris-lu-yc-w26.cleaned.md"
+    },
+    "zh": {
+      "title": "Chris Lu on X: \"我分析了所有 YC W26 公司：这是它们告诉我们的关于未来的信息。\"",
+      "summary": "我刚刚分析了 YC W26 批次中的所有公司：每一次 pitch、每一个领域、每一个创始团队。",
+      "first_paragraph": "我刚刚分析了 YC W26 批次中的所有公司：每一次 pitch、每一个领域、每一个创始团队。",
+      "meta": {
+        "author": "chris__lu",
+        "source_url": "https://x.com/chris__lu/article/2035789607824929033/media/2035755874241892352",
+        "published_at": "2026-03-22 18:44 UTC"
+      },
+      "file": "51_chris-lu-yc-w26.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 50,
+    "slug": "every-claude-code-hack",
+    "generated_at": "2026-03-23 20:26 UTC",
+    "en": {
+      "title": "Every Claude Code Hack I Know (March 2026)",
+      "summary": "Someone asked what IDE to use. My reply got the most engagement out of 128 answers: \"No IDE. Just plan.md files and voice.\" Here's everything I meant ...",
+      "first_paragraph": "Someone asked what IDE to use. My reply got the most engagement out of 128 answers: \"No IDE. Just plan.md files and voice.\" Here's everything I meant by that.",
+      "meta": {
+        "author": "mvanhorn",
+        "source_url": "https://x.com/mvanhorn/article/2035857346602340637/media/2035845781425643520",
+        "published_at": "2026-03-22 23:13 UTC"
+      },
+      "file": "50_every-claude-code-hack.cleaned.md"
+    },
+    "zh": {
+      "title": "我所知道的每一个 Claude Code 技巧 (2026年3月)",
+      "summary": "有人问我该用什么 IDE（集成开发环境）。在 128 个回答中，我的回复获得了最多的互动：“不用 IDE。只需要 plan.md 文件和语音。” 以下就是我这句话的全部含义。",
+      "first_paragraph": "有人问我该用什么 IDE（集成开发环境）。在 128 个回答中，我的回复获得了最多的互动：“不用 IDE。只需要 plan.md 文件和语音。” 以下就是我这句话的全部含义。",
+      "meta": {
+        "author": "mvanhorn",
+        "source_url": "https://x.com/mvanhorn/article/2035857346602340637/media/2035845781425643520",
+        "published_at": "2026-03-22 23:13 UTC"
+      },
+      "file": "50_every-claude-code-hack.cleaned.zh.md"
+    }
+  },
+  {
     "id": 49,
     "slug": "50-claude-code-tips",
     "generated_at": "2026-03-20 15:05 UTC",
