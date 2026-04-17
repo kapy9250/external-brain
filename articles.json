@@ -1,5 +1,221 @@
 [
   {
+    "id": 60,
+    "slug": "trq212-claude-code-session-management",
+    "generated_at": "2026-04-16 06:30 UTC",
+    "en": {
+      "title": "Using Claude Code: Session Management & 1M Context",
+      "summary": "In my recent calls with Claude Code users, one theme keeps coming up: the 1M token context window is a double-edged sword.",
+      "first_paragraph": "In my recent calls with Claude Code users, one theme keeps coming up: the 1M token context window is a double-edged sword.",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "60_trq212-claude-code-session-management.cleaned.md"
+    },
+    "zh": {
+      "title": "使用 Claude Code：会话管理与 100 万上下文 (Using Claude Code: Session Management & 1M Context)",
+      "summary": "在我最近与 Claude Code 用户的通话中，一个主题反复出现：100 万 token 的上下文窗口是一把双刃剑。",
+      "first_paragraph": "在我最近与 Claude Code 用户的通话中，一个主题反复出现：100 万 token 的上下文窗口是一把双刃剑。",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "60_trq212-claude-code-session-management.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 59,
+    "slug": "rohonchain-combining-50-weak-signals",
+    "generated_at": "2026-04-16 06:12 UTC",
+    "en": {
+      "title": "The Math Behind Combining 50 Weak Signals Into One Winning Trade",
+      "summary": "I am going to break down the math that hedge funds use to turn 50 weak signals into a single high-conviction trade. I will also share the complete 11-...",
+      "first_paragraph": "I am going to break down the math that hedge funds use to turn 50 weak signals into a single high-conviction trade. I will also share the complete 11-step procedure and how you can build this system yourself. Let's get straight to it.",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "59_rohonchain-combining-50-weak-signals.cleaned.md"
+    },
+    "zh": {
+      "title": "将 50 个弱信号组合成一个获胜交易背后的数学原理 (The Math Behind Combining 50 Weak Signals Into One Winning Trade)",
+      "summary": "我将为你拆解对冲基金 (hedge funds) 用来将 50 个弱信号转化为单一高确信度交易的数学原理。我还会分享完整的 11 步程序，以及你如何自己构建这个系统。让我们直入正题。",
+      "first_paragraph": "我将为你拆解对冲基金 (hedge funds) 用来将 50 个弱信号转化为单一高确信度交易的数学原理。我还会分享完整的 11 步程序，以及你如何自己构建这个系统。让我们直入正题。",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "59_rohonchain-combining-50-weak-signals.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 58,
+    "slug": "garrytan-thin-harness-fat-skills",
+    "generated_at": "2026-04-13 18:56 UTC",
+    "en": {
+      "title": "Thin Harness, Fat Skills",
+      "summary": "Steve Yegge says people using AI coding agents are \"10x to 100x as productive as engineers using Cursor and chat today, and roughly 1000x as productiv...",
+      "first_paragraph": "Steve Yegge says people using AI coding agents are \"10x to 100x as productive as engineers using Cursor and chat today, and roughly 1000x as productive as Googlers were back in 2005.\"",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "58_garrytan-thin-harness-fat-skills.cleaned.md"
+    },
+    "zh": {
+      "title": "薄框架，厚技能 (Thin Harness, Fat Skills)",
+      "summary": "Steve Yegge 说，使用 AI 编程智能体 (coding agents) 的人“比今天使用 Cursor 和聊天的工程师的生产力高出 10 到 100 倍，大约是 2005 年 Google 员工生产力的 1000 倍。”",
+      "first_paragraph": "Steve Yegge 说，使用 AI 编程智能体 (coding agents) 的人“比今天使用 Cursor 和聊天的工程师的生产力高出 10 到 100 倍，大约是 2005 年 Google 员工生产力的 1000 倍。”",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "58_garrytan-thin-harness-fat-skills.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 57,
+    "slug": "intuitiveml-ai-first-strategy-wrong",
+    "generated_at": "2026-04-13 16:40 UTC",
+    "en": {
+      "title": "Why Your “AI-First” Strategy Is Probably Wrong",
+      "summary": "99% of our production code is written by AI. Last Tuesday, we shipped a new feature at 10 AM, A/B tested it by noon, and killed it by 3 PM because the...",
+      "first_paragraph": "99% of our production code is written by AI. Last Tuesday, we shipped a new feature at 10 AM, A/B tested it by noon, and killed it by 3 PM because the data said no. We shipped a better version at 5 PM. Three months ago, a cycle like that would have taken six weeks.",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "57_intuitiveml-ai-first-strategy-wrong.cleaned.md"
+    },
+    "zh": {
+      "title": "为什么你的“AI-First”战略可能大错特错 (Why Your “AI-First” Strategy Is Probably Wrong)",
+      "summary": "我们 99% 的生产环境代码是由 AI 编写的。上周二，我们在上午 10 点发布了一个新功能，中午 12 点进行 A/B 测试，到下午 3 点就把它毙掉了，因为数据显示它不行。我们在下午 5 点发布了一个更好的版本。在三个月前，这样一个循环需要花上六周时间。",
+      "first_paragraph": "我们 99% 的生产环境代码是由 AI 编写的。上周二，我们在上午 10 点发布了一个新功能，中午 12 点进行 A/B 测试，到下午 3 点就把它毙掉了，因为数据显示它不行。我们在下午 5 点发布了一个更好的版本。在三个月前，这样一个循环需要花上六周时间。",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "57_intuitiveml-ai-first-strategy-wrong.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 56,
+    "slug": "ryanli-embracing-bitter-lesson-ai-hackathon",
+    "generated_at": "2026-04-12 02:11 UTC",
+    "en": {
+      "title": "Embracing the Bitter Lesson: How 1,039 AI-Generated Strategies Won Paradigm Autoresearch Hackathon",
+      "summary": "I barely even read the problem set. Every step of the solution was made by AI.",
+      "first_paragraph": "I barely even read the problem set. Every step of the solution was made by AI.",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "56_ryanli-embracing-bitter-lesson-ai-hackathon.cleaned.md"
+    },
+    "zh": {
+      "title": "拥抱苦涩的教训：1,039 个 AI 生成的策略如何赢得 Paradigm Autoresearch 黑客松 (Embracing the Bitter Lesson: How 1,039 AI-Generated Strategies Won Paradigm Autoresearch Hackathon)",
+      "summary": "我几乎连题目都没看。解决方案的每一步都是由 AI 完成的。",
+      "first_paragraph": "我几乎连题目都没看。解决方案的每一步都是由 AI 完成的。",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "56_ryanli-embracing-bitter-lesson-ai-hackathon.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 55,
+    "slug": "rlancemartin-launching-claude-managed-agents",
+    "generated_at": "2026-04-09 05:36 UTC",
+    "en": {
+      "title": "Launching Claude Managed Agents",
+      "summary": "TL;DR – Claude Managed Agents is a pre-built, configurable agent harness that runs in managed infrastructure. You define an agent as a template – tool...",
+      "first_paragraph": "TL;DR – Claude Managed Agents is a pre-built, configurable agent harness that runs in managed infrastructure. You define an agent as a template – tools, skills, files / repos, etc. The agent harness and the infrastructure are provided for you. The system is designed to keep pace with Claude’s rapidly growing intelligence and support long horizon tasks. Some useful links:",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "55_rlancemartin-launching-claude-managed-agents.cleaned.md"
+    },
+    "zh": {
+      "title": "发布 Claude 托管智能体 (Launching Claude Managed Agents)",
+      "summary": "TL;DR – Claude Managed Agents (Claude 托管智能体) 是一个预先构建的、可配置的智能体运行框架 (agent harness)，在托管的基础设施中运行。你可以将智能体定义为一个模板——工具、技能、文件/仓库等。智能体框架和基础设施均由系统为你提供。该系统旨在跟上 ...",
+      "first_paragraph": "TL;DR – Claude Managed Agents (Claude 托管智能体) 是一个预先构建的、可配置的智能体运行框架 (agent harness)，在托管的基础设施中运行。你可以将智能体定义为一个模板——工具、技能、文件/仓库等。智能体框架和基础设施均由系统为你提供。该系统旨在跟上 Claude 快速增长的智能，并支持长周期任务。一些有用的链接：",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "55_rlancemartin-launching-claude-managed-agents.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 54,
+    "slug": "ryancarson-openclaw-best-assistant",
+    "generated_at": "2026-04-05 22:42 UTC",
+    "en": {
+      "title": "How to turn your OpenClaw into the world's best assistant",
+      "summary": "I turned my OpenClaw into the most effective assistant and chief of staff I’ve ever worked with. I’ve hired executive assistants in previous companies...",
+      "first_paragraph": "I turned my OpenClaw into the most effective assistant and chief of staff I’ve ever worked with. I’ve hired executive assistants in previous companies, and I’m honestly blown away by how well this works. If you want the shortcut, start here:",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "54_ryancarson-openclaw-best-assistant.cleaned.md"
+    },
+    "zh": {
+      "title": "如何将你的 OpenClaw 变成世界上最好的助手",
+      "summary": "我将我的 OpenClaw 变成了我共事过最高效的助手和幕僚长 (chief of staff)。我以前在公司雇佣过行政助理 (executive assistants)，而这个系统的运作效果让我彻底震撼。如果你想走捷径，从这里开始：",
+      "first_paragraph": "我将我的 OpenClaw 变成了我共事过最高效的助手和幕僚长 (chief of staff)。我以前在公司雇佣过行政助理 (executive assistants)，而这个系统的运作效果让我彻底震撼。如果你想走捷径，从这里开始：",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "54_ryancarson-openclaw-best-assistant.cleaned.zh.md"
+    }
+  },
+  {
+    "id": 53,
+    "slug": "karpathy-llm-knowledge-bases",
+    "generated_at": "2026-04-03 12:22 UTC",
+    "en": {
+      "title": "LLM Knowledge Bases",
+      "summary": "Something I'm finding very useful recently: using LLMs to build personal knowledge bases for various topics of research interest. In this way, a large...",
+      "first_paragraph": "Something I'm finding very useful recently: using LLMs to build personal knowledge bases for various topics of research interest. In this way, a large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge (stored as markdown and images). The latest LLMs are quite good at it. So:",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "53_karpathy-llm-knowledge-bases.cleaned.md"
+    },
+    "zh": {
+      "title": "LLM 知识库 (LLM Knowledge Bases)",
+      "summary": "最近我发现有一件事非常有用：使用 LLM 为各种感兴趣的研究主题构建个人知识库。通过这种方式，我最近产生的大部分 token 吞吐量较少用于操作代码，而更多地用于操作知识（以 markdown 和图像的形式存储）。最新的 LLM 在这方面非常擅长。因此：",
+      "first_paragraph": "最近我发现有一件事非常有用：使用 LLM 为各种感兴趣的研究主题构建个人知识库。通过这种方式，我最近产生的大部分 token 吞吐量较少用于操作代码，而更多地用于操作知识（以 markdown 和图像的形式存储）。最新的 LLM 在这方面非常擅长。因此：",
+      "meta": {
+        "author": "",
+        "source_url": "",
+        "published_at": ""
+      },
+      "file": "53_karpathy-llm-knowledge-bases.cleaned.zh.md"
+    }
+  },
+  {
     "id": 52,
     "slug": "om-patel-find-10k-mrr-startup-ideas",
     "generated_at": "2026-03-24 16:43 UTC",
